@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace ChainsOfFate.Gerallt
 {
-    public class CombatUI : MonoBehaviour
+    public class PlayerButtons : MonoBehaviour
     {
+        public PlayableCharacter playableCharacter;
+        
         // Start is called before the first frame update
         void Start()
         {
-        
+            
         }
 
         // Update is called once per frame
@@ -18,5 +20,4 @@ namespace ChainsOfFate.Gerallt
         
         }
     }
-
 }
