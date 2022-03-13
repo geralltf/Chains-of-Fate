@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
         controls = new CoFPlayerControls();
         controls.Player.Movement.performed += ctx => move = ctx.ReadValue<Vector2>(); //on button press gets the movement value and starts the movement
         controls.Player.Movement.canceled += ctx => move = Vector2.zero; //on button release stops movement
+        //DontDestroyOnLoad(this);
     }
-
+ 
     private void OnEnable()
     {
         controls.Player.Enable();
