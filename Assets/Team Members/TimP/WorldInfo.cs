@@ -7,7 +7,7 @@ public class WorldInfo : MonoBehaviour
 {
     private Transform player;
     private Vector3 centrePoint;
-    public float loadRange = 40;
+    public float loadRange = 50;
     public string leftScene, rightScene, upScene, downScene;
     public bool leftSceneLoaded, rightSceneLoaded, upSceneLoaded, downSceneLoaded;
     // Start is called before the first frame update
@@ -29,32 +29,36 @@ public class WorldInfo : MonoBehaviour
         {
             if (player.position.x > centrePoint.x + loadRange)
             {
-                if (player.position.x > centrePoint.x + (loadRange * 2))
+                if (player.position.x > centrePoint.x + (loadRange))
                 {
                     SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 }
 
                 if (!rightSceneLoaded)
                 {
-                    if (rightSceneLoaded != true)
+                    if (rightScene != null)
                     {
+                        SceneManager.LoadScene(rightScene, LoadSceneMode.Additive);
                         rightSceneLoaded = true;
-                        if (rightScene != null) SceneManager.LoadScene(rightScene, LoadSceneMode.Additive);
                     }
                 }
             }
 
             if (player.position.x < centrePoint.x - loadRange)
             {
-                if (player.position.x < centrePoint.x - (loadRange * 2))
+                if (player.position.x < centrePoint.x - (loadRange))
                 {
                     SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 }
 
-                if (!leftSceneLoaded && leftSceneLoaded != true)
+                if (!leftSceneLoaded)
                 {
-                    leftSceneLoaded = true;
-                    if (leftScene != null) SceneManager.LoadScene(leftScene, LoadSceneMode.Additive);
+                    if (leftScene != null)
+                    {
+                        SceneManager.LoadScene(leftScene, LoadSceneMode.Additive);
+                        leftSceneLoaded = true;
+                    }
+                    
                 }
             }
 
@@ -65,10 +69,14 @@ public class WorldInfo : MonoBehaviour
                     SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 }
 
-                if (!downSceneLoaded && downSceneLoaded != true)
+                if (!downSceneLoaded)
                 {
-                    downSceneLoaded = true;
-                    if (rightScene != null) SceneManager.LoadScene(downScene, LoadSceneMode.Additive);
+                    if (rightScene != null)
+                    {
+                        SceneManager.LoadScene(downScene, LoadSceneMode.Additive);
+                        downSceneLoaded = true;
+                    }
+                    
                 }
             }
 
@@ -79,10 +87,14 @@ public class WorldInfo : MonoBehaviour
                     SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 }
 
-                if (!upSceneLoaded && upSceneLoaded != true)
+                if (!upSceneLoaded)
                 {
-                    upSceneLoaded = true;
-                    if (leftScene != null) SceneManager.LoadScene(upScene, LoadSceneMode.Additive);
+                    if (leftScene != null)
+                    {
+                        SceneManager.LoadScene(upScene, LoadSceneMode.Additive);
+                        upSceneLoaded = true;
+                    }
+                    
                 }
             }
 
