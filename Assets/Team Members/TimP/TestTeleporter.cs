@@ -24,7 +24,7 @@ public class TestTeleporter : MonoBehaviour
     {
         SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
         SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        SceneManager.sceneLoaded-= SceneManagerOnsceneLoaded;
+        
     }
 
     private void SceneManagerOnsceneLoaded(Scene sceneInstance, LoadSceneMode sceneMode)
@@ -41,10 +41,12 @@ public class TestTeleporter : MonoBehaviour
             if (combatUI != null)
             {
                 combatUI.SetCurrentEnemies(enemies);
+                
+                break;
             }
-            
-            break;
         }
+        
+        SceneManager.sceneLoaded-= SceneManagerOnsceneLoaded;
     }
 
     private void OnTriggerExit(Collider other)
