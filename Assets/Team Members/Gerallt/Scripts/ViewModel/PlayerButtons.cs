@@ -10,6 +10,8 @@ namespace ChainsOfFate.Gerallt
 
         public PlayerButtonsAttackSet AttackButtonSet;
         public PlayerButtonsResolveSet ResolveButtonsSet;
+        public PlayerButtonsInventorySet InventoryButtonsSet;
+        public PlayerButtonsDefensiveSet DefensiveButtonsSet;
         
         public void AttackButton_OnClick()
         {
@@ -19,12 +21,14 @@ namespace ChainsOfFate.Gerallt
 
         public void InventoryButton_OnClick()
         {
-            Debug.Log("Inventory");
+            this.gameObject.SetActive(false);
+            InventoryButtonsSet.gameObject.SetActive(true);
         }
         
         public void DefendButton_OnClick()
         {
-            Debug.Log("Defend");
+            this.gameObject.SetActive(false);
+            DefensiveButtonsSet.gameObject.SetActive(true);
         }
         
         public void ResolveButton_OnClick()
@@ -42,6 +46,8 @@ namespace ChainsOfFate.Gerallt
         {
             AttackButtonSet.gameObject.SetActive(false);
             ResolveButtonsSet.gameObject.SetActive(false);
+            InventoryButtonsSet.gameObject.SetActive(false);
+            DefensiveButtonsSet.gameObject.SetActive(false);
         }
 
         public void OnDisable()
