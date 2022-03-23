@@ -71,7 +71,7 @@ public class WorldInfo : MonoBehaviour
 
                 if (!downSceneLoaded)
                 {
-                    if (rightScene != null)
+                    if (downScene != null)
                     {
                         SceneManager.LoadScene(downScene, LoadSceneMode.Additive);
                         downSceneLoaded = true;
@@ -89,7 +89,7 @@ public class WorldInfo : MonoBehaviour
 
                 if (!upSceneLoaded)
                 {
-                    if (leftScene != null)
+                    if (upScene != null)
                     {
                         SceneManager.LoadScene(upScene, LoadSceneMode.Additive);
                         upSceneLoaded = true;

@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scene 2.unity
     guid: 4ffc8a3493b377548856076f0212a43e
+  - enabled: 1
+    path: Assets/Team Members/Gerallt/Scenes/Test Combat Scene.unity
+    guid: 6c83ad95fc145c8428b23bd36d0a3aa4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a77d378b4fec5ad47bb5b8e531458538, type: 2}
