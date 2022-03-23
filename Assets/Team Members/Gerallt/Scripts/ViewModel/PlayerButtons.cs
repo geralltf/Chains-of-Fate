@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ChainsOfFate.Gerallt
 {
@@ -40,6 +41,8 @@ namespace ChainsOfFate.Gerallt
         public void FleeButton_OnClick()
         {
             Debug.Log("Flee");
+
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         }
         
         public void OnEnable()
