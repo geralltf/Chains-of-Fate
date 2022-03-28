@@ -22,9 +22,23 @@ public class TestTeleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
-        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        
+        /*
+        if (other.GetComponent<PlayerController>()!=null)
+        {
+            SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
+            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        }
+        */
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>()!= null)
+        {
+            this.gameObject.SetActive(false);
+            SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
+            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        }
     }
 
     private void SceneManagerOnsceneLoaded(Scene sceneInstance, LoadSceneMode sceneMode)
