@@ -48,7 +48,7 @@ namespace ChainsOfFate.Gerallt
             
             if (hit != null)
             {
-                Debug.Log("guess hit! block " + hit.defenseBlockPerentage.ToString() + "%");
+                Debug.Log("guess hit! block " + hit.defenseBlockPerentage.ToString() + "%" + (hit.isCounterAttack?"Counter attack" : ""));
             }
         }
         

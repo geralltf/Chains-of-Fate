@@ -12,5 +12,7 @@ namespace ChainsOfFate.Gerallt
         /// The percentage of damage blocked when shield hits this hit square.
         /// </summary>
         public float defenseBlockPerentage;
+
+        public bool isCounterAttack;
     }
 }
