@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public Transform target;
-
+    public GameObject enemy;
     public float withinRange;
-
+    public float angle;
     public float speed;
 
     private PlayerSensor playerSensor;
@@ -19,7 +19,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (playerSensor.DetectedPlayer != null)
         {
@@ -28,6 +28,10 @@ public class EnemyMove : MonoBehaviour
             //{
             //}
             transform.position = Vector3.MoveTowards(transform.position, playerSensor.DetectedPlayer.transform.position, speed);
+        }
+        else
+        {
+            transform.RotateAround(enemy.transform.position, Vector3.up, angle);
         }
         
     }
