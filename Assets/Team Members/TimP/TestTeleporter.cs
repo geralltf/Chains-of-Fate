@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 public class TestTeleporter : MonoBehaviour
 {
     public string scene;
-
+    public PlayerController PlayerController;
     private void Awake()
     {
-        //SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
+        PlayerController = FindObjectOfType<PlayerController>();
     }
 
     private void OnDestroy()
@@ -55,7 +55,7 @@ public class TestTeleporter : MonoBehaviour
             if (combatUI != null)
             {
                 combatUI.SetCurrentEnemies(enemies);
-                
+                PlayerController.controls.Player.Disable();
                 break;
             }
         }

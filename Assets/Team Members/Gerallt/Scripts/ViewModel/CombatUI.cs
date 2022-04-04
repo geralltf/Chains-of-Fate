@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,25 @@ namespace ChainsOfFate.Gerallt
     public class CombatUI : MonoBehaviour
     {
         public List<GameObject> CurrentEnemies;
+        public event Action onSceneDestroyed;
+        public event Action onSceneLoaded;
+        public bool isLoaded;
+
+        public void Awake()
+        {
+            if (onSceneLoaded != null)
+            {
+                onSceneLoaded();
+            }
+        }
+
+        public void OnDestroy()
+        {
+            if (onSceneDestroyed !=null)
+            {
+                onSceneDestroyed();
+            }
+        }
 
         public void SetCurrentEnemies(List<GameObject> enemies)
         {
