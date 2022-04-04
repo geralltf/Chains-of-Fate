@@ -23,6 +23,8 @@ namespace ChainsOfFate.Gerallt
         public event Action onWonEvent;
         public event Action onLostEvent;
 
+        public AnimationCurve animationCurve;
+
         private TweenerCore<Vector3, Vector3, VectorOptions> currentTween;
         
         public void SetVisibility(bool visibility)
@@ -76,6 +78,7 @@ namespace ChainsOfFate.Gerallt
                     
                 //Debug.Log("anim left to right done");
             };
+            currentTween.SetEase(animationCurve);
         }
         
         public void StartAnim_RightToLeft()
@@ -89,6 +92,7 @@ namespace ChainsOfFate.Gerallt
                     
                 //Debug.Log("anim right to left done");
             };
+            currentTween.SetEase(animationCurve);
         }
         
         public void StopAnim()
