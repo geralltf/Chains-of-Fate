@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &312874107 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8350055717933156382, guid: a3a6aa6e69228d942a803452e05420f4, type: 3}
-  m_PrefabInstance: {fileID: 1637269594}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &924762731
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,8 +182,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1427681833}
   - component: {fileID: 1427681832}
-  - component: {fileID: 1427681831}
   - component: {fileID: 1427681830}
+  - component: {fileID: 1427681834}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -208,17 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2368de4d174d2408073935ad930498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTransform: {fileID: 312874107}
-  mapBounds: {fileID: 2917676964787887880}
   player: {fileID: 1355039249}
---- !u!81 &1427681831
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427681829}
-  m_Enabled: 1
 --- !u!20 &1427681832
 Camera:
   m_ObjectHideFlags: 0
@@ -277,6 +262,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 89.07, y: 0, z: 0}
+--- !u!114 &1427681834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427681829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!1001 &1637269594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,8 +492,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
---- !u!65 &2917676964787887880 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 2917676964787887880, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
-  m_PrefabInstance: {fileID: 2917676964787887878}
-  m_PrefabAsset: {fileID: 0}
