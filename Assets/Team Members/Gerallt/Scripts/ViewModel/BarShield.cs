@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ChainsOfFate.Gerallt
@@ -10,10 +5,9 @@ namespace ChainsOfFate.Gerallt
     public class BarShield : MonoBehaviour
     {
         public BlockBarUI ParentView;
-
-        //public event Action onHitSquare;
-
         public BarHitSquare currentTarget = null;
+        
+        //public event Action onHitSquare;
         
         private void OnCollisionEnter(Collision collision)
         {
@@ -35,18 +29,6 @@ namespace ChainsOfFate.Gerallt
             {
                 currentTarget = null;
             }
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            transform.rotation = quaternion.identity; //HACK
         }
     }
 
