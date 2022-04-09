@@ -1379,6 +1379,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216186098081390099, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1364187103280169859, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1406,6 +1410,10 @@ PrefabInstance:
     - target: {fileID: 1364187103280169859, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070552145496732558, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7720193408872862796, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1491,6 +1499,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7720193409779544328, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7720193409779544330, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: combatGameManager
+      value: 
+      objectReference: {fileID: 7720193410624900877}
     - target: {fileID: 7720193409854100529, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1547,6 +1563,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7720193410490848435, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: havingTurnDelaySeconds
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7720193410555412132, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_Name
       value: Combat UI User Interface
@@ -1595,5 +1615,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7720193410555412134, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: isTestMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+--- !u!114 &7720193410624900877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7720193410490848435, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+  m_PrefabInstance: {fileID: 7720193410624900876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854a6aec3673635488d1a5f5aad6b9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,13 +10,23 @@ namespace ChainsOfFate.Gerallt
 
         public void DefendButton_OnClick()
         {
-            Debug.Log("Test defend action");
+            var combatGameManager = PlayerButtonsParentView.combatGameManager;
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IDefendAction defendAction = (IDefendAction)currentCharacter;
+
+            if (defendAction != null)
+            {
+                defendAction.Defend();
+                
+                combatGameManager.FinishedTurn(currentCharacter);
+                combatGameManager.RaiseDefendEvent(currentCharacter, null);
+            }
         }
         
         public void BackButton_OnClick()
         {
             this.gameObject.SetActive(false);
-            PlayerButtonsParentView.gameObject.SetActive(true);
+            PlayerButtonsParentView.view.SetActive(true);
         }
         
         public void OnEnable()

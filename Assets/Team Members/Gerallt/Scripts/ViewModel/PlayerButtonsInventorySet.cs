@@ -16,7 +16,7 @@ namespace ChainsOfFate.Gerallt
         public void BackButton_OnClick()
         {
             this.gameObject.SetActive(false);
-            PlayerButtonsParentView.gameObject.SetActive(true);
+            PlayerButtonsParentView.view.SetActive(true);
         }
         
         public void OnEnable()

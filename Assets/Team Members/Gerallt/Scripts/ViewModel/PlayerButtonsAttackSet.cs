@@ -10,18 +10,46 @@ namespace ChainsOfFate.Gerallt
 
         public void SwordButton_OnClick()
         {
-            Debug.Log("Sword attack");
+            Debug.Log("Sword attack"); //TODO: differentiate between different attacks, maybe pass in the equipped WeaponBase
+            
+            var combatGameManager = PlayerButtonsParentView.combatGameManager;
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IAttackAction attackAction = (IAttackAction)currentCharacter;
+
+            if (attackAction != null)
+            {
+                CharacterBase target = combatGameManager.attackTarget;
+                
+                attackAction.Attack(target); 
+                
+                combatGameManager.FinishedTurn(currentCharacter);
+                combatGameManager.RaiseAttackEvent(currentCharacter, target);
+            }
         }
         
         public void DaggerButton_OnClick()
         {
-            Debug.Log("Dagger attack");
+            Debug.Log("Dagger attack"); //TODO: differentiate between different attacks, maybe pass in the equipped WeaponBase
+            
+            var combatGameManager = PlayerButtonsParentView.combatGameManager;
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IAttackAction attackAction = (IAttackAction)currentCharacter;
+
+            if (attackAction != null)
+            {
+                CharacterBase target = combatGameManager.attackTarget;
+                
+                attackAction.Attack(target); 
+                
+                combatGameManager.FinishedTurn(currentCharacter);
+                combatGameManager.RaiseAttackEvent(currentCharacter, target);
+            }
         }
         
         public void BackButton_OnClick()
         {
             this.gameObject.SetActive(false);
-            PlayerButtonsParentView.gameObject.SetActive(true);
+            PlayerButtonsParentView.view.SetActive(true);
         }
         
         public void OnEnable()

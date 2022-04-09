@@ -12,7 +12,7 @@ public class TestTeleporter : MonoBehaviour
     public PlayerController PlayerController;
     private void Awake()
     {
-        PlayerController = FindObjectOfType<PlayerController>();
+        //PlayerController = FindObjectOfType<PlayerController>();
     }
 
     private void OnDestroy()
@@ -33,7 +33,10 @@ public class TestTeleporter : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<PlayerController>()!= null)
+        PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+        PlayerController = playerController;
+        
+        if (playerController != null)
         {
             this.gameObject.SetActive(false);
             SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
@@ -45,6 +48,9 @@ public class TestTeleporter : MonoBehaviour
     {
         List<GameObject> enemies = new List<GameObject>();
         enemies.Add(this.gameObject);
+
+        List<GameObject> partyMembers = new List<GameObject>();
+
         SceneManager.SetActiveScene(sceneInstance);
         //SceneManager.MoveGameObjectToScene(other.gameObject,scene);
         GameObject[] rootObjects = sceneInstance.GetRootGameObjects();
@@ -54,7 +60,7 @@ public class TestTeleporter : MonoBehaviour
             CombatUI combatUI = rootObj.GetComponent<CombatUI>();
             if (combatUI != null)
             {
-                combatUI.SetCurrentEnemies(enemies);
+                combatUI.SetCurrentParty(enemies, partyMembers, PlayerController.gameObject);
                 PlayerController.controls.Player.Disable();
                 break;
             }

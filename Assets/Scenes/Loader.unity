@@ -172,6 +172,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8350055717933156378, guid: a3a6aa6e69228d942a803452e05420f4, type: 3}
   m_PrefabInstance: {fileID: 1637269594}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1355039250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355039249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  arcana: 100
+  resolve: 1
+  defense: 1
+  wisdom: 1
+  speed: 1
+  strength: 1
+  movementSpeed: 1
+  level: 1
 --- !u!1 &1427681829
 GameObject:
   m_ObjectHideFlags: 0

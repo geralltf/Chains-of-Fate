@@ -7,44 +7,41 @@ namespace ChainsOfFate.Gerallt
 {
     public class CombatUI : MonoBehaviour
     {
-        public List<GameObject> CurrentEnemies;
+        public CombatGameManager combatGameManager;
+
         public event Action onSceneDestroyed;
         public event Action onSceneLoaded;
         public bool isLoaded;
-
-        public void Awake()
+        
+        [Header("For Game Testing, add your own party members and enemies here")]
+        public bool isTestMode; // If test mode, will use the test party members
+        public List<GameObject> testEnemies;
+        public List<GameObject> testPartyMembers;
+        public GameObject testPlayer;
+        
+        private void Awake()
         {
-            if (onSceneLoaded != null)
-            {
-                onSceneLoaded();
-            }
+            onSceneLoaded?.Invoke();
         }
 
-        public void OnDestroy()
+        private void OnDestroy()
         {
-            if (onSceneDestroyed !=null)
-            {
-                onSceneDestroyed();
-            }
+            onSceneDestroyed?.Invoke();
         }
 
-        public void SetCurrentEnemies(List<GameObject> enemies)
+        private void Start()
         {
-            CurrentEnemies = enemies;
+            if (isTestMode)
+            {
+                SetCurrentParty(testEnemies, testPartyMembers, testPlayer);
+            }
+        }
+        
+        public void SetCurrentParty(List<GameObject> enemies, List<GameObject> partyMembers, GameObject currentPlayer)
+        {
+            Debug.Log("Got list of current enemies, party members, and current player");
             
-            Debug.Log("Got list of current enemies");
-        }
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            combatGameManager.SetUpQueue(enemies, partyMembers, currentPlayer);
         }
     }
 

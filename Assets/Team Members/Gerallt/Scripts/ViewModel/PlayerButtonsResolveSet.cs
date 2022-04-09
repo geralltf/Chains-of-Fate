@@ -8,15 +8,48 @@ namespace ChainsOfFate.Gerallt
     {
         public PlayerButtons PlayerButtonsParentView;
 
-        public void ResolveButton_OnClick()
+        public void ResolveEncourageButton_OnClick()
         {
-            Debug.Log("Test resolve action");
+            Debug.Log("Test resolve action - encourage");
+            
+            var combatGameManager = PlayerButtonsParentView.combatGameManager;
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IResolveAction resolveAction = (IResolveAction)currentCharacter;
+
+            if (resolveAction != null)
+            {
+                CharacterBase target = combatGameManager.attackTarget;
+                
+                resolveAction.Encourage(target); 
+                
+                combatGameManager.FinishedTurn(currentCharacter);
+                combatGameManager.RaiseResolveEncourageEvent(currentCharacter, target);
+            }
+        }
+        
+        public void ResolveTauntButton_OnClick()
+        {
+            Debug.Log("Test resolve action - taunt");
+            
+            var combatGameManager = PlayerButtonsParentView.combatGameManager;
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IResolveAction resolveAction = (IResolveAction)currentCharacter;
+
+            if (resolveAction != null)
+            {
+                CharacterBase target = combatGameManager.attackTarget;
+                
+                resolveAction.Taunt(target); 
+                
+                combatGameManager.FinishedTurn(currentCharacter);
+                combatGameManager.RaiseResolveTauntEvent(currentCharacter, target);
+            }
         }
         
         public void BackButton_OnClick()
         {
             this.gameObject.SetActive(false);
-            PlayerButtonsParentView.gameObject.SetActive(true);
+            PlayerButtonsParentView.view.SetActive(true);
         }
         
         public void OnEnable()

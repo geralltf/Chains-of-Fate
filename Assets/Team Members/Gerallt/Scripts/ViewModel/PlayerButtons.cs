@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,9 @@ namespace ChainsOfFate.Gerallt
     public class PlayerButtons : MonoBehaviour
     {
         public PlayableCharacter playableCharacter;
-
+        public CombatGameManager combatGameManager;
+        public GameObject view;
+        
         public PlayerButtonsAttackSet AttackButtonSet;
         public PlayerButtonsResolveSet ResolveButtonsSet;
         public PlayerButtonsInventorySet InventoryButtonsSet;
@@ -16,36 +19,56 @@ namespace ChainsOfFate.Gerallt
         
         public void AttackButton_OnClick()
         {
-            this.gameObject.SetActive(false);
+            view.SetActive(false);
             AttackButtonSet.gameObject.SetActive(true);
         }
 
         public void InventoryButton_OnClick()
         {
-            this.gameObject.SetActive(false);
+            view.SetActive(false);
             InventoryButtonsSet.gameObject.SetActive(true);
         }
         
         public void DefendButton_OnClick()
         {
-            this.gameObject.SetActive(false);
+            view.SetActive(false);
             DefensiveButtonsSet.gameObject.SetActive(true);
         }
         
         public void ResolveButton_OnClick()
         {
-            this.gameObject.SetActive(false);
+            view.SetActive(false);
             ResolveButtonsSet.gameObject.SetActive(true);
         }
         
         public void FleeButton_OnClick()
         {
             Debug.Log("Flee");
-
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IFleeAction fleeAction = (IFleeAction)currentCharacter;
+            bool canFlee;
+            
+            if (fleeAction != null)
+            {
+                canFlee = fleeAction.Flee();
+                
+                // If can't flee, the next challenger/enemy in the queue takes a turn via skipToNextChallenger.
+                combatGameManager.FinishedTurn(currentCharacter, !canFlee); 
+                combatGameManager.RaiseFleeEvent(currentCharacter, null);
+            }
+            else
+            {
+                canFlee = true;
+            }
+            
+            if (canFlee)
+            {
+                SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            }
         }
         
-        public void OnEnable()
+        private void OnEnable()
         {
             AttackButtonSet.gameObject.SetActive(false);
             ResolveButtonsSet.gameObject.SetActive(false);
@@ -53,9 +76,37 @@ namespace ChainsOfFate.Gerallt
             DefensiveButtonsSet.gameObject.SetActive(false);
         }
 
-        public void OnDisable()
+        private void OnDisable()
         {
 
+        }
+
+        private void Awake()
+        {
+            combatGameManager.OnEnemyHavingTurn += CombatGameManager_OnEnemyHavingTurn;
+            combatGameManager.OnEnemyCompletedTurn += CombatGameManager_OnEnemyCompletedTurn;
+        }
+
+        private void OnDestroy()
+        {
+            combatGameManager.OnEnemyHavingTurn -= CombatGameManager_OnEnemyHavingTurn;
+            combatGameManager.OnEnemyCompletedTurn -= CombatGameManager_OnEnemyCompletedTurn;
+        }
+
+        private void CombatGameManager_OnEnemyHavingTurn(EnemyNPC currentAgent)
+        {
+            view.SetActive(false);
+            
+            // Also hide children views:
+            AttackButtonSet.gameObject.SetActive(false);
+            ResolveButtonsSet.gameObject.SetActive(false);
+            InventoryButtonsSet.gameObject.SetActive(false);
+            DefensiveButtonsSet.gameObject.SetActive(false);
+        }
+        
+        private void CombatGameManager_OnEnemyCompletedTurn(EnemyNPC currentAgent)
+        {
+            view.SetActive(true);
         }
         
         // Start is called before the first frame update
