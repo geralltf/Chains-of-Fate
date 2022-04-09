@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7720193410166050562, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7720193410555412132, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_Name
       value: Combat UI User Interface
