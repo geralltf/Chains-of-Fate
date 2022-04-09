@@ -43,6 +43,8 @@ namespace ChainsOfFate.Gerallt
         public void Enqueue(CharacterBase characterBase)
         {
             queue.Add(characterBase);
+            
+            characterBase.OnStatChanged += CharacterBase_OnStatChanged;
         }
 
         /// <summary>
@@ -80,10 +82,12 @@ namespace ChainsOfFate.Gerallt
             return queue.Where(chr => chr is EnemyNPC).ToList();
         }
         
-        public void Sort()
+        public void Sort(CharacterBase changedCharacter = null)
         {
+            // TODO: if changedCharacter is specified it should be easier to sort
+
             //Sort all the characters by their speed priority.
-            queue = queue.OrderBy(chr => chr.Speed).ToList();
+            queue = queue.OrderByDescending(chr => chr.Speed).ToList();
         }
 
         public List<CharacterBase> ToList()
@@ -91,8 +95,23 @@ namespace ChainsOfFate.Gerallt
             return queue;
         }
 
+        private void CharacterBase_OnStatChanged(CharacterBase character, string propertyName, object newValue)
+        {
+            // if (propertyName == "Speed")
+            // {
+            //     // Sort queue again everytime a character has its speed changed.
+            //     Sort(character);
+            // }
+        }
+        
         public void Clear()
         {
+            // Unsubscribe from character stat updates.
+            foreach (CharacterBase character in queue)
+            {
+                character.OnStatChanged -= CharacterBase_OnStatChanged;
+            }
+            
             queue.Clear();
             
             //TODO: Update UI
