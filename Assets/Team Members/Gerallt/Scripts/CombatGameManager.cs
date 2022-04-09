@@ -150,6 +150,8 @@ namespace ChainsOfFate.Gerallt
 
         public void FinishedTurn(CharacterBase character, bool skipToNextChallenger = false, bool skipToNextChampion = false)
         {
+            CharacterBase oldTop = turnsQueue.Top();
+
             if (skipToNextChallenger || skipToNextChampion)
             {
                 if (skipToNextChallenger)
@@ -176,6 +178,22 @@ namespace ChainsOfFate.Gerallt
             
             turnsQueue.Sort();
 
+            // SANITY CHECK
+            if (turnsQueue.Top() == oldTop)
+            {
+                // Can't have another turn when character just had a turn.
+                turnsQueue.queue.RemoveAt(0);
+
+                if (turnsQueue.Count == 1)
+                {
+                    turnsQueue.queue.Add(oldTop);
+                }
+                else
+                {
+                    turnsQueue.queue.Insert(1, oldTop);
+                }
+            }
+            
             CharacterBase currentCharacter = GetCurrentCharacter();
             OnTurnCompleted?.Invoke(character, currentCharacter);
             OnHavingTurn?.Invoke(currentCharacter);
