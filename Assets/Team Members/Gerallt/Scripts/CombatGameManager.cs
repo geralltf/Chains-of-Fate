@@ -12,7 +12,7 @@ namespace ChainsOfFate.Gerallt
         /// <summary>
         /// The delay the agent waits before completing their turn.
         /// </summary>
-        public float havingTurnDelaySeconds = 5.0f;
+        public float havingTurnDelaySeconds = 2.0f;
         public CharacterBase ActiveCharacter => GetCurrentCharacter();
         public CharacterBase attackTarget = null;
         public PriorityQueue turnsQueue;
@@ -22,6 +22,7 @@ namespace ChainsOfFate.Gerallt
         
         public delegate void ActionableDelegate(CharacterBase current, CharacterBase target);
         public delegate void ResolveDelegate(CharacterBase current, CharacterBase target, bool encourage, bool taunt);
+        public delegate void FleeDelegate(CharacterBase current);
         public delegate void ManagerInitilisedQueueDelegate(int enemiesAllocated, int partyMembersAllocated);
 
         public event ManagerInitilisedQueueDelegate OnManagerInitilisedQueueEvent;
@@ -33,7 +34,7 @@ namespace ChainsOfFate.Gerallt
         public event ActionableDelegate OnAttackEvent;
         public event ResolveDelegate OnResolveEncourageEvent;
         public event ResolveDelegate OnResolveTauntEvent;
-        public event ActionableDelegate OnFleeEvent;
+        public event FleeDelegate OnFleeEvent;
 
         /// <summary>
         /// Sets up the turns queue using existing enemies, player, and party members.
@@ -204,9 +205,9 @@ namespace ChainsOfFate.Gerallt
             OnResolveTauntEvent?.Invoke(current, target, false, true);
         }
         
-        public void RaiseFleeEvent(CharacterBase current, CharacterBase target)
+        public void RaiseFleeEvent(CharacterBase current)
         {
-            OnFleeEvent?.Invoke(current, target);
+            OnFleeEvent?.Invoke(current);
         }
         
         private static void ShuffleList<T>(ref List<T> list)  
