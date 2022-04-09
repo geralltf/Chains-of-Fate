@@ -1415,6 +1415,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6008471892693008037, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: isMainCharacter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7720193408872862796, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1563,6 +1567,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7720193410339161184, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7720193410490848435, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: havingTurnDelaySeconds
       value: 2
@@ -1618,6 +1626,10 @@ PrefabInstance:
     - target: {fileID: 7720193410555412134, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: isTestMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7720193410618756237, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d66f2711a55224948a0a4f9053590162, type: 3}

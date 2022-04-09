@@ -47,6 +47,8 @@ namespace ChainsOfFate.Gerallt
             
             CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
             IFleeAction fleeAction = (IFleeAction)currentCharacter;
+            Champion champion = currentCharacter as Champion;
+            
             bool canFlee;
             
             if (fleeAction != null)
@@ -62,7 +64,7 @@ namespace ChainsOfFate.Gerallt
                 canFlee = true;
             }
             
-            if (canFlee)
+            if (canFlee && (champion != null && champion.isMainCharacter))
             {
                 SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             }
@@ -85,12 +87,14 @@ namespace ChainsOfFate.Gerallt
         {
             combatGameManager.OnEnemyHavingTurn += CombatGameManager_OnEnemyHavingTurn;
             combatGameManager.OnEnemyCompletedTurn += CombatGameManager_OnEnemyCompletedTurn;
+            combatGameManager.OnChampionHavingNextTurn += CombatGameManager_OnChampionHavingNextTurn;
         }
 
         private void OnDestroy()
         {
             combatGameManager.OnEnemyHavingTurn -= CombatGameManager_OnEnemyHavingTurn;
             combatGameManager.OnEnemyCompletedTurn -= CombatGameManager_OnEnemyCompletedTurn;
+            combatGameManager.OnChampionHavingNextTurn -= CombatGameManager_OnChampionHavingNextTurn;
         }
 
         private void CombatGameManager_OnEnemyHavingTurn(EnemyNPC currentAgent)
@@ -107,6 +111,17 @@ namespace ChainsOfFate.Gerallt
         private void CombatGameManager_OnEnemyCompletedTurn(EnemyNPC currentAgent)
         {
             view.SetActive(true);
+        }
+        
+        private void CombatGameManager_OnChampionHavingNextTurn(CharacterBase current)
+        {
+            view.SetActive(true);
+            
+            // Reset children views:
+            AttackButtonSet.gameObject.SetActive(false);
+            ResolveButtonsSet.gameObject.SetActive(false);
+            InventoryButtonsSet.gameObject.SetActive(false);
+            DefensiveButtonsSet.gameObject.SetActive(false);
         }
         
         // Start is called before the first frame update
