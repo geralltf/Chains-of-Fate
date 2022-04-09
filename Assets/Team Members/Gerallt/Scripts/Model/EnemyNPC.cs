@@ -32,6 +32,7 @@ namespace ChainsOfFate.Gerallt
             List<CharacterBase> agents = combatGameManager.turnsQueue.GetEnemies();
             CharacterBase target = champions[Random.Range(0, champions.Count)];
             CharacterBase agentTarget = agents[Random.Range(0, agents.Count)];
+            float blockPercentage = Random.Range(0, 100); //TODO: Vary agent aptitude at blocking by skill stat
             
             EnemyState newState = (EnemyState)Random.Range(1, (int)EnemyState.Count);
             canFlee = false;
@@ -39,7 +40,8 @@ namespace ChainsOfFate.Gerallt
             switch (newState)
             {
                 case EnemyState.Defend:
-                    Defend();
+                    // Defend without activating Quick Time Event / block bar.
+                    Defend(blockPercentage);
                     break;
                 case EnemyState.Flee:
                     canFlee = Flee();
@@ -86,7 +88,7 @@ namespace ChainsOfFate.Gerallt
         /// <param name="attacker">
         /// The attacker to defend against.
         /// </param>
-        public void Defend()
+        public void Defend(float blockPercentage)
         {
             Debug.Log("ENEMY Test defend action");
             

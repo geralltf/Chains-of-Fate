@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ChainsOfFate.Gerallt;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ChainsOfFate.Gerallt
 {
@@ -11,16 +13,17 @@ namespace ChainsOfFate.Gerallt
         /// If the Champion is the main character.
         /// </summary>
         public bool isMainCharacter;
-        
+
         /// <summary>
         /// Defend against the specified attacker.
         /// </summary>
         /// <param name="attacker">
         /// The attacker to defend against.
         /// </param>
-        public void Defend()
+        public void Defend(float blockPercentage)
         {
             Debug.Log("Test defend action");
+
         }
         
         /// <summary>

@@ -8,6 +8,8 @@ namespace ChainsOfFate.Gerallt
     public class CombatUI : MonoBehaviour
     {
         public CombatGameManager combatGameManager;
+        public GameObject view;
+        public BlockBarUI blockBarUI;
 
         public event Action onSceneDestroyed;
         public event Action onSceneLoaded;
@@ -40,7 +42,7 @@ namespace ChainsOfFate.Gerallt
         public void SetCurrentParty(List<GameObject> enemies, List<GameObject> partyMembers, GameObject currentPlayer)
         {
             Debug.Log("Got list of current enemies, party members, and current player");
-            
+
             combatGameManager.SetUpQueue(enemies, partyMembers, currentPlayer);
         }
     }

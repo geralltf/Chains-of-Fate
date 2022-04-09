@@ -11,6 +11,7 @@ namespace ChainsOfFate.Gerallt
         public PlayableCharacter playableCharacter;
         public CombatGameManager combatGameManager;
         public GameObject view;
+        public CombatUI parentView;
         
         public PlayerButtonsAttackSet AttackButtonSet;
         public PlayerButtonsResolveSet ResolveButtonsSet;

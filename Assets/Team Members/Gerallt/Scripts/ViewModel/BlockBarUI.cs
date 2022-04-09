@@ -10,17 +10,21 @@ namespace ChainsOfFate.Gerallt
 {
     public class BlockBarUI : MonoBehaviour
     {
+        public CombatUI parentView;
         public GameObject view;
         public Transform shieldStart;
         public Transform shieldEnd;
         public BarShield shieldSprite;
         public float animationSpeed = 0.1f;
         public float selectionTime = 5.0f;
+        public float loseTime = 10.0f;
         public float guessCooldown = 1.5f;
         public bool animating = false;
         public CharacterBase defendingCharacter;
-        public CharacterBase attackingCharacter;
-        public event Action onWonEvent;
+
+        public delegate void WonDelegate(float blockPercentage, bool doCounterAttack);
+        
+        public event WonDelegate onWonEvent;
         public event Action onLostEvent;
 
         public AnimationCurve animationCurve;
@@ -34,6 +38,8 @@ namespace ChainsOfFate.Gerallt
                 if (visibility)
                 {
                     StartAnim();
+
+                    StartCoroutine(TimeUntilLost());
                 }
                 else
                 {
@@ -44,6 +50,15 @@ namespace ChainsOfFate.Gerallt
             }
         }
 
+        private IEnumerator TimeUntilLost()
+        {
+            yield return new WaitForSeconds(loseTime);
+
+            StopAnim();
+            
+            onLostEvent?.Invoke();
+        }
+
         public void Guess_ButtonClicked()
         {
             BarHitSquare hit = shieldSprite.currentTarget;
@@ -51,6 +66,8 @@ namespace ChainsOfFate.Gerallt
             if (hit != null)
             {
                 Debug.Log("guess hit! block " + hit.defenseBlockPerentage.ToString() + "%" + (hit.isCounterAttack?"Counter attack" : ""));
+                
+                onWonEvent?.Invoke(hit.defenseBlockPerentage, hit.isCounterAttack);
             }
         }
         
