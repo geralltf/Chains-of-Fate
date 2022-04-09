@@ -1381,7 +1381,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 903676119012850368, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: characterName
-      value: Brute
+      value: AI Brute
       objectReference: {fileID: 0}
     - target: {fileID: 1216186098081390099, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_IsActive
@@ -1525,7 +1525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6008471892693008037, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: speed
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6008471892693008037, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: arcana
@@ -1545,7 +1545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7648490743519815019, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: characterName
-      value: Defender
+      value: AI Defender
       objectReference: {fileID: 0}
     - target: {fileID: 7720193408872862796, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
