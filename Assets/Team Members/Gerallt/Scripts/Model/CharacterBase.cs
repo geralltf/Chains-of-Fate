@@ -8,6 +8,12 @@ namespace ChainsOfFate.Gerallt
     {
         #region Fields
 
+        public int maxHealth = 100;
+        public int maxArcana = 100;
+        public int maxResolve = 100;
+        
+        [SerializeField] private string characterName;
+        
         [SerializeField] private int hp = 100;
 
         [SerializeField] private int arcana = 100;
@@ -30,6 +36,16 @@ namespace ChainsOfFate.Gerallt
 
         #region Properties
 
+        public string CharacterName
+        {
+            get => characterName;
+            set
+            {
+                characterName = value;
+                RaiseStatChanged("CharacterName", value);
+            }
+        }
+        
         public int HP
         {
             get => hp;
@@ -126,6 +142,14 @@ namespace ChainsOfFate.Gerallt
         public delegate void StatChangeDelegate(CharacterBase character, string propertyName, object newValue);
 
         public event StatChangeDelegate OnStatChanged;
+
+        public void UpdatePrimaryStats()
+        {
+            RaiseStatChanged("CharacterName", CharacterName);
+            RaiseStatChanged("HP", HP);
+            RaiseStatChanged("Resolve", Resolve);
+            RaiseStatChanged("Arcana", Arcana);
+        }
 
         private void RaiseStatChanged(string propertyName, object newValue)
         {

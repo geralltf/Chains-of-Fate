@@ -29,6 +29,8 @@ namespace ChainsOfFate.Gerallt
         public event Action<CharacterBase> OnChampionHavingNextTurn;
         public event Action<EnemyNPC> OnEnemyHavingTurn;
         public event Action<EnemyNPC> OnEnemyCompletedTurn;
+        
+        public event Action<CharacterBase> OnHavingTurn;
         public event Action<CharacterBase, CharacterBase> OnTurnCompleted;
         
         public event CharacterBase.StatChangeDelegate OnStatChanged;
@@ -52,13 +54,19 @@ namespace ChainsOfFate.Gerallt
         /// <summary>
         /// Sets up the turns queue using existing enemies, player, and party members.
         /// If shuffleTurns is enabled, these lists are shuffled randomly to make the game interesting
+        ///
+        /// Precondition: Enemies and Party Members must have a CharacterBase component in order for the scheduling to work. 
         /// </summary>
         public void SetUpQueue(List<GameObject> currentEnemies, List<GameObject> partyMembers, GameObject currentPlayer)
         {
+            // Unsubscribe from old queue.
+            var queueOld = turnsQueue.ToList();
+            foreach (CharacterBase character in queueOld)
+            {
+                character.OnStatChanged -= Character_OnStatChanged;
+            }
             turnsQueue.Clear();
-            
-            // Precondition: Enemies and Party Members must have a CharacterBase component in order for the scheduling to work. 
-            
+
             // Player always initially goes first.
             CharacterBase playerCharacter = currentPlayer.GetComponent<CharacterBase>();
             turnsQueue.Enqueue(playerCharacter);
@@ -135,7 +143,10 @@ namespace ChainsOfFate.Gerallt
             }
             
             OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
+            OnHavingTurn?.Invoke(playerCharacter);
         }
+        
+        
 
         public void FinishedTurn(CharacterBase character, bool skipToNextChallenger = false, bool skipToNextChampion = false)
         {
@@ -165,16 +176,17 @@ namespace ChainsOfFate.Gerallt
             
             turnsQueue.Sort();
 
-            OnTurnCompleted?.Invoke(character, GetCurrentCharacter());
-
             CharacterBase currentCharacter = GetCurrentCharacter();
+            OnTurnCompleted?.Invoke(character, currentCharacter);
+            OnHavingTurn?.Invoke(currentCharacter);
+            
             EnemyNPC agent = currentCharacter as EnemyNPC;
 
             if (agent != null)
             {
                 // Agent.
                 OnEnemyHavingTurn?.Invoke(agent);
-                
+
                 AgentHaveTurn(agent);
                 
                 // Agent later on calls FinishedTurn() again when it has finished internally.
