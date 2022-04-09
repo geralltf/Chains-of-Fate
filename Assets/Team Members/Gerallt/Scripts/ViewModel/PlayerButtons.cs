@@ -66,7 +66,7 @@ namespace ChainsOfFate.Gerallt
             
             if (canFlee && (champion != null && champion.isMainCharacter))
             {
-                SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                combatGameManager.UnloadScene();
             }
         }
         

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -13,26 +14,36 @@ namespace ChainsOfFate.Gerallt
         /// The delay the agent waits before completing their turn.
         /// </summary>
         public float havingTurnDelaySeconds = 2.0f;
+
         public CharacterBase ActiveCharacter => GetCurrentCharacter();
         public CharacterBase attackTarget = null;
         public PriorityQueue turnsQueue;
         public bool shuffleTurns = false;
         public bool makeDeterministic = false;
         public int seed;
-        
+        public int round;
+        public int maxRoundsPerGame = 5;
+
         public delegate void ActionableDelegate(CharacterBase current, CharacterBase target);
+
         public delegate void ResolveDelegate(CharacterBase current, CharacterBase target, bool encourage, bool taunt);
+
         public delegate void FleeDelegate(CharacterBase current);
+
         public delegate void ManagerInitilisedQueueDelegate(int enemiesAllocated, int partyMembersAllocated);
 
         public event ManagerInitilisedQueueDelegate OnManagerInitilisedQueueEvent;
         public event Action<CharacterBase> OnChampionHavingNextTurn;
         public event Action<EnemyNPC> OnEnemyHavingTurn;
         public event Action<EnemyNPC> OnEnemyCompletedTurn;
-        
+
         public event Action<CharacterBase> OnHavingTurn;
         public event Action<CharacterBase, CharacterBase> OnTurnCompleted;
-        
+        public event Action<int> OnRoundAdvance;
+        public event Action OnWonGameEvent;
+        public event Action OnLostGameEvent;
+        public event Action OnGameOverEvent;
+
         public event CharacterBase.StatChangeDelegate OnStatChanged;
         public event ActionableDelegate OnDefendEvent;
         public event ActionableDelegate OnAttackEvent;
@@ -65,6 +76,7 @@ namespace ChainsOfFate.Gerallt
             {
                 character.OnStatChanged -= Character_OnStatChanged;
             }
+
             turnsQueue.Clear();
 
             // Player always initially goes first.
@@ -87,10 +99,11 @@ namespace ChainsOfFate.Gerallt
                 {
                     Random.InitState(seed); //TODO: This probably should be put in some general GameManager not here
                 }
+
                 ShuffleList(ref currentEnemies);
                 ShuffleList(ref partyMembers);
             }
-            
+
             while (distributingTurns)
             {
                 if (i < currentEnemies.Count && currentEnemies.Count > 0)
@@ -101,7 +114,7 @@ namespace ChainsOfFate.Gerallt
                     if (characterBase != null)
                     {
                         enemiesAllocated++;
-                        
+
                         turnsQueue.Enqueue(characterBase);
                     }
                 }
@@ -109,16 +122,16 @@ namespace ChainsOfFate.Gerallt
                 {
                     allocatedEnemies = true;
                 }
-                
+
                 if (i < partyMembers.Count && partyMembers.Count > 0)
                 {
                     go = partyMembers[i];
                     characterBase = go.GetComponent<CharacterBase>();
-                    
+
                     if (characterBase != null)
                     {
                         partyMembersAllocated++;
-                        
+
                         turnsQueue.Enqueue(characterBase);
                     }
                 }
@@ -132,6 +145,7 @@ namespace ChainsOfFate.Gerallt
                     // Completed allocating turns.
                     distributingTurns = false;
                 }
+
                 i++;
             }
 
@@ -141,81 +155,147 @@ namespace ChainsOfFate.Gerallt
             {
                 character.OnStatChanged += Character_OnStatChanged;
             }
-            
-            OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
-            OnHavingTurn?.Invoke(playerCharacter);
-        }
-        
-        
 
-        public void FinishedTurn(CharacterBase character, bool skipToNextChallenger = false, bool skipToNextChampion = false)
-        {
-            CharacterBase oldTop = turnsQueue.Top();
-
-            if (skipToNextChallenger || skipToNextChampion)
+            // Initilise Combat Game Sequence.
+            round = 1;
+            if (turnsQueue.hadTurns == null)
             {
-                if (skipToNextChallenger)
-                {
-                    Debug.Log("Skipping to next challenger");
-                
-                    // Next challenger/enemy takes a turn via skipToNextChallenger
-                    turnsQueue.SkipTo(chr=> chr is EnemyNPC);
-                }
-
-                if (skipToNextChampion)
-                {
-                    Debug.Log("Skipping to next champion");
-                
-                    // Next champion takes a turn via skipToNextChampion
-                    turnsQueue.SkipTo(chr=> chr is Champion);
-                }
+                turnsQueue.hadTurns = new List<CharacterBase>();
             }
             else
             {
-                // Remove the current character from the top of the queue and adds it back in at the end.
-                turnsQueue.Dequeue();
+                turnsQueue.hadTurns.Clear();
             }
-            
-            turnsQueue.Sort();
 
-            // SANITY CHECK
-            if (turnsQueue.Top() == oldTop)
+            OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
+            OnHavingTurn?.Invoke(playerCharacter);
+            OnRoundAdvance?.Invoke(round);
+        }
+
+        public void FinishedTurn(CharacterBase character, bool skipToNextChallenger = false,
+            bool skipToNextChampion = false)
+        {
+            if (!turnsQueue.hadTurns.Contains(character))
             {
-                // Can't have another turn when character just had a turn.
-                turnsQueue.queue.RemoveAt(0);
+                turnsQueue.hadTurns.Add(character);
+            }
 
-                if (turnsQueue.Count == 1)
+            if (CheckEndOfRound())
+            {
+                CharacterBase oldTop = turnsQueue.Top();
+                CharacterBase oldEnd = turnsQueue.End();
+
+                if (skipToNextChallenger || skipToNextChampion)
                 {
-                    turnsQueue.queue.Add(oldTop);
+                    if (skipToNextChallenger)
+                    {
+                        Debug.Log("Skipping to next challenger");
+
+                        // Next challenger/enemy takes a turn via skipToNextChallenger
+                        turnsQueue.SkipTo(chr => chr is EnemyNPC);
+                    }
+
+                    if (skipToNextChampion)
+                    {
+                        Debug.Log("Skipping to next champion");
+
+                        // Next champion takes a turn via skipToNextChampion
+                        turnsQueue.SkipTo(chr => chr is Champion);
+                    }
                 }
                 else
                 {
-                    turnsQueue.queue.Insert(1, oldTop);
+                    // Remove the current character from the top of the queue and adds it back in at the end.
+                    turnsQueue.Dequeue();
+                }
+
+                // Sort the turns by character attributes.
+                turnsQueue.Sort();
+
+                // Run sanity checks on sorted items.
+                turnsQueue.SanityChecks(oldTop, oldEnd);
+
+                // New character assigned by the turn queue.
+                CharacterBase currentCharacter = GetCurrentCharacter();
+                OnTurnCompleted?.Invoke(character, currentCharacter);
+                OnHavingTurn?.Invoke(currentCharacter);
+
+                EnemyNPC agent = currentCharacter as EnemyNPC;
+
+                if (agent != null)
+                {
+                    // Agent.
+                    OnEnemyHavingTurn?.Invoke(agent);
+
+                    AgentHaveTurn(agent);
+
+                    // Agent later on calls FinishedTurn() again when it has finished internally.
+                }
+                else
+                {
+                    // Champion.
+                    OnChampionHavingNextTurn?.Invoke(currentCharacter);
+
+                    Debug.Log("It's your turn!");
+                }
+            }
+        }
+
+        private bool CheckEndOfRound()
+        {
+            bool proceedToNextRound = true;
+            
+            if (turnsQueue.hadTurns.Count == turnsQueue.Count)
+            {
+                turnsQueue.hadTurns.Clear();
+
+                if (round + 1 > maxRoundsPerGame)
+                {
+                    proceedToNextRound = false;
+
+                    GameOver();
+                }
+                else
+                {
+                    round++;
+                    OnRoundAdvance?.Invoke(round);
                 }
             }
             
-            CharacterBase currentCharacter = GetCurrentCharacter();
-            OnTurnCompleted?.Invoke(character, currentCharacter);
-            OnHavingTurn?.Invoke(currentCharacter);
-            
-            EnemyNPC agent = currentCharacter as EnemyNPC;
+            return proceedToNextRound; // Proceed with next round.
+        }
 
-            if (agent != null)
+        private void GameOver()
+        {
+            List<CharacterBase> enemies = turnsQueue.GetEnemies();
+            int defeated = 0;
+            foreach (CharacterBase enemy in enemies)
             {
-                // Agent.
-                OnEnemyHavingTurn?.Invoke(agent);
+                if (enemy.HP == 0)
+                {
+                    defeated++;
+                }
+            }
 
-                AgentHaveTurn(agent);
-                
-                // Agent later on calls FinishedTurn() again when it has finished internally.
+            // The combat game is over. Return back to the last active scene.
+            OnGameOverEvent?.Invoke();
+
+            // Notify UI to show different views for different states.
+            if (defeated == enemies.Count)
+            {
+                OnWonGameEvent?.Invoke();
             }
             else
             {
-                // Champion.
-                OnChampionHavingNextTurn?.Invoke(currentCharacter);
-                
-                Debug.Log("It's your turn!");
+                OnLostGameEvent?.Invoke();
             }
+
+            UnloadScene();
+        }
+
+        public void UnloadScene()
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         }
 
         private void AgentHaveTurn(EnemyNPC agent)
@@ -224,7 +304,7 @@ namespace ChainsOfFate.Gerallt
 
             agent.DecideMove(this);
         }
-        
+
         public CharacterBase GetCurrentCharacter()
         {
             return turnsQueue.Top();
@@ -234,7 +314,7 @@ namespace ChainsOfFate.Gerallt
         {
             OnStatChanged?.Invoke(character, propertyName, newValue);
         }
-        
+
         public void RaiseEnemyCompletedTurn(EnemyNPC agent)
         {
             OnEnemyCompletedTurn?.Invoke(agent);
@@ -249,34 +329,34 @@ namespace ChainsOfFate.Gerallt
         {
             OnAttackEvent?.Invoke(current, target);
         }
-        
+
         public void RaiseResolveEncourageEvent(CharacterBase current, CharacterBase target)
         {
             OnResolveEncourageEvent?.Invoke(current, target, true, false);
         }
-        
+
         public void RaiseResolveTauntEvent(CharacterBase current, CharacterBase target)
         {
             OnResolveTauntEvent?.Invoke(current, target, false, true);
         }
-        
+
         public void RaiseFleeEvent(CharacterBase current)
         {
             OnFleeEvent?.Invoke(current);
         }
-        
-        private static void ShuffleList<T>(ref List<T> list)  
-        {  
+
+        private static void ShuffleList<T>(ref List<T> list)
+        {
             int count = list.Count;
             int newIndex;
             T tmp;
-            
-            while (count > 1) 
-            {  
+
+            while (count > 1)
+            {
                 count--;
-                
+
                 newIndex = Random.Range(0, count + 1);
-                
+
                 tmp = list[newIndex];
                 list[newIndex] = list[count];
                 list[count] = tmp;

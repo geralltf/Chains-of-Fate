@@ -18,7 +18,7 @@ namespace ChainsOfFate.Gerallt
         public List<GameObject> testEnemies;
         public List<GameObject> testPartyMembers;
         public GameObject testPlayer;
-        
+
         private void Awake()
         {
             onSceneLoaded?.Invoke();

@@ -10,7 +10,7 @@ namespace ChainsOfFate.Gerallt
     public class EnemyNPC : CharacterBase, IFleeAction, IAttackAction, IResolveAction, IDefendAction
     {
         public EnemyState appliedState = EnemyState.NotSet;
-        public bool canFlee = false;
+        private bool canFlee = false;
         
         public enum EnemyState : int
         {
@@ -89,6 +89,8 @@ namespace ChainsOfFate.Gerallt
         public void Defend()
         {
             Debug.Log("ENEMY Test defend action");
+            
+            // TODO: For enemy, calculate block percentage randomly instead of showing block bar
         }
         
         /// <summary>

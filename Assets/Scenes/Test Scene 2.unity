@@ -398,9 +398,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1647989120843116795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc6211f4d77a7740a5261ac48a7278c, type: 3}
+  m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxArcana: 100
+  maxResolve: 100
+  characterName: 
   hp: 100
   arcana: 100
   resolve: 1
@@ -410,3 +414,5 @@ MonoBehaviour:
   strength: 1
   movementSpeed: 1
   level: 1
+  appliedState: 0
+  speedType: 40
