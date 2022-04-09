@@ -83,7 +83,12 @@ namespace ChainsOfFate.Gerallt
         public void Sort()
         {
             //Sort all the characters by their speed priority.
-            queue = queue.OrderBy(chr => chr.speed).ToList();
+            queue = queue.OrderBy(chr => chr.Speed).ToList();
+        }
+
+        public List<CharacterBase> ToList()
+        {
+            return queue;
         }
 
         public void Clear()

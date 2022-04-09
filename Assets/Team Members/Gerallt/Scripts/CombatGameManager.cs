@@ -30,11 +30,24 @@ namespace ChainsOfFate.Gerallt
         public event Action<EnemyNPC> OnEnemyHavingTurn;
         public event Action<EnemyNPC> OnEnemyCompletedTurn;
         public event Action<CharacterBase, CharacterBase> OnTurnCompleted;
+        
+        public event CharacterBase.StatChangeDelegate OnStatChanged;
         public event ActionableDelegate OnDefendEvent;
         public event ActionableDelegate OnAttackEvent;
         public event ResolveDelegate OnResolveEncourageEvent;
         public event ResolveDelegate OnResolveTauntEvent;
         public event FleeDelegate OnFleeEvent;
+
+        private void OnDestroy()
+        {
+            // Cleanup.
+            var queue = turnsQueue.ToList();
+
+            foreach (CharacterBase character in queue)
+            {
+                character.OnStatChanged -= Character_OnStatChanged;
+            }
+        }
 
         /// <summary>
         /// Sets up the turns queue using existing enemies, player, and party members.
@@ -113,6 +126,13 @@ namespace ChainsOfFate.Gerallt
                 }
                 i++;
             }
+
+            // Subscribe to character stat changes. 
+            var queue = turnsQueue.ToList();
+            foreach (CharacterBase character in queue)
+            {
+                character.OnStatChanged += Character_OnStatChanged;
+            }
             
             OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
         }
@@ -180,6 +200,11 @@ namespace ChainsOfFate.Gerallt
             return turnsQueue.Top();
         }
 
+        private void Character_OnStatChanged(CharacterBase character, string propertyName, object newValue)
+        {
+            OnStatChanged?.Invoke(character, propertyName, newValue);
+        }
+        
         public void RaiseEnemyCompletedTurn(EnemyNPC agent)
         {
             OnEnemyCompletedTurn?.Invoke(agent);
