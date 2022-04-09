@@ -83,10 +83,6 @@ namespace ChainsOfFate.Gerallt
         public void Sort()
         {
             //Sort all the characters by their speed priority.
-            
-            //TODO: Make the player always go first
-            //CharacterBase player = queue.FirstOrDefault(chr => chr is PlayableCharacter);
-            
             queue = queue.OrderBy(chr => chr.speed).ToList();
         }
 
