@@ -193,6 +193,7 @@ MonoBehaviour:
   strength: 1
   movementSpeed: 1
   level: 1
+  isMainCharacter: 1
 --- !u!1 &1427681829
 GameObject:
   m_ObjectHideFlags: 0

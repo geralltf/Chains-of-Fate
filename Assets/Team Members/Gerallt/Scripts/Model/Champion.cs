@@ -8,6 +8,11 @@ namespace ChainsOfFate.Gerallt
     public class Champion : PlayableCharacter, IFleeAction, IAttackAction, IResolveAction, IDefendAction
     {
         /// <summary>
+        /// If the Champion is the main character.
+        /// </summary>
+        public bool isMainCharacter;
+        
+        /// <summary>
         /// Defend against the specified attacker.
         /// </summary>
         /// <param name="attacker">
