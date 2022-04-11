@@ -184,6 +184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxArcana: 100
+  maxResolve: 100
+  representation: {r: 0, g: 0.18290114, b: 1, a: 1}
+  characterName: 
   hp: 100
   arcana: 100
   resolve: 1
