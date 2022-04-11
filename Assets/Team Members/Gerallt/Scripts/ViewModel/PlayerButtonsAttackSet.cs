@@ -20,7 +20,7 @@ namespace ChainsOfFate.Gerallt
             {
                 CharacterBase target = combatGameManager.attackTarget;
                 
-                attackAction.Attack(target); 
+                attackAction.Attack(target, combatGameManager); 
                 
                 combatGameManager.FinishedTurn(currentCharacter);
                 combatGameManager.RaiseAttackEvent(currentCharacter, target);
@@ -39,7 +39,7 @@ namespace ChainsOfFate.Gerallt
             {
                 CharacterBase target = combatGameManager.attackTarget;
                 
-                attackAction.Attack(target); 
+                attackAction.Attack(target, combatGameManager); 
                 
                 combatGameManager.FinishedTurn(currentCharacter);
                 combatGameManager.RaiseAttackEvent(currentCharacter, target);

@@ -6,11 +6,26 @@ namespace ChainsOfFate.Gerallt
 {
     public abstract class CharacterBase : MonoBehaviour
     {
+        /// <summary>
+        /// A move that is scheduled to be applied later on.
+        /// </summary>
+        public abstract class AppliedMove
+        {
+            
+        }
+        
+        public class DefenceMove : AppliedMove
+        {
+            public float blockPercentage;
+        }
+        
         #region Fields
 
         public int maxHealth = 100;
         public int maxArcana = 100;
         public int maxResolve = 100;
+
+        public Color representation;
         
         [SerializeField] private string characterName;
         
@@ -31,6 +46,11 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private float movementSpeed = 1.0f;
 
         [SerializeField] private int level = 0;
+
+        /// <summary>
+        /// Schedule of moves the character has applied for their turn.
+        /// </summary>
+        [SerializeField] private List<AppliedMove> appliedMovesList = new List<AppliedMove>();
 
         #endregion
 
@@ -143,6 +163,20 @@ namespace ChainsOfFate.Gerallt
 
         public event StatChangeDelegate OnStatChanged;
 
+        public virtual void ApplyDamage(int damage)
+        {
+            int hitPoints = HP;
+            
+            hitPoints -= damage;
+
+            if (hitPoints < 0)
+            {
+                hitPoints = 0;
+            }
+
+            HP = hitPoints;
+        }
+
         public void UpdatePrimaryStats()
         {
             RaiseStatChanged("CharacterName", CharacterName);
@@ -151,9 +185,39 @@ namespace ChainsOfFate.Gerallt
             RaiseStatChanged("Arcana", Arcana);
         }
 
+        public List<AppliedMove> GetMoves()
+        {
+            return appliedMovesList;
+        }
+        
+        public void ApplyMove(AppliedMove move)
+        {
+            appliedMovesList.Add(move);
+        }
+
+        public void RemoveMove(AppliedMove move)
+        {
+            appliedMovesList.Remove(move);
+        }
+        
+        public void ClearMoves()
+        {
+            appliedMovesList.Clear();
+        }
+
         private void RaiseStatChanged(string propertyName, object newValue)
         {
             OnStatChanged?.Invoke(this, propertyName, newValue);
+        }
+        
+        static internal Color RandomColour()
+        {
+            return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        }
+
+        private void Awake()
+        {
+            //representation = RandomColour();
         }
     }
 }

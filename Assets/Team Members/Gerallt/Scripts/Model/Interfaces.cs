@@ -16,7 +16,7 @@ namespace ChainsOfFate.Gerallt
 
     public interface IAttackAction
     {
-        void Attack(CharacterBase target); // TODO: Supply equipped weapon WeaponBase
+        void Attack(CharacterBase target, CombatGameManager combatGameManager); // TODO: Supply equipped weapon WeaponBase
     }
 
     public interface IResolveAction
