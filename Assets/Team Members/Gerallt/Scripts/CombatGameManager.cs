@@ -16,7 +16,7 @@ namespace ChainsOfFate.Gerallt
         public float havingTurnDelaySeconds = 2.0f;
 
         public CharacterBase ActiveCharacter => GetCurrentCharacter();
-        public CharacterBase attackTarget = null;
+        public CharacterBase attackTarget = null; // TODO: have the player select a character to target
         public PriorityQueue turnsQueue;
         public bool shuffleTurns = false;
         public bool makeDeterministic = false;
@@ -31,6 +31,8 @@ namespace ChainsOfFate.Gerallt
         public delegate void FleeDelegate(CharacterBase current);
 
         public delegate void ManagerInitilisedQueueDelegate(int enemiesAllocated, int partyMembersAllocated);
+
+        public delegate void CounterAttackDelegate(CharacterBase attacker, CharacterBase target);
 
         public event ManagerInitilisedQueueDelegate OnManagerInitilisedQueueEvent;
         public event Action<CharacterBase> OnChampionHavingNextTurn;
@@ -50,6 +52,8 @@ namespace ChainsOfFate.Gerallt
         public event ResolveDelegate OnResolveEncourageEvent;
         public event ResolveDelegate OnResolveTauntEvent;
         public event FleeDelegate OnFleeEvent;
+        public event CounterAttackDelegate OnCounterAttackEvent;
+        
 
         private void OnDestroy()
         {
@@ -343,6 +347,11 @@ namespace ChainsOfFate.Gerallt
         public void RaiseFleeEvent(CharacterBase current)
         {
             OnFleeEvent?.Invoke(current);
+        }
+
+        public void RaiseCounterAttackEvent(CharacterBase attacker, CharacterBase target)
+        {
+            OnCounterAttackEvent?.Invoke(attacker, target);
         }
 
         private static void ShuffleList<T>(ref List<T> list)
