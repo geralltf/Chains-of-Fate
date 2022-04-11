@@ -11,6 +11,8 @@ namespace ChainsOfFate.Gerallt
         public int maxHealth = 100;
         public int maxArcana = 100;
         public int maxResolve = 100;
+
+        public Color representation;
         
         [SerializeField] private string characterName;
         
@@ -154,6 +156,16 @@ namespace ChainsOfFate.Gerallt
         private void RaiseStatChanged(string propertyName, object newValue)
         {
             OnStatChanged?.Invoke(this, propertyName, newValue);
+        }
+        
+        static internal Color RandomColour()
+        {
+            return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        }
+
+        private void Awake()
+        {
+            representation = RandomColour();
         }
     }
 }

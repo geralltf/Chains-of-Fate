@@ -16,10 +16,9 @@ namespace ChainsOfFate.Gerallt
 
         [SerializeField] private TextMeshProUGUI characterNameText;
         [SerializeField] private Slider healthBar;
-
         [SerializeField] private Slider resolveBar;
-
         [SerializeField] private Slider arcanaBar;
+        [SerializeField] private Image playerPortrait;
 
         private void OnEnable()
         {
@@ -83,6 +82,8 @@ namespace ChainsOfFate.Gerallt
                 resolveBar.maxValue = character.maxResolve;
                 resolveBar.value = (int) newValue;
             }
+
+            playerPortrait.color = character.representation;
         }
     }
 }
