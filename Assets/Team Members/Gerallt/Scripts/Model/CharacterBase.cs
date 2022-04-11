@@ -165,7 +165,7 @@ namespace ChainsOfFate.Gerallt
 
         private void Awake()
         {
-            representation = RandomColour();
+            //representation = RandomColour();
         }
     }
 }
