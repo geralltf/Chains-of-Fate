@@ -6,6 +6,7 @@ using ChainsOfFate.Gerallt;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -26,6 +27,7 @@ namespace ChainsOfFate.Gerallt
 
         [SerializeField] private GameObject nodePrefab;
         [SerializeField] private Transform contentParent;
+        [SerializeField] private float animationSpeed = 1.0f;
         
         private List<GameObject> contentList = new List<GameObject>();
         
@@ -302,8 +304,6 @@ namespace ChainsOfFate.Gerallt
 
         IEnumerator AnimateItem(GameObject go, Vector3 newPos)
         {
-            float speed = 1.0f;
-            float dt;
             float dist;
             bool animating = true;
 
@@ -325,7 +325,7 @@ namespace ChainsOfFate.Gerallt
                     }
                     else
                     {
-                        rectTransform.localPosition = Vector3.Lerp(rectTransform.localPosition, newPos, speed * Time.deltaTime);
+                        rectTransform.localPosition = Vector3.Lerp(rectTransform.localPosition, newPos, animationSpeed * Time.deltaTime);
                     }
                 }
                 
