@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ChainsOfFate.Gerallt;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -63,23 +64,16 @@ namespace ChainsOfFate.Gerallt
 
             characterBase.OnStatChanged += CharacterBase_OnStatChanged;
 
-            // GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
-            //
-            // nodeInstance.GetComponentInChildren<Image>().color = characterBase.representation;
-            //
-            // Champion characterBase2 = nodeInstance.AddComponent<Champion>();
-            // characterBase2.Speed = characterBase.Speed;
-            //
-            // contentList.Add(nodeInstance);
+            // Update UI.
+            UpdateView();
         }
 
         public void RemoveAt(int index)
         {
             queue.RemoveAt(index);
 
-            // var tmp = contentList[index];
-            // contentList.RemoveAt(index); 
-            // Destroy(tmp);
+            // Update UI.
+            UpdateView();
         }
         
         public void RemoveTop()
@@ -94,24 +88,16 @@ namespace ChainsOfFate.Gerallt
             
             queue.RemoveAt(index);
             
-            // var tmp = contentList[index];
-            // contentList.RemoveAt(index); 
-            // Destroy(tmp);
+            // Update UI.
+            UpdateView();
         }
 
         public void Add(CharacterBase newCharacter)
         {
             queue.Add(newCharacter);
             
-            // GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
-            //
-            // nodeInstance.GetComponentInChildren<Image>().color = newCharacter.representation;
-            //
-            // Champion characterBase2 = nodeInstance.AddComponent<Champion>();
-            // characterBase2.Speed = newCharacter.Speed;
-            //
-            //
-            // contentList.Add(nodeInstance);
+            // Update UI.
+            UpdateView();
         }
 
         public void InsertBeforeTop(CharacterBase newTop)
@@ -120,11 +106,8 @@ namespace ChainsOfFate.Gerallt
             
             queue.Insert(0, newTop);
 
-            // Transform top = contentList[0].transform;
-            // top.SetSiblingIndex(1);
-            //
-            // Transform newTransform = contentList[positionId].transform;
-            // newTransform.SetSiblingIndex(0);
+            // Update UI.
+            UpdateView();
         }
 
         public void InsertAfterTop(CharacterBase second)
@@ -133,25 +116,16 @@ namespace ChainsOfFate.Gerallt
             
             queue.Insert(1, second);
             
-            // Transform secTransform = contentList[positionId].transform;
-            // secTransform.SetSiblingIndex(1);
-            //
-            // for (int i = 1; i < contentList.Count; i++)
-            // {
-            //     Transform oldTransform2 = contentList[i].transform;
-            //     oldTransform2.SetSiblingIndex(i+1);
-            // }
+            // Update UI.
+            UpdateView();
         }
 
         public void InsertBeforeEnd(CharacterBase secondLast)
         {
             queue.Insert(Count - 2, secondLast);
             
-            // Transform secLastTransform = contentList[Count - 2].transform;
-            // Transform lastTransform = contentList[Count - 1].transform;
-            // int lastIndex = lastTransform.GetSiblingIndex();
-            // secLastTransform.SetSiblingIndex(lastIndex);
-            // lastTransform.SetSiblingIndex(lastIndex + 1);
+            // Update UI.
+            UpdateView();
         }
 
         /// <summary>
@@ -266,12 +240,35 @@ namespace ChainsOfFate.Gerallt
 
             queue.Clear();
 
-            //TODO: Update UI
+            // Update UI.
+            UpdateView();
         }
 
+        private void UpdateView()
+        {
+            // Visualise current state of queue
+            
+            // Destroy all node UI instances in content parent view
+            for (int idx = 0; idx < contentParent.transform.childCount; idx++ )
+            {
+                Transform child = contentParent.transform.GetChild(idx);
+                
+                GameObject.Destroy(child.gameObject);
+            }
+            
+            for (int i = 0; i < queue.Count; i++)
+            {
+                CharacterBase character = queue[i];
+                
+                GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
+                nodeInstance.GetComponentInChildren<Image>().color = character.representation;
+                nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
+            }
+        }
+        
         private void Start()
         {
-            // TODO: Visualise current state of queue
+            UpdateView();
         }
 
         private void Update()
