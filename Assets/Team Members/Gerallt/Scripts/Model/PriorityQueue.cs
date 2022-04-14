@@ -325,7 +325,7 @@ namespace ChainsOfFate.Gerallt
                     }
                     else
                     {
-                        rectTransform.localPosition = Vector3.Lerp(rectTransform.localPosition, newPos, animationSpeed * Time.deltaTime);
+                        rectTransform.localPosition = Vector3.Slerp(rectTransform.localPosition, newPos, animationSpeed * Time.deltaTime);
                     }
                 }
                 
