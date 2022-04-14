@@ -171,12 +171,7 @@ namespace ChainsOfFate.Gerallt
             //Sort all the characters by their speed priority.
             queue = queue.OrderByDescending(chr => chr.Speed).ToList();
 
-            // contentList = contentList.OrderByDescending(go => go.GetComponent<Champion>().Speed).ToList();
-            // int i = -1;
-            // foreach (var item in contentList)
-            // {
-            //     item.transform.SetSiblingIndex(++i);
-            // }
+            UpdateView();
         }
 
         public void SanityChecks(CharacterBase oldTop, CharacterBase oldEnd)
@@ -274,9 +269,8 @@ namespace ChainsOfFate.Gerallt
                         position = nodeInstance.GetComponent<RectTransform>().position
                     });
                 }
-
-                //GameObject.DestroyImmediate(nodeInstance);
-                GameObject.Destroy(nodeInstance);
+                
+                Destroy(nodeInstance);
             }
             
             for (int i = 0; i < queue.Count; i++)
@@ -286,8 +280,14 @@ namespace ChainsOfFate.Gerallt
                 GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
                 nodeInstance.GetComponentInChildren<Image>().color = character.representation;
                 nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
+                RectTransform rectTransform = nodeInstance.GetComponent<RectTransform>();
 
-                Vector3 newPosition = nodeInstance.GetComponent<RectTransform>().position;
+                Vector3 pos = rectTransform.position;
+                pos.x = (i * 60.0f) + 0.0f; // Use this if you are not using the scroll rect to position elements.
+                pos.y = 0.0f;
+                rectTransform.position = pos;
+
+                Vector3 newPosition = rectTransform.position;
                 ViewObj oldPosition = oldPositions.FirstOrDefault(v => v.characterName == character.CharacterName);
 
                 if (oldPosition != null)

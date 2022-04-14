@@ -579,6 +579,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 55.99
       objectReference: {fileID: 0}
+    - target: {fileID: 9141818085852640949, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141818085852640949, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141818085852640949, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141818085852640949, guid: d66f2711a55224948a0a4f9053590162, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -67.88
+      objectReference: {fileID: 0}
     - target: {fileID: 9204787735287432377, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: representation.a
       value: 1
