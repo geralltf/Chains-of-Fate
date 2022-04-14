@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ChainsOfFate.Gerallt;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -244,16 +245,38 @@ namespace ChainsOfFate.Gerallt
             UpdateView();
         }
 
+        private class ViewObj
+        {
+            public string characterName;
+            public Vector3 position;
+            public GameObject gameObject;
+        }
+        
         private void UpdateView()
         {
             // Visualise current state of queue
-            
+
+            List<ViewObj> oldPositions = new List<ViewObj>();
+
             // Destroy all node UI instances in content parent view
             for (int idx = 0; idx < contentParent.transform.childCount; idx++ )
             {
                 Transform child = contentParent.transform.GetChild(idx);
-                
-                GameObject.Destroy(child.gameObject);
+                GameObject nodeInstance = child.gameObject;
+
+                string characterName = nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text;
+
+                if (queue.Any(c => c.CharacterName == characterName))
+                {
+                    oldPositions.Add(new ViewObj()
+                    {
+                        characterName = characterName,
+                        position = nodeInstance.GetComponent<RectTransform>().position
+                    });
+                }
+
+                //GameObject.DestroyImmediate(nodeInstance);
+                GameObject.Destroy(nodeInstance);
             }
             
             for (int i = 0; i < queue.Count; i++)
@@ -263,7 +286,53 @@ namespace ChainsOfFate.Gerallt
                 GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
                 nodeInstance.GetComponentInChildren<Image>().color = character.representation;
                 nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
+
+                Vector3 newPosition = nodeInstance.GetComponent<RectTransform>().position;
+                ViewObj oldPosition = oldPositions.FirstOrDefault(v => v.characterName == character.CharacterName);
+
+                if (oldPosition != null)
+                {
+                    // Reset transform to old position
+                    nodeInstance.GetComponent<RectTransform>().position = oldPosition.position; 
+                    
+                    StartCoroutine(AnimateItem(nodeInstance, newPosition));    
+                }
             }
+        }
+
+        IEnumerator AnimateItem(GameObject go, Vector3 newPos)
+        {
+            float speed = 1.0f;
+            float dt;
+            float dist;
+            bool animating = true;
+
+            while (animating)
+            {
+                if (go == null)
+                {
+                    animating = false;
+                }
+                else
+                {
+                    RectTransform rectTransform = go.GetComponent<RectTransform>();
+                    
+                    dist = Vector3.Distance(rectTransform.localPosition, newPos);
+                    
+                    if (dist < 0.1f)
+                    {
+                        animating = false;
+                    }
+                    else
+                    {
+                        rectTransform.localPosition = Vector3.Lerp(rectTransform.localPosition, newPos, speed * Time.deltaTime);
+                    }
+                }
+                
+                yield return new WaitForEndOfFrame();
+            }
+            
+
         }
         
         private void Start()
