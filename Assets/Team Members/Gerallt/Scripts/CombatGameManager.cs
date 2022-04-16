@@ -36,7 +36,7 @@ namespace ChainsOfFate.Gerallt
 
         public delegate void ResolveDelegate(CharacterBase current, CharacterBase target, bool encourage, bool taunt);
 
-        public delegate void FleeDelegate(CharacterBase current);
+        public delegate void FleeDelegate(CharacterBase current, bool canFlee, bool unloadCombatUI);
 
         public delegate void ManagerInitilisedQueueDelegate(int enemiesAllocated, int partyMembersAllocated);
 
@@ -387,9 +387,9 @@ namespace ChainsOfFate.Gerallt
             OnResolveTauntEvent?.Invoke(current, target, false, true);
         }
 
-        public void RaiseFleeEvent(CharacterBase current)
+        public void RaiseFleeEvent(CharacterBase current, bool canFlee, bool unloadCombatUI)
         {
-            OnFleeEvent?.Invoke(current);
+            OnFleeEvent?.Invoke(current, canFlee, unloadCombatUI);
         }
 
         public void RaiseCounterAttackEvent(CharacterBase attacker, CharacterBase target)

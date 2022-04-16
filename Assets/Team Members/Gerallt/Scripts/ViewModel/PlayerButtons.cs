@@ -61,7 +61,6 @@ namespace ChainsOfFate.Gerallt
                 {
                     combatGameManager.FinishedTurn(currentCharacter, !canFlee); 
                 }
-                combatGameManager.RaiseFleeEvent(currentCharacter);
             }
             else
             {
@@ -70,7 +69,14 @@ namespace ChainsOfFate.Gerallt
             
             if (canFlee && (champion != null && champion.isMainCharacter))
             {
-                combatGameManager.UnloadScene();
+                // Actually quit the combat scene.
+                
+                //combatGameManager.UnloadScene(); // Old approach.
+                combatGameManager.RaiseFleeEvent(currentCharacter, canFlee, true);
+            }
+            else
+            {
+                combatGameManager.RaiseFleeEvent(currentCharacter, canFlee, false);
             }
         }
         
