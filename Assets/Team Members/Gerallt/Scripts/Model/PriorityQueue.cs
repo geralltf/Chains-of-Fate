@@ -28,9 +28,10 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private GameObject nodePrefab;
         [SerializeField] private Transform contentParent;
         [SerializeField] private float animationSpeed = 1.0f;
+        [SerializeField] private float animateMinDistanceToEnd = 0.1f;
         
-        private List<GameObject> contentList = new List<GameObject>();
-        
+        public AnimationType animationType = AnimationType.Linear;
+
         public int Count => queue.Count;
 
         public CharacterBase Top()
@@ -212,6 +213,8 @@ namespace ChainsOfFate.Gerallt
                     }
                 }
             }
+            
+            UpdateView();
         }
 
         public List<CharacterBase> ToList()
@@ -297,44 +300,11 @@ namespace ChainsOfFate.Gerallt
                     // Reset transform to old position
                     nodeInstance.GetComponent<RectTransform>().position = oldPosition.position; 
                     
-                    StartCoroutine(AnimateItem(nodeInstance, newPosition));    
+                    StartCoroutine(AnimationHelpers.AnimateObject2D(nodeInstance, newPosition, animationType, animationSpeed, animateMinDistanceToEnd));    
                 }
             }
         }
 
-        IEnumerator AnimateItem(GameObject go, Vector3 newPos)
-        {
-            float dist;
-            bool animating = true;
-
-            while (animating)
-            {
-                if (go == null)
-                {
-                    animating = false;
-                }
-                else
-                {
-                    RectTransform rectTransform = go.GetComponent<RectTransform>();
-                    
-                    dist = Vector3.Distance(rectTransform.localPosition, newPos);
-                    
-                    if (dist < 0.1f)
-                    {
-                        animating = false;
-                    }
-                    else
-                    {
-                        rectTransform.localPosition = Vector3.Slerp(rectTransform.localPosition, newPos, animationSpeed * Time.deltaTime);
-                    }
-                }
-                
-                yield return new WaitForEndOfFrame();
-            }
-            
-
-        }
-        
         private void Start()
         {
             UpdateView();

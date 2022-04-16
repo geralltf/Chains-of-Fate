@@ -3634,7 +3634,7 @@ MonoBehaviour:
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
-  representation: {r: 1, g: 0, b: 0.75255346, a: 0}
+  representation: {r: 1, g: 0, b: 0.75255346, a: 1}
   characterName: AI Brute
   hp: 100
   arcana: 100
@@ -3964,7 +3964,7 @@ MonoBehaviour:
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
-  representation: {r: 0, g: 1, b: 0.2392714, a: 0}
+  representation: {r: 0, g: 1, b: 0.2392714, a: 1}
   characterName: AI Defender
   hp: 100
   arcana: 100
@@ -5190,14 +5190,14 @@ MonoBehaviour:
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
-  representation: {r: 1, g: 0.52308637, b: 0, a: 0}
+  representation: {r: 1, g: 0.52308637, b: 0, a: 1}
   characterName: test player
   hp: 100
   arcana: 50
   resolve: 10
   defense: 1
   wisdom: 1
-  speed: 0
+  speed: 1
   strength: 1
   movementSpeed: 1
   level: 1
@@ -7528,12 +7528,12 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7788,7 +7788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   havingTurnDelaySeconds: 2
   attackTarget: {fileID: 0}
-  turnsQueue: {fileID: 0}
+  turnsQueue: {fileID: 6614320027689091279}
   shuffleTurns: 0
   makeDeterministic: 0
   seed: 0
@@ -8557,7 +8557,7 @@ MonoBehaviour:
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
-  representation: {r: 0, g: 0.7807317, b: 1, a: 0}
+  representation: {r: 0, g: 0.7807317, b: 1, a: 1}
   characterName: Friend
   hp: 100
   arcana: 100
@@ -8576,6 +8576,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7720193410555412133}
     m_Modifications:
+    - target: {fileID: 5669643478189220975, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669643478189220975, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669643478189220975, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669643478189220975, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -67.88
+      objectReference: {fileID: 0}
     - target: {fileID: 7762539637080552895, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -8583,6 +8599,10 @@ PrefabInstance:
     - target: {fileID: 7762539637080552895, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762539637080552895, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 7762539637393969682, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
       propertyPath: m_RootOrder
@@ -8633,8 +8653,28 @@ PrefabInstance:
       value: Turns Queue _ Priority Queue
       objectReference: {fileID: 0}
     - target: {fileID: 7762539637393969685, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: animationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762539637393969685, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
       propertyPath: queue.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762539637832297210, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762539637832297210, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762539637832297210, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762539637832297210, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
@@ -8643,6 +8683,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7762539637393969682, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
   m_PrefabInstance: {fileID: 3490533430354563802}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6614320027689091279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7762539637393969685, guid: 11896ec8fc781e240b038bb86f513b0f, type: 3}
+  m_PrefabInstance: {fileID: 3490533430354563802}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b328000a8ef3498cbbc9d92d9a54dec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8289501492196127763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8692,7 +8743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 727687321092993547, guid: 462c074df5826c54da7745363fb9761a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 173.4
+      value: 55.99
       objectReference: {fileID: 0}
     - target: {fileID: 727687321092993547, guid: 462c074df5826c54da7745363fb9761a, type: 3}
       propertyPath: m_LocalPosition.z

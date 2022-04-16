@@ -184,7 +184,9 @@ namespace ChainsOfFate.Gerallt
                 turnsQueue.hadTurns.Add(character);
             }
 
-            if (CheckEndOfRound())
+            turnsQueue.animationType = AnimationType.Linear;
+            
+            if (CheckGameOver())
             {
                 CharacterBase oldTop = turnsQueue.Top();
                 CharacterBase oldEnd = turnsQueue.End();
@@ -245,7 +247,7 @@ namespace ChainsOfFate.Gerallt
             }
         }
 
-        private bool CheckEndOfRound()
+        private bool CheckGameOver()
         {
             bool proceedToNextRound = true;
             
@@ -261,6 +263,7 @@ namespace ChainsOfFate.Gerallt
                 }
                 else
                 {
+                    turnsQueue.animationType = AnimationType.Circular;
                     round++;
                     OnRoundAdvance?.Invoke(round);
                 }
