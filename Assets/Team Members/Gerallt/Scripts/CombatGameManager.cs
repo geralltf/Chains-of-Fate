@@ -14,7 +14,10 @@ namespace ChainsOfFate.Gerallt
         /// The delay the agent waits before completing their turn.
         /// </summary>
         public float havingTurnDelaySeconds = 2.0f;
-
+        
+        public AnimationType animationTypeNormal = AnimationType.Linear;
+        public AnimationType animationTypeRoundOver = AnimationType.Circular;
+        
         public CharacterBase ActiveCharacter => GetCurrentCharacter();
         public CharacterBase attackTarget = null; // TODO: have the player select a character to target
         public PriorityQueue turnsQueue;
@@ -191,10 +194,10 @@ namespace ChainsOfFate.Gerallt
 
             if (CheckGameOver())
             {
-                turnsQueue.animationType = AnimationType.Linear;
+                turnsQueue.animationType = animationTypeNormal;
                 if (turnsQueue.hadTurns.Count + 1 >= turnsQueue.Count)
                 {
-                    turnsQueue.animationType = AnimationType.Circular;
+                    turnsQueue.animationType = animationTypeRoundOver;
                 }
                 
                 CharacterBase oldTop = turnsQueue.Top();
