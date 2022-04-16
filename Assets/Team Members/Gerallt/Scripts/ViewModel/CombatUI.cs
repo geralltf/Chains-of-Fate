@@ -12,6 +12,9 @@ namespace ChainsOfFate.Gerallt
         public BlockBarUI blockBarUI;
 
         public event Action<CombatUI> onSceneDestroyed;
+
+        public event Action<CombatUI> onCloseCombatUI;
+        
         public event Action onSceneLoaded;
         public bool isLoaded;
         
@@ -23,7 +26,16 @@ namespace ChainsOfFate.Gerallt
 
         private void Awake()
         {
+            combatGameManager.OnFleeEvent += CombatGameManagerOnOnFleeEvent;
             onSceneLoaded?.Invoke();
+        }
+
+        private void CombatGameManagerOnOnFleeEvent(CharacterBase current, bool canFlee, bool unloadCombatUI)
+        {
+            if (canFlee && unloadCombatUI)
+            {
+                onCloseCombatUI?.Invoke(this);
+            }
         }
 
         private void OnDestroy()
