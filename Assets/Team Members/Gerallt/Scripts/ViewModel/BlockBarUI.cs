@@ -35,6 +35,15 @@ namespace ChainsOfFate.Gerallt
         {
             if (view != null)
             {
+                Camera _camera = FindObjectOfType<Camera>();
+                Vector3 screenCenter = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, _camera.nearClipPlane);
+                Vector3 offset = _camera.ScreenToWorldPoint(screenCenter);
+                offset.z = 0.1f;
+                gameObject.transform.position = offset;
+                var angles = gameObject.transform.eulerAngles;
+                angles.x = 90;
+                gameObject.transform.eulerAngles = angles;
+                
                 if (visibility)
                 {
                     StartAnim();
@@ -88,7 +97,7 @@ namespace ChainsOfFate.Gerallt
             
             float time = selectionTime * animationSpeed * 0.5f;
                 
-            currentTween = shieldSprite.transform.DOMove(shieldEnd.transform.position, time, false);
+            currentTween = shieldSprite.transform.DOLocalMove(shieldEnd.transform.localPosition, time, false);
             currentTween.onComplete = () =>
             {
                 StartAnim_RightToLeft();
@@ -102,7 +111,7 @@ namespace ChainsOfFate.Gerallt
         {
             float time = selectionTime * animationSpeed * 0.5f;
                 
-            currentTween = shieldSprite.transform.DOMove(shieldStart.transform.position, time, false);
+            currentTween = shieldSprite.transform.DOLocalMove(shieldStart.transform.localPosition, time, false);
             currentTween.onComplete = () =>
             {
                 StartAnim_LeftToRight();
