@@ -99,6 +99,34 @@ public class WorldInfo : MonoBehaviour
                         break;
                 }
             }
+            else
+            {
+                // Move the player back into the scene away from the out of bounds zone.
+                Vector3 dirBounds = Vector3.zero;
+                switch (newSceneDirection)
+                {
+                    case SceneDirection.Left:
+                        dirBounds.x += -sceneBounds.extents.x;
+                        break;
+                    case SceneDirection.Right:
+                        dirBounds.x += sceneBounds.extents.x;
+                        break;
+                    case SceneDirection.Top:
+                        dirBounds.z += -sceneBounds.extents.z;
+                        break;
+                    case SceneDirection.Bottom:
+                        dirBounds.z += sceneBounds.extents.z;
+                        break;
+                }
+                
+                Vector3 pos = player.position;
+
+                Vector3 direction = -(player.position - (centrePoint + dirBounds)).normalized;
+
+                pos += direction * 2.0f; // * Time.deltaTime;
+                
+                player.position = pos;
+            }
         }
     }
 
