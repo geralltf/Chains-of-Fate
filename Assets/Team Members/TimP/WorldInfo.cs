@@ -16,7 +16,7 @@ public class WorldInfo : MonoBehaviour
     private Transform player;
     private Vector3 centrePoint;
     private SceneDirection newSceneDirection;
-    private Bounds sceneBounds;
+    internal Bounds sceneBounds;
     [SerializeField] private SceneDirection approachingDirection = SceneDirection.Undefined;
     
     private bool leftSceneLoaded, rightSceneLoaded, upSceneLoaded, downSceneLoaded;
@@ -116,7 +116,7 @@ public class WorldInfo : MonoBehaviour
                 newSceneDirection = sceneDirection;
                 SceneManager.sceneLoaded += SceneManager_OnSceneLoaded;
                 
-                ChainsOfFate.Gerallt.GameManager.Instance.ShowLevelLoadingIndicator(sceneName);
+                gameManager.ShowLevelLoadingIndicator(sceneName);
                 
                 SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
             }
@@ -234,8 +234,8 @@ public class WorldInfo : MonoBehaviour
                 worldInfo.centrePoint = worldInfo.transform.position;
                 worldInfo.thisScene = newScene;
                 worldInfo.approachingDirection = approaching;
-                
-                break;
+
+                continue;
             }
 
             if (rootTransform != null)
