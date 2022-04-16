@@ -202,10 +202,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13c7cd6cb1c65149b827151fe7a62b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8350055717933156382, guid: a3a6aa6e69228d942a803452e05420f4, type: 3}
   enemy: {fileID: 0}
-  withinRange: 10
-  speed: 0.015
+  angle: 0
+  speed: 4
+  circularTurnSpeed: 0.8
+  circularMoveDirection: 1
+  patrollingSpeed: 1
+  patrolNearDistance: 0.8
+  patrolChangeTime: 10
+  randomTurning: 0
+  movementBehaviourFixedType: 0
+  currMovementBehaviour: 0
+  changeBehaviourTime: 15
+  currentPatrolPointIndex: 0
+  patrolPoints: []
+  patrolPointMinDistance: 1
+  patrolPointRadius: 10
+  numPatrolPoints: 3
 --- !u!1 &5572169596036456130
 GameObject:
   m_ObjectHideFlags: 0

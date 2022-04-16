@@ -9,12 +9,11 @@ public class EnemyMove : MonoBehaviour
 {
     public GameObject enemy;
     
-    public float angle;
-    public float speed;
-    public float circularTurnSpeed = 0.62f;
+    public float speed = 4.0f;
+    public float circularTurnSpeed = 0.9f;
     public float circularMoveDirection = 1.0f;
     public float patrollingSpeed = 1.0f;
-    public float patrolNearDistance = 0.1f;
+    public float patrolNearDistance = 0.8f;
     public float patrolChangeTime = 10.0f;
     public bool randomTurning = true;
     public MovementType movementBehaviourFixedType = MovementType.Different;
