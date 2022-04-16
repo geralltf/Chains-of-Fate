@@ -9,38 +9,27 @@ using UnityEngine.SceneManagement;
 public class TestTeleporter : MonoBehaviour
 {
     public string scene;
-    public PlayerController PlayerController;
-    private void Awake()
-    {
-        //PlayerController = FindObjectOfType<PlayerController>();
-    }
-
-    private void OnDestroy()
-    {
-        //SceneManager.sceneLoaded-= SceneManagerOnsceneLoaded;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        /*
-        if (other.GetComponent<PlayerController>()!=null)
-        {
-            SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
-            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        }
-        */
-    }
+    
+    private PlayerController playerController;
+    private bool collisionsDisabled = false;
 
     private void OnCollisionEnter(Collision other)
     {
-        PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-        PlayerController = playerController;
+        if (collisionsDisabled) return;
         
-        if (playerController != null)
+        PlayerController _playerController = other.gameObject.GetComponent<PlayerController>();
+
+        if (_playerController != null)
         {
-            //this.gameObject.SetActive(false);
-            GetComponent<EnemyMove>().enabled = false;
+            playerController = _playerController;
+            collisionsDisabled = true;
             
+            // Disable movement of enemy and player.
+            GetComponent<EnemyMove>().enabled = false;
+            GetComponent<TestTeleporter>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            playerController.GetComponent<Rigidbody>().isKinematic = true;
+
             SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
             SceneManager.LoadScene(scene, LoadSceneMode.Additive);
         }
@@ -52,9 +41,8 @@ public class TestTeleporter : MonoBehaviour
         enemies.Add(this.gameObject);
 
         List<GameObject> partyMembers = new List<GameObject>();
-
-        SceneManager.SetActiveScene(sceneInstance);
-        //SceneManager.MoveGameObjectToScene(other.gameObject,scene);
+        // TODO: add current party members from current player to this list
+        
         GameObject[] rootObjects = sceneInstance.GetRootGameObjects();
         
         foreach (GameObject rootObj in rootObjects)
@@ -62,11 +50,13 @@ public class TestTeleporter : MonoBehaviour
             CombatUI combatUI = rootObj.GetComponent<CombatUI>();
             if (combatUI != null)
             {
-                PlayerController.controls.Player.Disable();
+                SceneManager.SetActiveScene(sceneInstance);
+                
+                playerController.controls.Player.Disable();
                 
                 combatUI.isTestMode = false;
                 combatUI.onSceneDestroyed += CombatUI_OnSceneDestroyed;
-                combatUI.SetCurrentParty(enemies, partyMembers, PlayerController.gameObject);
+                combatUI.SetCurrentParty(enemies, partyMembers, playerController.gameObject);
                 break;
             }
         }
@@ -78,24 +68,31 @@ public class TestTeleporter : MonoBehaviour
     {
         combatUI.onSceneDestroyed -= CombatUI_OnSceneDestroyed;
         
-        PlayerController.controls.Player.Enable();
-
-        StartCoroutine(ResumeMovement());
+        // Enable movement of enemy and player.
+        playerController.controls.Player.Enable();
+        
+        GetComponent<Rigidbody>().isKinematic = false;
+        playerController.GetComponent<Rigidbody>().isKinematic = false;
+        
+        StartCoroutine(ResumeFunctionAndMovement());
     }
 
-    IEnumerator ResumeMovement()
+    IEnumerator ResumeFunctionAndMovement()
     {
         yield return new WaitForSeconds(GetComponent<EnemyNPC>().timeUntilMovementResumes);
-
+        
+        TestTeleporter testTeleporter = GetComponent<TestTeleporter>();
+        if (testTeleporter != null)
+        {
+            testTeleporter.enabled = true;
+        }
+        
         EnemyMove enemyMove = GetComponent<EnemyMove>();
         if (enemyMove != null)
         {
             enemyMove.enabled = true;
         }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+        collisionsDisabled = false;
     }
 }
