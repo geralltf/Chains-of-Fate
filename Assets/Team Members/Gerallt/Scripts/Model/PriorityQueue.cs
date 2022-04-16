@@ -46,7 +46,8 @@ namespace ChainsOfFate.Gerallt
         {
             UseScrollView,
             ManualHorizontal,
-            ManualVertical
+            ManualVerticalUp,
+            ManualVerticalDown
         }
         
         public int Count => queue.Count;
@@ -338,9 +339,14 @@ namespace ChainsOfFate.Gerallt
                         pos.x = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
                         pos.y = 0.0f;
                     }
-                    if (itemLayout == ItemLayout.ManualVertical)
+                    if (itemLayout == ItemLayout.ManualVerticalUp)
                     {
                         pos.y = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
+                        pos.x = 0.0f;
+                    }
+                    if (itemLayout == ItemLayout.ManualVerticalDown)
+                    {
+                        pos.y = -(i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
                         pos.x = 0.0f;
                     }
 
