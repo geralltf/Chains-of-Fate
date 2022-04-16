@@ -292,6 +292,30 @@ PrefabInstance:
       propertyPath: rightScene
       value: Main
       objectReference: {fileID: 0}
+    - target: {fileID: 2917676964787887885, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
+      propertyPath: debugColour
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917676964787887885, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
+      propertyPath: debugColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917676964787887885, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
+      propertyPath: debugColour.b
+      value: 0.36789227
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917676964787887885, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
+      propertyPath: debugColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917676964787887885, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
+      propertyPath: debugColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917676964787887885, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
+      propertyPath: enableDebugColour
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
 --- !u!1001 &1647989120843116793

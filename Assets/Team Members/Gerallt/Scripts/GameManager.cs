@@ -8,6 +8,13 @@ namespace ChainsOfFate.Gerallt
     {
         public static GameManager Instance;
 
+        public float outofboundsBounceForce = 10.0f;
+        public float boundaryMinDistance = 10.0f;
+        public float loadRange = 10.0f;
+        public float unloadRange = 15.0f;
+        public float boundaryRange = 3.0f;
+        internal bool levelLoadingLock = false;
+        
         public CombatUI combatUI;
         public GameObject levelLoadingIndicatorUI;
         public TextMeshProUGUI levelLoadingUIText;
