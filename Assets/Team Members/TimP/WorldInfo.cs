@@ -162,7 +162,7 @@ public class WorldInfo : MonoBehaviour
                 boundaryLocation.z = (sceneBounds.center.z + dirBounds.z);
                 dist = (pos.z - boundaryLocation.z);
                 posDelta.z = dist * gameManager.outofboundsBounceForce * dt;
-                boundsTest = (pos.z < centrePoint.z - (sceneBounds.extents.z - gameManager.boundaryRange));
+                boundsTest = (pos.z > centrePoint.z + (sceneBounds.extents.z - gameManager.boundaryRange));
                 break;
             case SceneDirection.Bottom:
                 sceneName = downScene;
@@ -170,7 +170,7 @@ public class WorldInfo : MonoBehaviour
                 boundaryLocation.z = (sceneBounds.center.z + dirBounds.z);
                 dist = (pos.z - boundaryLocation.z);
                 posDelta.z = dist * gameManager.outofboundsBounceForce * dt;
-                boundsTest = (pos.z > centrePoint.z + (sceneBounds.extents.z - gameManager.boundaryRange));
+                boundsTest = (pos.z < centrePoint.z - (sceneBounds.extents.z - gameManager.boundaryRange));
                 break;
         }
 
