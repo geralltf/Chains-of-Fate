@@ -8,6 +8,7 @@ public class Loader : MonoBehaviour
 {
     private void Awake()
     {
+        DontDestroyOnLoad(FindObjectOfType<ChainsOfFate.Gerallt.GameManager>().gameObject);
         DontDestroyOnLoad(FindObjectOfType<PlayerController>().gameObject);
         DontDestroyOnLoad(FindObjectOfType<CameraFollow>().gameObject);
 

@@ -81,6 +81,9 @@ public class WorldInfo : MonoBehaviour
             {
                 newSceneDirection = sceneDirection;
                 SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+                
+                ChainsOfFate.Gerallt.GameManager.Instance.ShowLevelLoadingIndicator(sceneName);
+                
                 SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
                 
                 switch (sceneDirection)
@@ -178,6 +181,9 @@ public class WorldInfo : MonoBehaviour
         
         // Unload old scene since the new scene has loaded.
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        
+        // Hide the level loading indicator.
+        ChainsOfFate.Gerallt.GameManager.Instance.HideLevelLoadingIndicator();
     }
 
     void CheckPosition()
