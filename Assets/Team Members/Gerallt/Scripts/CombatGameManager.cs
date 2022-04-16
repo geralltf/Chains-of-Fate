@@ -23,6 +23,9 @@ namespace ChainsOfFate.Gerallt
         public int seed;
         public int round;
         public int maxRoundsPerGame = 5;
+        
+        private bool proceedToNextTurn = true;
+        private bool proceedToNextRound = true;
 
         public delegate void ActionableDelegate(CharacterBase current, CharacterBase target);
 
@@ -170,6 +173,8 @@ namespace ChainsOfFate.Gerallt
             {
                 turnsQueue.hadTurns.Clear();
             }
+            
+            turnsQueue.UpdateView();
 
             OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
             OnHavingTurn?.Invoke(playerCharacter);
@@ -184,10 +189,14 @@ namespace ChainsOfFate.Gerallt
                 turnsQueue.hadTurns.Add(character);
             }
 
-            turnsQueue.animationType = AnimationType.Linear;
-            
             if (CheckGameOver())
             {
+                turnsQueue.animationType = AnimationType.Linear;
+                if (turnsQueue.hadTurns.Count + 1 >= turnsQueue.Count)
+                {
+                    turnsQueue.animationType = AnimationType.Circular;
+                }
+                
                 CharacterBase oldTop = turnsQueue.Top();
                 CharacterBase oldEnd = turnsQueue.End();
 
@@ -252,7 +261,8 @@ namespace ChainsOfFate.Gerallt
 
         private bool CheckGameOver()
         {
-            bool proceedToNextRound = true;
+            proceedToNextRound = false;
+            proceedToNextTurn = true;
             
             if (turnsQueue.hadTurns.Count == turnsQueue.Count)
             {
@@ -260,19 +270,21 @@ namespace ChainsOfFate.Gerallt
 
                 if (round + 1 > maxRoundsPerGame)
                 {
+                    proceedToNextTurn = false;
                     proceedToNextRound = false;
-
+                    
                     GameOver();
                 }
                 else
                 {
-                    turnsQueue.animationType = AnimationType.Circular;
+                    proceedToNextRound = true;
+                    
                     round++;
                     OnRoundAdvance?.Invoke(round);
                 }
             }
             
-            return proceedToNextRound; // Proceed with next round.
+            return proceedToNextTurn; // Proceed with next turn and round.
         }
 
         private void GameOver()
