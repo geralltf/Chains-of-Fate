@@ -21,7 +21,8 @@ namespace ChainsOfFate.Gerallt
         public float guessCooldown = 1.5f;
         public bool animating = false;
         public CharacterBase defendingCharacter;
-
+        public bool isTestMode = false;
+        
         public delegate void WonDelegate(float blockPercentage, bool doCounterAttack);
         
         public event WonDelegate onWonEvent;
@@ -35,14 +36,19 @@ namespace ChainsOfFate.Gerallt
         {
             if (view != null)
             {
-                Camera _camera = FindObjectOfType<Camera>();
-                Vector3 screenCenter = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, _camera.nearClipPlane);
-                Vector3 offset = _camera.ScreenToWorldPoint(screenCenter);
-                offset.z = 0.1f;
-                gameObject.transform.position = offset;
-                var angles = gameObject.transform.eulerAngles;
-                angles.x = 90;
-                gameObject.transform.eulerAngles = angles;
+                if (!isTestMode)
+                {
+                    Camera _camera = FindObjectOfType<Camera>();
+                    Vector3 screenCenter = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, _camera.nearClipPlane);
+                    Vector3 offset = _camera.ScreenToWorldPoint(screenCenter);
+                    offset.z = 0.1f;
+                    gameObject.transform.position = offset;
+                    var angles = gameObject.transform.eulerAngles;
+                    angles.x = 90;
+                    gameObject.transform.eulerAngles = angles;
+                    gameObject.transform.localScale = new Vector3(0.03f, 0.03f, 1.0f);
+                }
+
                 
                 if (visibility)
                 {
