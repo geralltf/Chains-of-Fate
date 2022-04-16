@@ -272,6 +272,14 @@ namespace ChainsOfFate.Gerallt
             //UpdateView();
         }
 
+        public void Union(List<CharacterBase> other)
+        {
+            foreach (CharacterBase character in other)
+            {
+                Enqueue(character);
+            }
+        }
+
         public void UpdateView()
         {
             // Visualise current state of queue

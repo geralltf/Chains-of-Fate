@@ -21,6 +21,8 @@ namespace ChainsOfFate.Gerallt
         public CharacterBase ActiveCharacter => GetCurrentCharacter();
         public CharacterBase attackTarget = null; // TODO: have the player select a character to target
         public PriorityQueue turnsQueue;
+        public PriorityQueue turnsQueueEnemies;
+        public PriorityQueue turnsQueueYours;
         public bool shuffleTurns = false;
         public bool makeDeterministic = false;
         public int seed;
@@ -179,6 +181,14 @@ namespace ChainsOfFate.Gerallt
             
             turnsQueue.UpdateView();
 
+            // Force update of sub queues.
+            turnsQueueEnemies.Clear();
+            turnsQueueYours.Clear();
+            turnsQueueEnemies.Union(turnsQueue.GetEnemies());
+            turnsQueueYours.Union(turnsQueue.GetChampions());
+            turnsQueueEnemies.UpdateView();
+            turnsQueueYours.UpdateView();
+            
             OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
             OnHavingTurn?.Invoke(playerCharacter);
             OnRoundAdvance?.Invoke(round);
@@ -235,6 +245,14 @@ namespace ChainsOfFate.Gerallt
 
                 // Update the UI with the new queue order.
                 turnsQueue.UpdateView();
+                
+                // Force update of sub queues.
+                turnsQueueEnemies.Clear();
+                turnsQueueYours.Clear();
+                turnsQueueEnemies.Union(turnsQueue.GetEnemies());
+                turnsQueueYours.Union(turnsQueue.GetChampions());
+                turnsQueueEnemies.UpdateView();
+                turnsQueueYours.UpdateView();
                 
                 // New character assigned by the turn queue.
                 CharacterBase currentCharacter = GetCurrentCharacter();
