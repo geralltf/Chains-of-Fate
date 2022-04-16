@@ -49,7 +49,7 @@ namespace ChainsOfFate.Gerallt
             {
                 // HACK: Just pick a random enemy for now
                 var enemies = combatGameManager.turnsQueue.GetEnemies();
-                target = enemies[Random.Range(0, enemies.Count)];
+                target = enemies[Random.Range(0, enemies.Count -1)];
             }
 
             float weaponBaseDamage = 1.0f; // TODO: Get this from equipped weapon WeaponBase

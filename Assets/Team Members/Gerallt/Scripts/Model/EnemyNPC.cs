@@ -30,8 +30,8 @@ namespace ChainsOfFate.Gerallt
         {
             List<CharacterBase> champions = combatGameManager.turnsQueue.GetChampions();
             List<CharacterBase> agents = combatGameManager.turnsQueue.GetEnemies();
-            CharacterBase target = champions[Random.Range(0, champions.Count)];
-            CharacterBase agentTarget = agents[Random.Range(0, agents.Count)];
+            CharacterBase target = champions[Random.Range(0, champions.Count - 1)];
+            CharacterBase agentTarget = agents[Random.Range(0, agents.Count - 1)];
             float blockPercentage = Random.Range(0, 100); //TODO: Vary agent aptitude at blocking by skill stat
             
             EnemyState newState = (EnemyState)Random.Range(1, (int)EnemyState.Count);
