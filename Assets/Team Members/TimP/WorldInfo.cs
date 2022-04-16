@@ -17,6 +17,8 @@ public class WorldInfo : MonoBehaviour
     
     private bool leftSceneLoaded, rightSceneLoaded, upSceneLoaded, downSceneLoaded;
 
+    private Scene? thisScene;
+    
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>().transform;
@@ -34,7 +36,7 @@ public class WorldInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -80,7 +82,7 @@ public class WorldInfo : MonoBehaviour
             if (!string.IsNullOrEmpty(sceneName))
             {
                 newSceneDirection = sceneDirection;
-                SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+                SceneManager.sceneLoaded += SceneManager_OnSceneLoaded;
                 
                 ChainsOfFate.Gerallt.GameManager.Instance.ShowLevelLoadingIndicator(sceneName);
                 
@@ -133,9 +135,9 @@ public class WorldInfo : MonoBehaviour
         }
     }
 
-    private void SceneManagerOnsceneLoaded(Scene newScene, LoadSceneMode sceneMode)
+    private void SceneManager_OnSceneLoaded(Scene newScene, LoadSceneMode sceneMode)
     {
-        SceneManager.sceneLoaded -= SceneManagerOnsceneLoaded;
+        SceneManager.sceneLoaded -= SceneManager_OnSceneLoaded;
 
         // Get the offset from the current map to apply to the new map.
         Vector3 loadOffset = Vector3.zero;
@@ -170,6 +172,7 @@ public class WorldInfo : MonoBehaviour
                 worldInfo.sceneBounds.center = sceneBounds.center + loadOffset;
                 worldInfo.transform.position = sceneBounds.center + loadOffset;
                 worldInfo.centrePoint = worldInfo.transform.position;
+                worldInfo.thisScene = newScene;
                 break;
             }
 
@@ -180,7 +183,13 @@ public class WorldInfo : MonoBehaviour
         }
         
         // Unload old scene since the new scene has loaded.
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        if (!thisScene.HasValue)
+        {
+            thisScene = SceneManager.GetActiveScene();
+        }
+        SceneManager.UnloadSceneAsync(thisScene.Value);
+
+        SceneManager.SetActiveScene(newScene);
         
         // Hide the level loading indicator.
         ChainsOfFate.Gerallt.GameManager.Instance.HideLevelLoadingIndicator();
