@@ -290,7 +290,7 @@ namespace ChainsOfFate.Gerallt
                     oldPositions.Add(new QueueOldItem()
                     {
                         id = node.id,
-                        position = nodeInstance.GetComponent<RectTransform>().position
+                        position = nodeInstance.GetComponent<RectTransform>().localPosition
                     });
                 }
                 
@@ -311,7 +311,7 @@ namespace ChainsOfFate.Gerallt
 
                 if (itemLayout != ItemLayout.UseScrollView)
                 {
-                    Vector3 pos = rectTransform.position;
+                    Vector3 pos = rectTransform.localPosition;
 
                     if (itemLayout == ItemLayout.ManualHorizontal)
                     {
@@ -323,16 +323,16 @@ namespace ChainsOfFate.Gerallt
                         pos.y = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
                         pos.x = 0.0f;
                     }
-                    rectTransform.position = pos;
+                    rectTransform.localPosition = pos;
                 }
 
-                Vector3 newPosition = rectTransform.position;
+                Vector3 newPosition = rectTransform.localPosition;
                 QueueOldItem oldPosition = oldPositions.FirstOrDefault(v => v.id == character.id);
 
                 if (oldPosition != null)
                 {
                     // Reset transform to old position
-                    nodeInstance.GetComponent<RectTransform>().position = oldPosition.position; 
+                    rectTransform.localPosition = oldPosition.position; 
                     
                     StartCoroutine(AnimationHelpers.AnimateObject2D(nodeInstance, newPosition, animationType, animationSpeed, animateMinDistanceToEnd));    
                 }
