@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2917676964491738266, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2917676964491738266, guid: 6a5f17fa5cdfca743a69d3690bd8ead7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -323,7 +323,19 @@ PrefabInstance:
       objectReference: {fileID: 1647989120843116794}
     - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
       propertyPath: speed
-      value: 0.5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: circularTurnSpeed
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: patrolNearDistance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: movementBehaviourFixedType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1647989120950955505, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
       propertyPath: m_Name
@@ -416,5 +428,6 @@ MonoBehaviour:
   strength: 1
   movementSpeed: 1
   level: 1
+  timeUntilMovementResumes: 5
   appliedState: 0
   speedType: 40
