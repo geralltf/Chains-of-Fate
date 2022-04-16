@@ -221,6 +221,9 @@ namespace ChainsOfFate.Gerallt
                 // Run sanity checks on sorted items.
                 turnsQueue.SanityChecks(oldTop, oldEnd);
 
+                // Update the UI with the new queue order.
+                turnsQueue.UpdateView();
+                
                 // New character assigned by the turn queue.
                 CharacterBase currentCharacter = GetCurrentCharacter();
                 OnTurnCompleted?.Invoke(character, currentCharacter);
@@ -284,16 +287,20 @@ namespace ChainsOfFate.Gerallt
                 }
             }
 
+            Debug.Log("Combat Game Over!");
+            
             // The combat game is over. Return back to the last active scene.
             OnGameOverEvent?.Invoke();
 
             // Notify UI to show different views for different states.
             if (defeated == enemies.Count)
             {
+                Debug.Log("~Won defeated: " + defeated.ToString());
                 OnWonGameEvent?.Invoke();
             }
             else
             {
+                Debug.Log("~Lost but defeated: " + defeated.ToString());
                 OnLostGameEvent?.Invoke();
             }
 

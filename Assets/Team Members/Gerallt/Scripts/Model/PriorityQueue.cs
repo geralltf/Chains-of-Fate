@@ -32,6 +32,23 @@ namespace ChainsOfFate.Gerallt
         
         public AnimationType animationType = AnimationType.Linear;
 
+        private class QueueOldItem
+        {
+            public string id;
+            public Vector3 position;
+        }
+
+        [SerializeField] private float itemSpacing = 60.0f;
+        [SerializeField] private float itemOffset = 0.0f;
+        [SerializeField] private ItemLayout itemLayout = ItemLayout.ManualHorizontal;
+
+        public enum ItemLayout
+        {
+            UseScrollView,
+            ManualHorizontal,
+            ManualVertical
+        }
+        
         public int Count => queue.Count;
 
         public CharacterBase Top()
@@ -174,11 +191,13 @@ namespace ChainsOfFate.Gerallt
             //Sort all the characters by their speed priority.
             queue = queue.OrderByDescending(chr => chr.Speed).ToList();
 
-            UpdateView();
+            //UpdateView();
         }
 
         public void SanityChecks(CharacterBase oldTop, CharacterBase oldEnd)
         {
+            bool updateView = false;
+            
             // SANITY CHECK #1
             if (Top() == oldTop)
             {
@@ -193,6 +212,8 @@ namespace ChainsOfFate.Gerallt
                 {
                     InsertAfterTop(oldTop);
                 }
+
+                updateView = true;
             }
             
             if (Count > 2)
@@ -211,10 +232,15 @@ namespace ChainsOfFate.Gerallt
                     {
                         InsertBeforeEnd(oldEnd);
                     }
+
+                    updateView = true;
                 }
             }
-            
-            UpdateView();
+
+            if (updateView)
+            {
+                //UpdateView();
+            }
         }
 
         public List<CharacterBase> ToList()
@@ -242,21 +268,14 @@ namespace ChainsOfFate.Gerallt
             queue.Clear();
 
             // Update UI.
-            UpdateView();
+            //UpdateView();
         }
 
-        private class ViewObj
-        {
-            public string characterName;
-            public Vector3 position;
-            public GameObject gameObject;
-        }
-        
-        private void UpdateView()
+        public void UpdateView()
         {
             // Visualise current state of queue
 
-            List<ViewObj> oldPositions = new List<ViewObj>();
+            List<QueueOldItem> oldPositions = new List<QueueOldItem>();
 
             // Destroy all node UI instances in content parent view
             for (int idx = 0; idx < contentParent.transform.childCount; idx++ )
@@ -264,13 +283,13 @@ namespace ChainsOfFate.Gerallt
                 Transform child = contentParent.transform.GetChild(idx);
                 GameObject nodeInstance = child.gameObject;
 
-                string characterName = nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text;
+                PriorityQueueNode node = nodeInstance.GetComponent<PriorityQueueNode>();
 
-                if (queue.Any(c => c.CharacterName == characterName))
+                if (queue.Any(c => c.id == node.id))
                 {
-                    oldPositions.Add(new ViewObj()
+                    oldPositions.Add(new QueueOldItem()
                     {
-                        characterName = characterName,
+                        id = node.id,
                         position = nodeInstance.GetComponent<RectTransform>().position
                     });
                 }
@@ -285,15 +304,30 @@ namespace ChainsOfFate.Gerallt
                 GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
                 nodeInstance.GetComponentInChildren<Image>().color = character.representation;
                 nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
+                PriorityQueueNode node = nodeInstance.GetComponent<PriorityQueueNode>();
+                node.id = character.id;
+                
                 RectTransform rectTransform = nodeInstance.GetComponent<RectTransform>();
 
-                Vector3 pos = rectTransform.position;
-                pos.x = (i * 60.0f) + 0.0f; // Use this if you are not using the scroll rect to position elements.
-                pos.y = 0.0f;
-                rectTransform.position = pos;
+                if (itemLayout != ItemLayout.UseScrollView)
+                {
+                    Vector3 pos = rectTransform.position;
+
+                    if (itemLayout == ItemLayout.ManualHorizontal)
+                    {
+                        pos.x = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
+                        pos.y = 0.0f;
+                    }
+                    if (itemLayout == ItemLayout.ManualVertical)
+                    {
+                        pos.y = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
+                        pos.x = 0.0f;
+                    }
+                    rectTransform.position = pos;
+                }
 
                 Vector3 newPosition = rectTransform.position;
-                ViewObj oldPosition = oldPositions.FirstOrDefault(v => v.characterName == character.CharacterName);
+                QueueOldItem oldPosition = oldPositions.FirstOrDefault(v => v.id == character.id);
 
                 if (oldPosition != null)
                 {
