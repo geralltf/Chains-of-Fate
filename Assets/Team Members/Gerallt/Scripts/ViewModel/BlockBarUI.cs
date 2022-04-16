@@ -42,11 +42,12 @@ namespace ChainsOfFate.Gerallt
                     Vector3 screenCenter = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, _camera.nearClipPlane);
                     Vector3 offset = _camera.ScreenToWorldPoint(screenCenter);
                     offset.z = 0.1f;
+                    // FindObjectOfType<WorldInfo>().sceneBounds.center
                     gameObject.transform.position = offset;
-                    var angles = gameObject.transform.eulerAngles;
-                    angles.x = 90;
-                    gameObject.transform.eulerAngles = angles;
-                    gameObject.transform.localScale = new Vector3(0.03f, 0.03f, 1.0f);
+                    // var angles = gameObject.transform.eulerAngles;
+                    // angles.x = 90;
+                    // gameObject.transform.eulerAngles = angles;
+                    //gameObject.transform.localScale = new Vector3(0.03f, 0.03f, 1.0f);
                 }
 
                 
