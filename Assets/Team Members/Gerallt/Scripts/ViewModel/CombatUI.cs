@@ -11,7 +11,7 @@ namespace ChainsOfFate.Gerallt
         public GameObject view;
         public BlockBarUI blockBarUI;
 
-        public event Action onSceneDestroyed;
+        public event Action<CombatUI> onSceneDestroyed;
         public event Action onSceneLoaded;
         public bool isLoaded;
         
@@ -28,7 +28,7 @@ namespace ChainsOfFate.Gerallt
 
         private void OnDestroy()
         {
-            onSceneDestroyed?.Invoke();
+            onSceneDestroyed?.Invoke(this);
         }
 
         private void Start()

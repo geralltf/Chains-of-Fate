@@ -401,11 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
   representation: {r: 1, g: 0, b: 0, a: 1}
-  characterName: 
+  characterName: Cube Enemy
   hp: 100
   arcana: 100
   resolve: 1

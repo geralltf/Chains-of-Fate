@@ -9,6 +9,8 @@ namespace ChainsOfFate.Gerallt
 {
     public class EnemyNPC : CharacterBase, IFleeAction, IAttackAction, IResolveAction, IDefendAction
     {
+        public float timeUntilMovementResumes = 5.0f;
+        
         public EnemyState appliedState = EnemyState.NotSet;
         private bool canFlee = false;
         

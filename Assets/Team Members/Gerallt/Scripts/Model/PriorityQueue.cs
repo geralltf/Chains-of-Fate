@@ -29,7 +29,7 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private Transform contentParent;
         [SerializeField] private float animationSpeed = 1.0f;
         [SerializeField] private float animateMinDistanceToEnd = 0.1f;
-        
+
         public AnimationType animationType = AnimationType.Linear;
 
         private class QueueOldItem
@@ -49,7 +49,7 @@ namespace ChainsOfFate.Gerallt
             ManualVerticalUp,
             ManualVerticalDown
         }
-        
+
         public int Count => queue.Count;
 
         public CharacterBase Top()
@@ -97,7 +97,7 @@ namespace ChainsOfFate.Gerallt
             // Update UI.
             //UpdateView();
         }
-        
+
         public void RemoveTop()
         {
             RemoveAt(0);
@@ -107,9 +107,9 @@ namespace ChainsOfFate.Gerallt
         {
             //RemoveAt(Count - 1);
             int index = Count - 1;
-            
+
             queue.RemoveAt(index);
-            
+
             // Update UI.
             //UpdateView();
         }
@@ -117,7 +117,7 @@ namespace ChainsOfFate.Gerallt
         public void Add(CharacterBase newCharacter)
         {
             queue.Add(newCharacter);
-            
+
             // Update UI.
             //UpdateView();
         }
@@ -125,7 +125,7 @@ namespace ChainsOfFate.Gerallt
         public void InsertBeforeTop(CharacterBase newTop)
         {
             int positionId = queue.IndexOf(newTop);
-            
+
             queue.Insert(0, newTop);
 
             // Update UI.
@@ -135,9 +135,9 @@ namespace ChainsOfFate.Gerallt
         public void InsertAfterTop(CharacterBase second)
         {
             int positionId = queue.IndexOf(second);
-            
+
             queue.Insert(1, second);
-            
+
             // Update UI.
             //UpdateView();
         }
@@ -145,7 +145,7 @@ namespace ChainsOfFate.Gerallt
         public void InsertBeforeEnd(CharacterBase secondLast)
         {
             queue.Insert(Count - 2, secondLast);
-            
+
             // Update UI.
             //UpdateView();
         }
@@ -198,13 +198,13 @@ namespace ChainsOfFate.Gerallt
         public void SanityChecks(CharacterBase oldTop, CharacterBase oldEnd)
         {
             bool updateView = false;
-            
+
             // SANITY CHECK #1
             if (Top() == oldTop)
             {
                 // Can't have another turn when character just had a turn.
                 RemoveTop();
-            
+
                 if (Count == 1)
                 {
                     Add(oldTop);
@@ -216,7 +216,7 @@ namespace ChainsOfFate.Gerallt
 
                 updateView = true;
             }
-            
+
             if (Count > 2)
             {
                 // SANITY CHECK #2
@@ -224,7 +224,7 @@ namespace ChainsOfFate.Gerallt
                 {
                     // Can't not never let a character have a turn.
                     RemoveEnd();
-            
+
                     if (Count - 2 < 0)
                     {
                         InsertBeforeTop(oldEnd);
@@ -287,7 +287,7 @@ namespace ChainsOfFate.Gerallt
             List<QueueOldItem> oldPositions = new List<QueueOldItem>();
 
             // Destroy all node UI instances in content parent view
-            for (int idx = 0; idx < contentParent.transform.childCount; idx++ )
+            for (int idx = 0; idx < contentParent.transform.childCount; idx++)
             {
                 Transform child = contentParent.transform.GetChild(idx);
                 GameObject nodeInstance = child.gameObject;
@@ -298,103 +298,115 @@ namespace ChainsOfFate.Gerallt
                 {
                     RectTransform rectTransform = nodeInstance.GetComponent<RectTransform>();
                     Vector3 pos;
-                    
-                    if (animationType == AnimationType.Circular)
+
+                    if (rectTransform != null)
                     {
-                        pos = rectTransform.position;
+                        if (animationType == AnimationType.Circular)
+                        {
+                            pos = rectTransform.position;
+                        }
+                        else
+                        {
+                            pos = rectTransform.localPosition;
+                        }
+
+                        oldPositions.Add(new QueueOldItem()
+                        {
+                            id = node.id,
+                            position = pos
+                        });
                     }
-                    else
-                    {
-                        pos = rectTransform.localPosition;
-                    }
-                    
-                    oldPositions.Add(new QueueOldItem()
-                    {
-                        id = node.id,
-                        position = pos
-                    });
                 }
-                
+
                 Destroy(nodeInstance);
             }
-            
+
             for (int i = 0; i < queue.Count; i++)
             {
                 CharacterBase character = queue[i];
-                
+
                 GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
                 nodeInstance.GetComponentInChildren<Image>().color = character.representation;
                 nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
                 PriorityQueueNode node = nodeInstance.GetComponent<PriorityQueueNode>();
                 node.id = character.id;
-                
+
                 RectTransform rectTransform = nodeInstance.GetComponent<RectTransform>();
 
-                if (itemLayout != ItemLayout.UseScrollView)
+                if (rectTransform != null)
                 {
-                    Vector3 pos;
+                    if (itemLayout != ItemLayout.UseScrollView)
+                    {
+                        Vector3 pos;
+                        if (animationType == AnimationType.Circular)
+                        {
+                            pos = rectTransform.position;
+                        }
+                        else
+                        {
+                            pos = rectTransform.localPosition;
+                        }
+
+                        if (itemLayout == ItemLayout.ManualHorizontal)
+                        {
+                            pos.x = (i * itemSpacing) +
+                                    itemOffset; // Use this if you are not using the scroll rect to position elements.
+                            pos.y = 0.0f;
+                        }
+
+                        if (itemLayout == ItemLayout.ManualVerticalUp)
+                        {
+                            pos.y = (i * itemSpacing) +
+                                    itemOffset; // Use this if you are not using the scroll rect to position elements.
+                            pos.x = 0.0f;
+                        }
+
+                        if (itemLayout == ItemLayout.ManualVerticalDown)
+                        {
+                            pos.y = -(i * itemSpacing) +
+                                    itemOffset; // Use this if you are not using the scroll rect to position elements.
+                            pos.x = 0.0f;
+                        }
+
+                        if (animationType == AnimationType.Circular)
+                        {
+                            rectTransform.position = pos;
+                        }
+                        else
+                        {
+                            rectTransform.localPosition = pos;
+                        }
+                    }
+
+                    Vector3 newPosition;
                     if (animationType == AnimationType.Circular)
                     {
-                        pos = rectTransform.position;
+                        newPosition = rectTransform.position;
                     }
                     else
                     {
-                        pos = rectTransform.localPosition;
-                    }
-                    
-                    if (itemLayout == ItemLayout.ManualHorizontal)
-                    {
-                        pos.x = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
-                        pos.y = 0.0f;
-                    }
-                    if (itemLayout == ItemLayout.ManualVerticalUp)
-                    {
-                        pos.y = (i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
-                        pos.x = 0.0f;
-                    }
-                    if (itemLayout == ItemLayout.ManualVerticalDown)
-                    {
-                        pos.y = -(i * itemSpacing) + itemOffset; // Use this if you are not using the scroll rect to position elements.
-                        pos.x = 0.0f;
+                        newPosition = rectTransform.localPosition;
                     }
 
-                    if (animationType == AnimationType.Circular)
-                    {
-                        rectTransform.position = pos;
-                    }
-                    else
-                    {
-                        rectTransform.localPosition = pos;
-                    }
-                }
+                    QueueOldItem oldPosition = oldPositions.FirstOrDefault(v => v.id == character.id);
 
-                Vector3 newPosition;
-                if (animationType == AnimationType.Circular)
-                {
-                    newPosition = rectTransform.position;
-                }
-                else
-                {
-                    newPosition = rectTransform.localPosition;
-                }
-                
-                QueueOldItem oldPosition = oldPositions.FirstOrDefault(v => v.id == character.id);
+                    if (oldPosition != null)
+                    {
+                        // Reset transform to old position
 
-                if (oldPosition != null)
-                {
-                    // Reset transform to old position
-                    
-                    if (animationType == AnimationType.Circular)
-                    {
-                        rectTransform.position = oldPosition.position;
-                        StartCoroutine(AnimationHelpers.AnimateObject2D(nodeInstance, newPosition, animationType, animationSpeed, animateMinDistanceToEnd));   
+                        if (animationType == AnimationType.Circular)
+                        {
+                            rectTransform.position = oldPosition.position;
+                            StartCoroutine(AnimationHelpers.AnimateObject2D(nodeInstance, newPosition, animationType,
+                                animationSpeed, animateMinDistanceToEnd));
+                        }
+                        else
+                        {
+                            rectTransform.localPosition = oldPosition.position;
+                            StartCoroutine(AnimationHelpers.AnimateObject2D(nodeInstance, newPosition, animationType,
+                                animationSpeed, animateMinDistanceToEnd));
+                        }
                     }
-                    else
-                    {
-                        rectTransform.localPosition = oldPosition.position;
-                        StartCoroutine(AnimationHelpers.AnimateObject2D(nodeInstance, newPosition, animationType, animationSpeed, animateMinDistanceToEnd));   
-                    }
-                     
                 }
             }
         }

@@ -57,7 +57,10 @@ namespace ChainsOfFate.Gerallt
                 canFlee = fleeAction.Flee();
                 
                 // If can't flee, the next challenger/enemy in the queue takes a turn via skipToNextChallenger.
-                combatGameManager.FinishedTurn(currentCharacter, !canFlee); 
+                if (!canFlee)
+                {
+                    combatGameManager.FinishedTurn(currentCharacter, !canFlee); 
+                }
                 combatGameManager.RaiseFleeEvent(currentCharacter);
             }
             else

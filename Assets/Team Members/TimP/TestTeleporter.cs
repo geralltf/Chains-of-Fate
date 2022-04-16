@@ -38,7 +38,9 @@ public class TestTeleporter : MonoBehaviour
         
         if (playerController != null)
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            GetComponent<EnemyMove>().enabled = false;
+            
             SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
             SceneManager.LoadScene(scene, LoadSceneMode.Additive);
         }
@@ -60,8 +62,11 @@ public class TestTeleporter : MonoBehaviour
             CombatUI combatUI = rootObj.GetComponent<CombatUI>();
             if (combatUI != null)
             {
-                combatUI.SetCurrentParty(enemies, partyMembers, PlayerController.gameObject);
                 PlayerController.controls.Player.Disable();
+                
+                combatUI.isTestMode = false;
+                combatUI.onSceneDestroyed += CombatUI_OnSceneDestroyed;
+                combatUI.SetCurrentParty(enemies, partyMembers, PlayerController.gameObject);
                 break;
             }
         }
@@ -69,6 +74,26 @@ public class TestTeleporter : MonoBehaviour
         SceneManager.sceneLoaded-= SceneManagerOnsceneLoaded;
     }
 
+    private void CombatUI_OnSceneDestroyed(CombatUI combatUI)
+    {
+        combatUI.onSceneDestroyed -= CombatUI_OnSceneDestroyed;
+        
+        PlayerController.controls.Player.Enable();
+
+        StartCoroutine(ResumeMovement());
+    }
+
+    IEnumerator ResumeMovement()
+    {
+        yield return new WaitForSeconds(GetComponent<EnemyNPC>().timeUntilMovementResumes);
+
+        EnemyMove enemyMove = GetComponent<EnemyMove>();
+        if (enemyMove != null)
+        {
+            enemyMove.enabled = true;
+        }
+    }
+    
     private void OnTriggerExit(Collider other)
     {
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());

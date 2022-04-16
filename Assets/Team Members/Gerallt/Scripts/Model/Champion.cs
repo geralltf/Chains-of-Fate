@@ -40,6 +40,7 @@ namespace ChainsOfFate.Gerallt
         {
             Debug.Log("Test flee action");
 
+            //return true;
             return Random.value > 0.5f;
         }
 
