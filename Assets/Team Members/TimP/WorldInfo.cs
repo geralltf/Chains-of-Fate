@@ -117,10 +117,15 @@ public class WorldInfo : MonoBehaviour
                 SceneManager.sceneLoaded += SceneManager_OnSceneLoaded;
                 
                 gameManager.ShowLevelLoadingIndicator(sceneName);
-                
-                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+                StartCoroutine(LoadSceneAsync(sceneName));
             }
         }
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 
     public bool CheckOutsideBounds(SceneDirection sceneDirection)
