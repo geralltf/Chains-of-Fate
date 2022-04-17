@@ -39,12 +39,21 @@ namespace ChainsOfFate.Gerallt
                 if (!isTestMode)
                 {
                     CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
+                    Camera _camera = cameraFollow.GetComponent<Camera>();
                     Vector3 offset = cameraFollow.GetCenterWorldPosition();
                     //offset.z = 0.1f;
                     // FindObjectOfType<WorldInfo>().sceneBounds.center
                     gameObject.transform.position = offset;
                     gameObject.transform.rotation = cameraFollow.transform.rotation;
-                    gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+                    if (_camera.orthographic)
+                    {
+                        gameObject.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+                    }
                 }
 
                 
