@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace ChainsOfFate.Gerallt
         public float unloadRange = 15.0f;
         public float boundaryRange = 3.0f;
         public float loadingAnimationSpeed = 1.0f;
+        public Color fadeInColourStart;
+        public Color fadeInColourEnd;
         internal bool levelLoadingLock = false;
         
         public CombatUI combatUI;
@@ -25,6 +28,7 @@ namespace ChainsOfFate.Gerallt
 
         private bool shownIndicator = false;
         private bool animatingIndicator = false;
+        [CanBeNull] private Material materialLoadingBackground;
         
         public void ShowCombatUI()
         {
@@ -55,34 +59,55 @@ namespace ChainsOfFate.Gerallt
                 StartCoroutine(HideIndicator());
             }
         }
+
+        Vector4 ToVec4(Color c)
+        {
+            return new Vector4(c.r, c.g, c.b, c.a);
+        }
         
         IEnumerator ShowIndicator()
         {
             animatingIndicator = true;
-            float alpha = 0;
-            float maxAlpha = 1.0f;
             Image image = levelLoadingIndicatorUI.GetComponentInChildren<Image>();
-            Color before = image.color;
-            float time = 0;
+            Material _material = image.material;
+            
+            
+            if (materialLoadingBackground == null)
+            {
+                Material materialInstance = Resources.Load<Material>("Material/MTL_LoadingIndicator");
+                materialLoadingBackground =  Instantiate(materialInstance);
+            }
+
+            _material = materialLoadingBackground;
+            image.material = materialLoadingBackground;
+            
+            Color col;// = new Color(fadeInColourStart.r, fadeInColourStart.g, fadeInColourStart.b, fadeInColourStart.a);
+
+            //Color before = _material.GetColor("_Color");
+            
+            float timeElapsed = 0;
             while (animatingIndicator)
             {
-                alpha = Mathf.Lerp(alpha, maxAlpha, loadingAnimationSpeed * Time.deltaTime);
-                image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
-                image.material.color = image.color;
-                
-                //if (time >= loadingAnimationSpeed)
-                if(alpha >= maxAlpha -0.1f)
+                if (timeElapsed < loadingAnimationSpeed)
+                {
+                    col = Color.Lerp(fadeInColourStart, fadeInColourEnd, timeElapsed / loadingAnimationSpeed);
+
+                    _material.SetColor("_Color", col);
+                    image.material = _material;
+                    
+                    timeElapsed += Time.deltaTime;
+                }
+                else
                 {
                     animatingIndicator = false;
                 }
 
-                time += Time.deltaTime;
+
                 yield return new WaitForEndOfFrame();
             }
-
-            image.color = before;
-            image.material.color = image.color;
-            //
+            
+            _material.SetColor("_Color", fadeInColourEnd);
+            //image.material.color = before2;
         }
         
         IEnumerator HideIndicator()
