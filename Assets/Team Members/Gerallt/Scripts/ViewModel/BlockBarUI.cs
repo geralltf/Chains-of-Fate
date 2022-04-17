@@ -22,6 +22,8 @@ namespace ChainsOfFate.Gerallt
         public bool animating = false;
         public CharacterBase defendingCharacter;
         public bool isTestMode = false;
+        public Vector3 orthographicScale = new Vector3(2.0f, 2.0f, 2.0f);
+        public Vector3 projectionScale = new Vector3(0.02f, 0.02f, 0.02f);
         
         public delegate void WonDelegate(float blockPercentage, bool doCounterAttack);
         
@@ -48,11 +50,11 @@ namespace ChainsOfFate.Gerallt
 
                     if (_camera.orthographic)
                     {
-                        gameObject.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
+                        gameObject.transform.localScale = orthographicScale;
                     }
                     else
                     {
-                        gameObject.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+                        gameObject.transform.localScale = projectionScale;
                     }
                 }
 
