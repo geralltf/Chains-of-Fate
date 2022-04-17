@@ -10,6 +10,7 @@ namespace ChainsOfFate.Gerallt
         public CombatGameManager combatGameManager;
         public GameObject view;
         public BlockBarUI blockBarUI;
+        public SpriteRenderer SceneBackgroundSpriteRenderer;
 
         public event Action<CombatUI> onSceneDestroyed;
 
@@ -54,6 +55,18 @@ namespace ChainsOfFate.Gerallt
         public void SetCurrentParty(List<GameObject> enemies, List<GameObject> partyMembers, GameObject currentPlayer)
         {
             Debug.Log("Got list of current enemies, party members, and current player");
+
+            if (!isTestMode)
+            {
+                CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
+                //Camera _camera = cameraFollow.GetComponent<Camera>();
+                Vector3 offset = cameraFollow.GetCenterWorldPosition();
+
+                GameObject sceneBg = SceneBackgroundSpriteRenderer.gameObject;
+            
+                sceneBg.transform.position = offset;
+                sceneBg.transform.rotation = cameraFollow.transform.rotation;
+            }
 
             combatGameManager.SetUpQueue(enemies, partyMembers, currentPlayer);
         }
