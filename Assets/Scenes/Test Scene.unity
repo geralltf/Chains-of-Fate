@@ -261,8 +261,32 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: randomPatrolRoutes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: currMovementBehaviour
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: patrolPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
       propertyPath: movementBehaviourFixedType
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: patrolPoints.Array.data[0].x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: patrolPoints.Array.data[2].x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647989120950955497, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
+      propertyPath: patrolPoints.Array.data[2].z
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1647989120950955505, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
       propertyPath: m_Name
