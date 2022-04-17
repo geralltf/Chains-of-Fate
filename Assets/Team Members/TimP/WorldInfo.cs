@@ -118,7 +118,7 @@ public class WorldInfo : MonoBehaviour
                 
                 gameManager.ShowLevelLoadingIndicator(sceneName);
                 
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             }
         }
     }
