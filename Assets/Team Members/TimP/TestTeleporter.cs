@@ -79,7 +79,9 @@ public class TestTeleporter : MonoBehaviour
         
         // Enable movement of enemy and player.
         playerController.controls.Player.Enable();
-        
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = false;
         playerController.GetComponent<Rigidbody>().isKinematic = false;
         
@@ -130,6 +132,8 @@ public class TestTeleporter : MonoBehaviour
         // Enable movement of enemy and player.
         playerController.controls.Player.Enable();
         
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = false;
         playerController.GetComponent<Rigidbody>().isKinematic = false;
         
