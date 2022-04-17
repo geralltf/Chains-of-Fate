@@ -6,23 +6,37 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private Vector3 offset;
+    private Camera _camera;
+    
     public GameObject player;
-
-    private void Start()
+    public Vector3 orthoOffset;
+    
+    public Vector3 GetCenterWorldPosition()
     {
-        //offset = transform.position - player.transform.position; // Wasn't very adaptive to different screen sizes, nor easy for others to use.
+        Vector3 screenCenter = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, _camera.nearClipPlane);
+
+        Vector3 worldCenter = _camera.ScreenToWorldPoint(screenCenter);
+
+        return worldCenter;
+    }
+    
+    private void Awake()
+    {
+        //offset = transform.position - player.transform.position;
 
         // NEW offset based on positioning player on screen center.
-        Camera camera = GetComponent<Camera>();
+        _camera = GetComponent<Camera>();
         
-        Vector3 screenCenter = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, camera.nearClipPlane);
-        
-        offset = camera.ScreenToWorldPoint(screenCenter);
-        
+        offset = GetCenterWorldPosition();
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         transform.position = player.transform.position + offset;
+        
+        if (_camera.orthographic)
+        {
+            transform.position += orthoOffset;
+        }
     }
 }
