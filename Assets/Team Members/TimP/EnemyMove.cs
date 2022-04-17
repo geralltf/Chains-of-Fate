@@ -9,12 +9,14 @@ public class EnemyMove : MonoBehaviour
 {
     public GameObject enemy;
     
+    public float detectionRadius = 10.0f;
     public float speed = 4.0f;
     public float circularTurnSpeed = 0.9f;
     public float circularMoveDirection = 1.0f;
     public float patrollingSpeed = 1.0f;
     public float patrolNearDistance = 0.8f;
     public float patrolChangeTime = 10.0f;
+    public bool randomPatrolRoutes = true;
     public bool randomTurning = true;
     public MovementType movementBehaviourFixedType = MovementType.Different;
     public MovementType currMovementBehaviour = MovementType.Circular;
@@ -32,6 +34,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private int numPatrolPoints = 3;
     
     private PlayerSensor playerSensor;
+    private WorldInfo worldInfo;
 
     public enum MovementType
     {
@@ -45,11 +48,16 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         playerSensor = GetComponentInChildren<PlayerSensor>();
+        worldInfo = FindObjectOfType<WorldInfo>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (ChainsOfFate.Gerallt.GameManager.Instance.levelLoadingLock) return;
+        
+        playerSensor.detectionRadius = detectionRadius;
+        
         if (playerSensor.DetectedPlayer != null)
         {
             MoveTowardsPlayer();
@@ -73,6 +81,22 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (worldInfo == null)
+        {
+            worldInfo = FindObjectOfType<WorldInfo>();
+        }
+
+        int i = 0;
+        Vector3 sceneCenter = worldInfo.sceneBounds.center;
+        foreach (Vector3 patrol in patrolPoints)
+        {
+            Gizmos.DrawLine(sceneCenter + patrol, sceneCenter + patrolPoints[ (i + 1) % patrolPoints.Count]);
+            i++;
+        }
+    }
+
     public void MoveTowardsPlayer()
     {
         Vector3 pos = transform.position;
@@ -91,13 +115,13 @@ public class EnemyMove : MonoBehaviour
 
     public void PatrolMove()
     {
-        if (!waitNewRoute)
+        if (!waitNewRoute && (randomPatrolRoutes || patrolPoints.Count == 0))
         {
             StartCoroutine(ChangePatrolRoute());
         }
-        
+
         Vector3 pos = transform.position;
-        Vector3 patrolPoint = patrolPoints[currentPatrolPointIndex];
+        Vector3 patrolPoint = worldInfo.sceneBounds.center + patrolPoints[currentPatrolPointIndex];
 
         float dist = Vector3.Distance(pos, patrolPoint);
         if (dist <= patrolNearDistance)
