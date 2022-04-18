@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Sword
   weaponDescription: A test sword
-  baseDamage: 1
+  baseDamage: 50
   statusPercentage: 0
 --- !u!1 &2638097525819458731
 GameObject:
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Dagger
   weaponDescription: A test dagger
-  baseDamage: 1
+  baseDamage: 60
   statusPercentage: 0
 --- !u!1 &8350055717933156378
 GameObject:
