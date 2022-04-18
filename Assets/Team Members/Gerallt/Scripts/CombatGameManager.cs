@@ -30,6 +30,7 @@ namespace ChainsOfFate.Gerallt
         public int seed;
         public int round;
         public int maxRoundsPerGame = 5;
+        public bool hasWon = false;
         
         private bool proceedToNextTurn = true;
         private bool proceedToNextRound = true;
@@ -287,26 +288,46 @@ namespace ChainsOfFate.Gerallt
             proceedToNextRound = false;
             proceedToNextTurn = true;
             
-            if (turnsQueue.hadTurns.Count == turnsQueue.Count)
+            List<CharacterBase> enemies = turnsQueue.GetEnemies();
+            int defeated = 0;
+            foreach (CharacterBase enemy in enemies)
             {
-                turnsQueue.hadTurns.Clear();
-
-                if (round + 1 > maxRoundsPerGame)
+                if (enemy.HP == 0)
                 {
-                    proceedToNextTurn = false;
-                    proceedToNextRound = false;
-                    
-                    GameOver();
-                }
-                else
-                {
-                    proceedToNextRound = true;
-                    
-                    round++;
-                    OnRoundAdvance?.Invoke(round);
+                    defeated++;
                 }
             }
-            
+
+            if (defeated == enemies.Count)
+            {
+                proceedToNextTurn = false;
+                proceedToNextRound = false;
+                    
+                GameOver();
+            }
+            else
+            {
+                if (turnsQueue.hadTurns.Count == turnsQueue.Count)
+                {
+                    turnsQueue.hadTurns.Clear();
+
+                    if (round + 1 > maxRoundsPerGame)
+                    {
+                        proceedToNextTurn = false;
+                        proceedToNextRound = false;
+                    
+                        GameOver();
+                    }
+                    else
+                    {
+                        proceedToNextRound = true;
+                    
+                        round++;
+                        OnRoundAdvance?.Invoke(round);
+                    }
+                }
+            }
+
             return proceedToNextTurn; // Proceed with next turn and round.
         }
 
@@ -330,6 +351,7 @@ namespace ChainsOfFate.Gerallt
             // Notify UI to show different views for different states.
             if (defeated == enemies.Count)
             {
+                hasWon = true;
                 Debug.Log("~Won defeated: " + defeated.ToString());
                 OnWonGameEvent?.Invoke();
             }
@@ -345,7 +367,7 @@ namespace ChainsOfFate.Gerallt
         public void UnloadScene()
         {
             CombatUI combatUI = transform.parent.GetComponent<CombatUI>();
-            combatUI.RaiseCloseCombatUI();
+            combatUI.RaiseCloseCombatUI(hasWon);
             
             //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()); // OLD Approach was when we were having combat in a separate scene, and having to unload that.
         }

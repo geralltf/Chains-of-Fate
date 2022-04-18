@@ -71,7 +71,7 @@ public class TestTeleporter : MonoBehaviour
         }
     }
 
-    private void CombatUI_OnCloseCombatUI(CombatUI combatUI)
+    private void CombatUI_OnCloseCombatUI(CombatUI combatUI, bool hasWon)
     {
         combatUI.onCloseCombatUI -= CombatUI_OnCloseCombatUI;
         
@@ -80,11 +80,22 @@ public class TestTeleporter : MonoBehaviour
         // Enable movement of enemy and player.
         playerController.controls.Player.Enable();
 
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        GetComponent<Rigidbody>().isKinematic = false;
-        playerController.GetComponent<Rigidbody>().isKinematic = false;
-        
+        Rigidbody enemyRigidbody = GetComponent<Rigidbody>();
+        enemyRigidbody.velocity = Vector3.zero;
+        enemyRigidbody.angularVelocity = Vector3.zero;
+        enemyRigidbody.isKinematic = false;
+
+        Rigidbody playerRigidbody = playerController.GetComponent<Rigidbody>();
+        playerRigidbody.velocity = Vector3.zero;
+        playerRigidbody.angularVelocity = Vector3.zero;
+        playerRigidbody.isKinematic = false;
+
+        if (hasWon)
+        {
+            // Have won the combat with this enemy. So despawn the enemy.
+            Destroy(gameObject);
+        }
+
         StartCoroutine(ResumeFunctionAndMovement());
     }
 

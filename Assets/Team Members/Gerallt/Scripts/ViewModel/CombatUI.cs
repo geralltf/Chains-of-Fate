@@ -14,7 +14,7 @@ namespace ChainsOfFate.Gerallt
 
         public event Action<CombatUI> onSceneDestroyed;
 
-        public event Action<CombatUI> onCloseCombatUI;
+        public event Action<CombatUI, bool> onCloseCombatUI;
         
         public event Action onSceneLoaded;
         public bool isLoaded;
@@ -25,9 +25,9 @@ namespace ChainsOfFate.Gerallt
         public List<GameObject> testPartyMembers;
         public GameObject testPlayer;
 
-        public void RaiseCloseCombatUI()
+        public void RaiseCloseCombatUI(bool hasWon)
         {
-            onCloseCombatUI?.Invoke(this);
+            onCloseCombatUI?.Invoke(this, hasWon);
         }
         
         private void Awake()
@@ -40,7 +40,7 @@ namespace ChainsOfFate.Gerallt
         {
             if (canFlee && unloadCombatUI)
             {
-                RaiseCloseCombatUI();
+                RaiseCloseCombatUI(hasWon: false);
             }
         }
 
