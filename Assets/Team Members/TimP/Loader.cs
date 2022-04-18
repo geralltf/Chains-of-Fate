@@ -19,7 +19,7 @@ public class Loader : MonoBehaviour
         DontDestroyOnLoad(FindObjectOfType<PlayerController>().gameObject);
         DontDestroyOnLoad(FindObjectOfType<CameraFollow>().gameObject);
 
-        ChainsOfFate.Gerallt.GameManager gameManager = FindObjectOfType<ChainsOfFate.Gerallt.GameManager>();
+        ChainsOfFate.Gerallt.GameManager gameManager = ChainsOfFate.Gerallt.GameManager.Instance;
 
         if (gameManager == null)
         {
