@@ -123,7 +123,7 @@ public class WorldInfo : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName)
+    public static IEnumerator LoadSceneAsync(string sceneName)
     {
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
