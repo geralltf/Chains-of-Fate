@@ -357,6 +357,7 @@ namespace ChainsOfFate.Gerallt
             }
             else
             {
+                hasWon = false;
                 Debug.Log("~Lost but defeated: " + defeated.ToString());
                 OnLostGameEvent?.Invoke();
             }
