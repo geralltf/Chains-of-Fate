@@ -294,7 +294,7 @@ namespace ChainsOfFate.Gerallt
 
                 PriorityQueueNode node = nodeInstance.GetComponent<PriorityQueueNode>();
 
-                if (queue.Any(c => c.id == node.id))
+                if (queue.Any(c => c.ID == node.id))
                 {
                     RectTransform rectTransform = nodeInstance.GetComponent<RectTransform>();
                     Vector3 pos;
@@ -329,7 +329,7 @@ namespace ChainsOfFate.Gerallt
                 nodeInstance.GetComponentInChildren<Image>().color = character.representation;
                 nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
                 PriorityQueueNode node = nodeInstance.GetComponent<PriorityQueueNode>();
-                node.id = character.id;
+                node.id = character.ID;
 
                 RectTransform rectTransform = nodeInstance.GetComponent<RectTransform>();
 
@@ -388,7 +388,7 @@ namespace ChainsOfFate.Gerallt
                         newPosition = rectTransform.localPosition;
                     }
 
-                    QueueOldItem oldPosition = oldPositions.FirstOrDefault(v => v.id == character.id);
+                    QueueOldItem oldPosition = oldPositions.FirstOrDefault(v => v.id == character.ID);
 
                     if (oldPosition != null)
                     {

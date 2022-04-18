@@ -16,7 +16,8 @@ namespace ChainsOfFate.Gerallt
 
     public interface IAttackAction
     {
-        void Attack(CharacterBase target, CombatGameManager combatGameManager); // TODO: Supply equipped weapon WeaponBase
+        void Attack(CharacterBase target, WeaponBase weapon);
+        void Attack(CharacterBase target, SpellBase spell);
     }
 
     public interface IResolveAction
@@ -27,6 +28,18 @@ namespace ChainsOfFate.Gerallt
 
     public interface IDefendAction
     {
-        void Defend(float blockPercentage);
+        void Defend(float blockPercentage, float totalDamage);
+    }
+
+    public interface IInventoryAction
+    {
+        void UseItem(ItemBase item);
+    }
+
+    public interface IDescriptive // Weapons, Spells, Items all implement this to be able to display in UI.
+    {
+        string GetId();
+        string GetName();
+        string GetDescription();
     }
 }

@@ -10,6 +10,8 @@ namespace ChainsOfFate.Gerallt
 {
     public class CombatGameManager : MonoBehaviour
     {
+        public static CombatGameManager Instance;
+        
         /// <summary>
         /// The delay the agent waits before completing their turn.
         /// </summary>
@@ -349,7 +351,7 @@ namespace ChainsOfFate.Gerallt
         {
             Debug.Log("Agent having a turn");
 
-            agent.DecideMove(this);
+            agent.DecideMove();
         }
 
         public CharacterBase GetCurrentCharacter()
@@ -413,6 +415,11 @@ namespace ChainsOfFate.Gerallt
                 list[newIndex] = list[count];
                 list[count] = tmp;
             }
+        }
+
+        private void Awake()
+        {
+            Instance = this;
         }
     }
 }

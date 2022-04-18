@@ -342,46 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
---- !u!1 &966297173 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1647989120950955505, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
-  m_PrefabInstance: {fileID: 966297172}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &966297174 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5572169596036456130, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
   m_PrefabInstance: {fileID: 966297172}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &966297175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966297173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  maxHealth: 100
-  maxArcana: 100
-  maxResolve: 100
-  representation: {r: 1, g: 0, b: 0, a: 1}
-  characterName: Cube Enemy
-  hp: 100
-  arcana: 100
-  resolve: 1
-  defense: 1
-  wisdom: 1
-  speed: 1
-  strength: 1
-  movementSpeed: 1
-  level: 1
-  timeUntilMovementResumes: 5
-  appliedState: 0
-  speedType: 40
 --- !u!1001 &1447863584
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3451da48a498441438ae6909ad2df935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRadius: 0
   DetectedPlayer: {fileID: 0}
 --- !u!1 &1647989120950955505
 GameObject:
@@ -74,6 +75,7 @@ GameObject:
   - component: {fileID: 1647989120950955511}
   - component: {fileID: 1647989120950955504}
   - component: {fileID: 1647989120950955497}
+  - component: {fileID: 7524266680086233982}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -95,6 +97,7 @@ Transform:
   m_Children:
   - {fileID: 1647989120439078200}
   - {fileID: 439296992922599319}
+  - {fileID: 3186185507722586813}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -204,12 +207,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+  detectionRadius: 10
   speed: 4
   circularTurnSpeed: 0.8
   circularMoveDirection: 1
   patrollingSpeed: 1
   patrolNearDistance: 0.8
   patrolChangeTime: 10
+  randomPatrolRoutes: 1
   randomTurning: 0
   movementBehaviourFixedType: 0
   currMovementBehaviour: 0
@@ -219,6 +224,71 @@ MonoBehaviour:
   patrolPointMinDistance: 1
   patrolPointRadius: 10
   numPatrolPoints: 3
+--- !u!114 &7524266680086233982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647989120950955505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxArcana: 100
+  maxResolve: 100
+  representation: {r: 1, g: 0, b: 0, a: 1}
+  availableWeapons:
+  - {fileID: 1723480980082275564}
+  availableSpells: []
+  availableItems: []
+  characterName: Cube Enemy
+  hp: 100
+  arcana: 100
+  resolve: 1
+  defense: 1
+  wisdom: 1
+  speed: 1
+  strength: 1
+  movementSpeed: 1
+  level: 1
+  timeUntilMovementResumes: 5
+  appliedState: 0
+  speedType: 40
+--- !u!1 &1876841543651236418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3186185507722586813}
+  m_Layer: 0
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3186185507722586813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876841543651236418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7050018662928642131}
+  m_Father: {fileID: 1647989120950955508}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5572169596036456130
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,3 +320,51 @@ Transform:
   m_Father: {fileID: 1647989120950955508}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6871728172338425131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7050018662928642131}
+  - component: {fileID: 1723480980082275564}
+  m_Layer: 0
+  m_Name: Test dagger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7050018662928642131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871728172338425131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3186185507722586813}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723480980082275564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871728172338425131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf27fffa04364b7690f1db0703cd9a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Test dagger
+  weaponDescription: Enemies test dagger
+  baseDamage: 1
+  statusPercentage: 0

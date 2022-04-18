@@ -22,6 +22,8 @@ namespace ChainsOfFate.Gerallt
         {
             view.SetActive(false);
             AttackButtonSet.gameObject.SetActive(true);
+            
+            AttackButtonSet.PopulateAttacks();
         }
 
         public void InventoryButton_OnClick()

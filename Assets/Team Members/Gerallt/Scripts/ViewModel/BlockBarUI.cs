@@ -24,6 +24,7 @@ namespace ChainsOfFate.Gerallt
         public bool isTestMode = false;
         public Vector3 orthographicScale = new Vector3(2.0f, 2.0f, 2.0f);
         public Vector3 projectionScale = new Vector3(0.02f, 0.02f, 0.02f);
+        public float totalDamageRecieved;
         
         public delegate void WonDelegate(float blockPercentage, bool doCounterAttack);
         

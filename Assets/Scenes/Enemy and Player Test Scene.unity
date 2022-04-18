@@ -189,34 +189,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8350055717933156378, guid: a3a6aa6e69228d942a803452e05420f4, type: 3}
   m_PrefabInstance: {fileID: 54614538}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &54614540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54614539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  maxHealth: 100
-  maxArcana: 100
-  maxResolve: 100
-  representation: {r: 0, g: 0.18290114, b: 1, a: 1}
-  characterName: Capsule Test Player (You)
-  hp: 100
-  arcana: 100
-  resolve: 1
-  defense: 1
-  wisdom: 1
-  speed: 1
-  strength: 1
-  movementSpeed: 1
-  level: 1
-  isMainCharacter: 1
 --- !u!1 &615944208
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 54614539}
+  orthoOffset: {x: 0, y: 0, z: 0}
 --- !u!20 &615944211
 Camera:
   m_ObjectHideFlags: 0
@@ -524,46 +497,11 @@ PrefabInstance:
       objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
---- !u!1 &913818441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1647989120950955505, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
-  m_PrefabInstance: {fileID: 913818440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &913818442 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5572169596036456130, guid: c07f5805a1b9a0c4184b7092a87f3df7, type: 3}
   m_PrefabInstance: {fileID: 913818440}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &913818443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913818441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  maxHealth: 100
-  maxArcana: 100
-  maxResolve: 100
-  representation: {r: 1, g: 0, b: 0, a: 1}
-  characterName: Test Enemy
-  hp: 100
-  arcana: 100
-  resolve: 1
-  defense: 1
-  wisdom: 1
-  speed: 1
-  strength: 1
-  movementSpeed: 1
-  level: 1
-  timeUntilMovementResumes: 5
-  appliedState: 0
-  speedType: 40
 --- !u!1 &921857784
 GameObject:
   m_ObjectHideFlags: 0
