@@ -344,7 +344,10 @@ namespace ChainsOfFate.Gerallt
 
         public void UnloadScene()
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            CombatUI combatUI = transform.parent.GetComponent<CombatUI>();
+            combatUI.RaiseCloseCombatUI();
+            
+            //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()); // OLD Approach was when we were having combat in a separate scene, and having to unload that.
         }
 
         private void AgentHaveTurn(EnemyNPC agent)

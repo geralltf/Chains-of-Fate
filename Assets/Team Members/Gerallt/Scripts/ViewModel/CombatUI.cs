@@ -25,6 +25,11 @@ namespace ChainsOfFate.Gerallt
         public List<GameObject> testPartyMembers;
         public GameObject testPlayer;
 
+        public void RaiseCloseCombatUI()
+        {
+            onCloseCombatUI?.Invoke(this);
+        }
+        
         private void Awake()
         {
             combatGameManager.OnFleeEvent += CombatGameManagerOnOnFleeEvent;
@@ -35,7 +40,7 @@ namespace ChainsOfFate.Gerallt
         {
             if (canFlee && unloadCombatUI)
             {
-                onCloseCombatUI?.Invoke(this);
+                RaiseCloseCombatUI();
             }
         }
 
