@@ -283,7 +283,8 @@ namespace ChainsOfFate.Gerallt
         public void UpdateView()
         {
             // Visualise current state of queue
-
+            if (!isActiveAndEnabled) return;
+            
             List<QueueOldItem> oldPositions = new List<QueueOldItem>();
 
             // Destroy all node UI instances in content parent view
