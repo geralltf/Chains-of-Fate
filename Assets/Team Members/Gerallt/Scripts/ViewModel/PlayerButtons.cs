@@ -81,13 +81,20 @@ namespace ChainsOfFate.Gerallt
                 combatGameManager.RaiseFleeEvent(currentCharacter, canFlee, false);
             }
         }
-        
-        private void OnEnable()
+
+        public void ResetViewState()
         {
+            view.SetActive(true);
+            
             AttackButtonSet.gameObject.SetActive(false);
             ResolveButtonsSet.gameObject.SetActive(false);
             InventoryButtonsSet.gameObject.SetActive(false);
             DefensiveButtonsSet.gameObject.SetActive(false);
+        }
+        
+        private void OnEnable()
+        {
+            ResetViewState();
         }
 
         private void OnDisable()

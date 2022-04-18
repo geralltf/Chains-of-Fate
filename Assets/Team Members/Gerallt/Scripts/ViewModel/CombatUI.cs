@@ -25,8 +25,24 @@ namespace ChainsOfFate.Gerallt
         public List<GameObject> testPartyMembers;
         public GameObject testPlayer;
 
+        public void ResetViewState()
+        {
+            PlayerButtons playerButtons = view.GetComponentInChildren<PlayerButtons>(true);
+            playerButtons.ResetViewState();
+            playerButtons.enabled = true;
+            
+            // // HACK: Set view states to default values before exiting
+            // view.GetComponentInChildren<PlayerButtons>(true).gameObject.SetActive(true);
+            // view.GetComponentInChildren<PlayerButtonsAttackSet>(true).gameObject.SetActive(false);
+            // view.GetComponentInChildren<PlayerButtonsDefensiveSet>(true).gameObject.SetActive(false);
+            // view.GetComponentInChildren<PlayerButtonsInventorySet>(true).gameObject.SetActive(false);
+            // view.GetComponentInChildren<PlayerButtonsResolveSet>(true).gameObject.SetActive(false);
+        }
+        
         public void RaiseCloseCombatUI(bool hasWon)
         {
+            ResetViewState();
+
             onCloseCombatUI?.Invoke(this, hasWon);
         }
         
@@ -61,6 +77,8 @@ namespace ChainsOfFate.Gerallt
         {
             Debug.Log("Got list of current enemies, party members, and current player");
 
+            ResetViewState();
+            
             if (!isTestMode)
             {
                 CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
