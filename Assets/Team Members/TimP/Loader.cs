@@ -9,7 +9,8 @@ public class Loader : MonoBehaviour
     public string mainScene = "Main";
     public string managersScene = "Managers Scene";
     public bool loadMainScene = false;
-
+    public bool unloadLoaderScene = true;
+    
     private Scene thisScene;
     
     private void Awake()
@@ -23,13 +24,16 @@ public class Loader : MonoBehaviour
 
         if (gameManager == null)
         {
-            SceneManager.LoadScene(managersScene, LoadSceneMode.Additive);
+            StartCoroutine(WorldInfo.LoadSceneAsync(managersScene));
+            //SceneManager.LoadSceneAsync(managersScene, LoadSceneMode.Additive);
         }
 
         if (loadMainScene)
         {
             SceneManager.sceneLoaded += SceneManager_OnSceneLoaded;
-            SceneManager.LoadScene(mainScene, LoadSceneMode.Additive);
+            
+            StartCoroutine(WorldInfo.LoadSceneAsync(mainScene));
+            //SceneManager.LoadSceneAsync(mainScene, LoadSceneMode.Additive);
         }
     }
 
@@ -37,10 +41,14 @@ public class Loader : MonoBehaviour
     {
         if (newScene.name == mainScene)
         {
-            SceneManager.UnloadSceneAsync(thisScene);
-            SceneManager.SetActiveScene(newScene);
-            
             SceneManager.sceneLoaded -= SceneManager_OnSceneLoaded;
+            
+            if (unloadLoaderScene)
+            {
+                SceneManager.UnloadSceneAsync(thisScene);
+            }
+            
+            SceneManager.SetActiveScene(newScene);
         }
     }
 }
