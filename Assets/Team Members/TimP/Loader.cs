@@ -20,6 +20,9 @@ public class Loader : MonoBehaviour
         DontDestroyOnLoad(FindObjectOfType<PlayerController>().gameObject);
         DontDestroyOnLoad(FindObjectOfType<CameraFollow>().gameObject);
 
+        // Have to enable the mouse cursor for game builds!
+        Cursor.visible = true;
+
         ChainsOfFate.Gerallt.GameManager gameManager = ChainsOfFate.Gerallt.GameManager.Instance;
 
         if (gameManager == null)
