@@ -9,7 +9,7 @@ public class EnemyMove : MonoBehaviour
 {
     public GameObject enemy;
     
-    public float detectionRadius = 10.0f;
+    //public float detectionRadius = 10.0f;
     public float speed = 4.0f;
     public float circularTurnSpeed = 0.9f;
     public float circularMoveDirection = 1.0f;
@@ -56,7 +56,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (ChainsOfFate.Gerallt.GameManager.Instance.levelLoadingLock) return;
         
-        playerSensor.detectionRadius = detectionRadius;
+        //playerSensor.detectionRadius = detectionRadius;
         
         if (playerSensor.DetectedPlayer != null)
         {

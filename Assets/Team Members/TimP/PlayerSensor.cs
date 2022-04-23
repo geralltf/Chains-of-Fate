@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerSensor : MonoBehaviour
 {
-    public float detectionRadius;
+    //public float detectionRadius;
     public PlayerController DetectedPlayer;
 
     private WorldInfo worldInfo;
