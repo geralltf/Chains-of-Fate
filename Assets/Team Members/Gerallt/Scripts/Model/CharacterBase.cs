@@ -232,6 +232,23 @@ namespace ChainsOfFate.Gerallt
             
             HP = hitPoints;
         }
+        
+        /// <summary>
+        /// Actually apply reducing the arcana by the specified cost right now.
+        /// </summary>
+        public virtual void ReduceArcana(int spellCost)
+        {
+            int arc = Arcana;
+            
+            arc -= spellCost;
+            
+            if (arc < 0)
+            {
+                arc = 0;
+            }
+            
+            Arcana = arc;
+        }
 
         public virtual void UpdatePrimaryStats()
         {

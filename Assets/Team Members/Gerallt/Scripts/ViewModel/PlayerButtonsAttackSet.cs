@@ -33,6 +33,24 @@ namespace ChainsOfFate.Gerallt
             }
         }
 
+        public void SpellButton_OnClick(SpellBase spell)
+        {
+            CombatGameManager combatGameManager = CombatGameManager.Instance;
+            
+            CharacterBase currentCharacter = combatGameManager.GetCurrentCharacter();
+            IAttackAction attackAction = (IAttackAction)currentCharacter;
+
+            if (attackAction != null)
+            {
+                CharacterBase target = combatGameManager.attackTarget;
+                
+                attackAction.Attack(target, spell); 
+                combatGameManager.RaiseAttackEvent(currentCharacter, target);
+                
+                combatGameManager.FinishedTurn(currentCharacter);
+            }
+        }
+        
         public void BackButton_OnClick()
         {
             this.gameObject.SetActive(false);
@@ -65,6 +83,25 @@ namespace ChainsOfFate.Gerallt
                     weaponUIInstance.GetComponent<Button>().onClick.AddListener(() =>
                     {
                         WeaponButton_OnClick(weapon);
+                    });
+                    i++;
+                }
+                
+                foreach (SpellBase spell in currentCharacter.availableSpells)
+                {
+                    GameObject spellUIInstance = Instantiate(weaponViewPrefab, view.transform);
+                    Vector3 pos = spellUIInstance.transform.localPosition;
+
+                    pos.x = (i * itemSpacing) + itemOffset;
+                    pos.y = 0;
+                    pos.z = 0;
+                
+                    spellUIInstance.transform.localPosition = pos;
+
+                    spellUIInstance.GetComponentInChildren<TextMeshProUGUI>().text = spell.GetName();
+                    spellUIInstance.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        SpellButton_OnClick(spell);
                     });
                     i++;
                 }

@@ -415,14 +415,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 365528845, guid: d66f2711a55224948a0a4f9053590162, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -38.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 365528845, guid: d66f2711a55224948a0a4f9053590162, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -121.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2214821480664507432, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -493,14 +485,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7720193410555412133, guid: d66f2711a55224948a0a4f9053590162, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8008659688591539871, guid: d66f2711a55224948a0a4f9053590162, type: 3}
-      propertyPath: baseDamage
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8986755177648918286, guid: d66f2711a55224948a0a4f9053590162, type: 3}
-      propertyPath: XStart
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

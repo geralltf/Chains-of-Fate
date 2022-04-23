@@ -16,7 +16,7 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private string spellName;
         [SerializeField] private string spellDescription;
         [SerializeField] private int baseDamage;
-        [SerializeField] private float spellCost; // Acana cost
+        [SerializeField] private int spellCost; // Arcana cost
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace ChainsOfFate.Gerallt
             }
         }
         
-        public float SpellCost
+        public int SpellCost
         {
             get => spellCost;
             set

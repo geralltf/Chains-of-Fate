@@ -285,6 +285,9 @@ namespace ChainsOfFate.Gerallt
             // APPLY DAMAGE to target later. Champions always have to respond to damage after their QTE. 
             target.AddDamage(totalDamage);
 
+            // Reduce the arcana by the spell's cost.
+            ReduceArcana(spell.SpellCost);
+            
             currentState = States.AttackingSpell;
             
             if (target is Champion)

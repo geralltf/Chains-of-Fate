@@ -121,6 +121,9 @@ namespace ChainsOfFate.Gerallt
             
             // APPLY DAMAGE to target later. Enemies always have to respond to damage immediately when its their turn. 
             target.AddDamage(totalDamage);
+
+            // Reduce the arcana by the spell's cost.
+            ReduceArcana(spell.SpellCost);
             
             currentState = States.AttackingSpell;
             

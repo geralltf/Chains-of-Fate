@@ -230,7 +230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -71.7, y: -139.6}
+  m_AnchoredPosition: {x: -38.5, y: -121.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &574069845
@@ -1116,6 +1116,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1038964133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1038964134}
+  m_Layer: 0
+  m_Name: Spells
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1038964134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038964133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1407503155}
+  m_Father: {fileID: 5577777372788091692}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401972728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1283,54 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1407503154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407503155}
+  - component: {fileID: 1407503156}
+  m_Layer: 0
+  m_Name: Test spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407503155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407503154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1038964134}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407503156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407503154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fe648151ae44109c1ab82e328a690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellName: Spell 1
+  spellDescription: A test spell
+  baseDamage: 10
+  spellCost: 20
 --- !u!1 &1746585677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,7 +3308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Test dagger
   weaponDescription: A test dagger
-  baseDamage: 1
+  baseDamage: 90
   statusPercentage: 0
 --- !u!1 &2747452733013040252
 GameObject:
@@ -3941,6 +4021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
@@ -3959,6 +4040,7 @@ MonoBehaviour:
   strength: 2
   movementSpeed: 1
   level: 1
+  xp: 0
   timeUntilMovementResumes: 5
   appliedState: 0
   speedType: 40
@@ -4206,6 +4288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
@@ -4224,6 +4307,7 @@ MonoBehaviour:
   strength: 1
   movementSpeed: 1
   level: 1
+  xp: 0
   timeUntilMovementResumes: 5
   appliedState: 0
   speedType: 40
@@ -5186,6 +5270,7 @@ Transform:
   m_Children:
   - {fileID: 5426842933726125171}
   - {fileID: 4278770713366622150}
+  - {fileID: 1038964134}
   m_Father: {fileID: 2559560856547878300}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5201,13 +5286,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
   representation: {r: 1, g: 0.52308637, b: 0, a: 1}
   availableWeapons:
   - {fileID: 1374719460664265185}
-  availableSpells: []
+  availableSpells:
+  - {fileID: 1407503156}
   availableItems:
   - {fileID: 8541742657987700007}
   characterName: test player
@@ -5220,6 +5307,7 @@ MonoBehaviour:
   strength: 1
   movementSpeed: 1
   level: 1
+  xp: 0
   isMainCharacter: 1
 --- !u!1 &7720193408812536541
 GameObject:
@@ -7480,6 +7568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e16c54d4cf8954881761780549d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
@@ -7497,6 +7586,7 @@ MonoBehaviour:
   strength: 0
   movementSpeed: 1
   level: 0
+  xp: 0
   timeUntilMovementResumes: 5
   appliedState: 0
   speedType: 40
@@ -7935,6 +8025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
@@ -7952,6 +8043,7 @@ MonoBehaviour:
   strength: 0
   movementSpeed: 1
   level: 0
+  xp: 0
   isMainCharacter: 0
 --- !u!1 &7720193410693242325
 GameObject:
@@ -8397,6 +8489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   maxHealth: 100
   maxArcana: 100
   maxResolve: 100
@@ -8415,6 +8508,7 @@ MonoBehaviour:
   strength: 1
   movementSpeed: 1
   level: 1
+  xp: 0
   isMainCharacter: 0
 --- !u!1001 &1494047146293095229
 PrefabInstance:
