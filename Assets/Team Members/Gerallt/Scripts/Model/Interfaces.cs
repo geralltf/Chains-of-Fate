@@ -28,6 +28,7 @@ namespace ChainsOfFate.Gerallt
 
     public interface IDefendAction
     {
+        void Defend();
         void Defend(float blockPercentage, float totalDamage);
     }
 

@@ -64,7 +64,6 @@ namespace ChainsOfFate.Gerallt
             List<CharacterBase> agents = CombatGameManager.Instance.turnsQueue.GetEnemies();
             CharacterBase target = champions[Random.Range(0, champions.Count - 1)];
             CharacterBase agentTarget = agents[Random.Range(0, agents.Count - 1)];
-            float blockPercentage = GetBlockPercentage();
             WeaponBase equippedWeapon = null;
             SpellBase equippedSpell = null;
             ItemBase equippedItem = null;
@@ -89,24 +88,24 @@ namespace ChainsOfFate.Gerallt
             
             canFlee = false;
 
-            // Process Applied Moves before having turn.
-            float totalDamage = 0;
-            List<AppliedMove> moves = GetMoves();
-            foreach (AppliedMove move in moves)
-            {
-                if (move is AttackMove)
-                {
-                    AttackMove attackMove = move as AttackMove;
-
-                    totalDamage += attackMove.totalDamage;
-                }
-            }
-
-            if (totalDamage > 0)
-            {
-                newState = EnemyState.Defend;
-            }
-            ClearMoves();
+            // // Process Applied Moves before having turn.
+            // float totalDamage = 0;
+            // List<AppliedMove> moves = GetMoves();
+            // foreach (AppliedMove move in moves)
+            // {
+            //     if (move is AttackMove)
+            //     {
+            //         AttackMove attackMove = move as AttackMove;
+            //
+            //         totalDamage += attackMove.totalDamage;
+            //     }
+            // }
+            //
+            // if (totalDamage > 0)
+            // {
+            //     newState = EnemyState.Defend;
+            // }
+            // ClearMoves();
             
             do
             {
@@ -115,12 +114,7 @@ namespace ChainsOfFate.Gerallt
                 {
                     case EnemyState.Defend:
                         // Defend without activating Quick Time Event / block bar.
-                        //Defend(blockPercentage);
-                        
-                        newState = RandomStateExcluding(EnemyState.Defend); // Defend is now done straight away after target is attacked.
-                        tryAgain = true;
-                        
-                        // TODO: Schedule a counter attack
+                        Defend();
                         break;
                     case EnemyState.Flee:
                         canFlee = Flee();
@@ -194,13 +188,20 @@ namespace ChainsOfFate.Gerallt
             // Notify the game manager that this agent has completed it's turn.
             combatGameManager.FinishedTurn(this, false, skipNext);
         }
+
+        /// <summary>
+        /// Select the defensive stance.
+        /// </summary>
+        public void Defend()
+        {
+            Debug.Log("ENEMY Test defensive stance selected");
+            
+            currentState = States.Defending;
+        }
         
         /// <summary>
-        /// Defend against the specified attacker.
+        /// Defend against the specified total damage only if defensive stance is applied.
         /// </summary>
-        /// <param name="attacker">
-        /// The attacker to defend against.
-        /// </param>
         public void Defend(float blockPercentage, float totalDamage)
         {
             Debug.Log("ENEMY Test defend action, block " + blockPercentage + "% totalDamage " + totalDamage);
@@ -208,6 +209,8 @@ namespace ChainsOfFate.Gerallt
             int damage = (int)(totalDamage * (blockPercentage / 100.0f));
             
             ApplyDamage(damage);
+            
+            ResetState();
         }
         
         /// <summary>
@@ -220,6 +223,8 @@ namespace ChainsOfFate.Gerallt
         {
             Debug.Log("ENEMY Test flee action");
 
+            currentState = States.Fleeing;
+            
             return Random.value > 0.5f;
         }
 
@@ -246,6 +251,8 @@ namespace ChainsOfFate.Gerallt
             
             // APPLY DAMAGE to target later. Champions always have to respond to damage after their QTE. 
             target.AddDamage(totalDamage);
+
+            currentState = States.AttackingWeapon;
             
             if (target is Champion)
             {
@@ -277,7 +284,9 @@ namespace ChainsOfFate.Gerallt
             
             // APPLY DAMAGE to target later. Champions always have to respond to damage after their QTE. 
             target.AddDamage(totalDamage);
-                
+
+            currentState = States.AttackingSpell;
+            
             if (target is Champion)
             {
                 // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
@@ -288,26 +297,42 @@ namespace ChainsOfFate.Gerallt
         public override void AddDamage(int damage)
         {
             //base.AddDamage(damage);
+
+            if (currentState == States.Defending)
+            {
+                // Enemies dont have a QTE so there's no need to show block bar
+                float blockPercentage = GetBlockPercentage();
             
-            // Enemies dont have a QTE so there's no need to show block bar
-            float blockPercentage = GetBlockPercentage();
-            
-            Defend(blockPercentage, damage); // Defend applies the damage immediately.
+                Defend(blockPercentage, damage); // Defend applies the damage immediately.
+                
+                ResetState();
+            }
+            else
+            {
+                // APPLY DAMAGE immediately without activating QTE block bar or Defend action since character was not in a defensive stance.
+                ApplyDamage(damage);
+            }
         }
 
         public void UseItem(ItemBase item)
         {
             Debug.Log("ENEMY Test use inventory item action " + item);
+
+            currentState = States.UsingItem;
         }
         
         public void Encourage(CharacterBase targetCharacter)
         {
             Debug.Log("ENEMY Test encourage action");
+
+            currentState = States.Encouraging;
         }
 
         public void Taunt(CharacterBase targetCharacter)
         {
             Debug.Log("ENEMY Test taunt action");
+
+            currentState = States.Taunting;
         }
         
         // Start is called before the first frame update

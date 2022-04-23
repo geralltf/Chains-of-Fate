@@ -15,7 +15,17 @@ namespace ChainsOfFate.Gerallt
         public bool isMainCharacter;
 
         /// <summary>
-        /// Defend against the last attack.
+        /// Select the defensive stance.
+        /// </summary>
+        public void Defend()
+        {
+            Debug.Log("Test defensive stance selected");
+            
+            currentState = States.Defending;
+        }
+        
+        /// <summary>
+        /// Defend against the last attack only if defensive stance is applied.
         /// </summary>
         public void Defend(float blockPercentage, float totalDamage)
         {
@@ -24,6 +34,8 @@ namespace ChainsOfFate.Gerallt
             int damage = (int)(totalDamage * (blockPercentage / 100.0f));
             
             ApplyDamage(damage);
+
+            ResetState();
         }
 
         /// <summary>
@@ -36,6 +48,8 @@ namespace ChainsOfFate.Gerallt
         {
             Debug.Log("Test flee action");
 
+            currentState = States.Fleeing;
+            
             //return true;
             return Random.value > 0.5f;
         }
@@ -71,6 +85,8 @@ namespace ChainsOfFate.Gerallt
             // APPLY DAMAGE to target later. Enemies always have to respond to damage immediately when its their turn. 
             target.AddDamage(totalDamage);
              
+            currentState = States.AttackingWeapon;
+            
             // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
             //CombatGameManager.Instance.RaiseCounterAttackEvent(this, target);
         }
@@ -106,6 +122,8 @@ namespace ChainsOfFate.Gerallt
             // APPLY DAMAGE to target later. Enemies always have to respond to damage immediately when its their turn. 
             target.AddDamage(totalDamage);
             
+            currentState = States.AttackingSpell;
+            
             // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
             //CombatGameManager.Instance.RaiseCounterAttackEvent(this, target);
         }
@@ -113,29 +131,43 @@ namespace ChainsOfFate.Gerallt
         public override void AddDamage(int damage)
         {
             //base.AddDamage(damage);
-            
-            BlockBarUI blockBarUI = GetBlockBarUI();
 
-            blockBarUI.totalDamageRecieved = damage;
-            blockBarUI.onWonEvent += BlockBarUI_OnWonEvent;
-            blockBarUI.onLostEvent += BlockBarUI_OnLostEvent;
-            blockBarUI.defendingCharacter = this;
-            blockBarUI.SetVisibility(true);
+            if (currentState == States.Defending)
+            {
+                BlockBarUI blockBarUI = GetBlockBarUI();
+
+                blockBarUI.totalDamageRecieved = damage;
+                blockBarUI.onWonEvent += BlockBarUI_OnWonEvent;
+                blockBarUI.onLostEvent += BlockBarUI_OnLostEvent;
+                blockBarUI.defendingCharacter = this;
+                blockBarUI.SetVisibility(true);
+            }
+            else
+            {
+                // APPLY DAMAGE immediately without activating QTE block bar or Defend action since character was not in a defensive stance.
+                ApplyDamage(damage);
+            }
         }
 
         public void UseItem(ItemBase item)
         {
             Debug.Log("Test use inventory item action " + item);
+
+            currentState = States.UsingItem;
         }
         
         public void Encourage(CharacterBase targetCharacter)
         {
             Debug.Log("Test encourage action");
+
+            currentState = States.Encouraging;
         }
 
         public void Taunt(CharacterBase targetCharacter)
         {
             Debug.Log("Test taunt action");
+
+            currentState = States.Taunting;
         }
         
         private BlockBarUI GetBlockBarUI()
@@ -152,6 +184,8 @@ namespace ChainsOfFate.Gerallt
             // APPLY DAMAGE
             Defend(0, GetBlockBarUI().totalDamageRecieved);
             
+            ResetState();
+            
             StartCoroutine(CompleteTurnSequence());
         }
 
@@ -161,6 +195,8 @@ namespace ChainsOfFate.Gerallt
             
             // APPLY DAMAGE
             Defend(blockPercentage, GetBlockBarUI().totalDamageRecieved);
+            
+            ResetState();
             
             StartCoroutine(CompleteTurnSequence());
         }

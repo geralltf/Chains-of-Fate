@@ -7,6 +7,20 @@ namespace ChainsOfFate.Gerallt
 {
     public abstract class CharacterBase : MonoBehaviour, IDescriptive
     {
+        public States currentState = States.NotSet;
+        
+        public enum States
+        {
+            NotSet = 0,
+            Defending = 1,
+            AttackingWeapon = 2,
+            AttackingSpell = 3,
+            Fleeing = 4,
+            UsingItem = 5,
+            Encouraging = 6,
+            Taunting = 7
+        }
+        
         /// <summary>
         /// A move that is scheduled to be applied later on.
         /// </summary>
@@ -14,11 +28,11 @@ namespace ChainsOfFate.Gerallt
         {
             
         }
-        
-        public class AttackMove : AppliedMove
-        {
-            public float totalDamage;
-        }
+
+        // public class AttackMove : AppliedMove
+        // {
+        //     public float totalDamage;
+        // }
         
         // public class DefenceMove : AppliedMove
         // {
@@ -63,6 +77,8 @@ namespace ChainsOfFate.Gerallt
 
         [SerializeField] private int level = 0;
 
+        [SerializeField] private int xp = 0;
+        
         /// <summary>
         /// Schedule of moves the character has applied for their turn.
         /// </summary>
@@ -173,6 +189,16 @@ namespace ChainsOfFate.Gerallt
                 RaiseStatChanged("Level", value);
             }
         }
+        
+        public int XP
+        {
+            get => xp;
+            set
+            {
+                xp = value;
+                RaiseStatChanged("XP", value);
+            }
+        }
 
         #endregion
 
@@ -188,12 +214,6 @@ namespace ChainsOfFate.Gerallt
         public virtual void AddDamage(int damage)
         {
             // Individual characters implement this differently.
-            
-            
-            // AttackMove attackMove = new AttackMove();
-            // attackMove.totalDamage = damage;
-            //
-            // ApplyMove(attackMove); // Schedule to apply the move later on after the characters QTE has generated a block percentage.
         }
         
         /// <summary>
@@ -220,6 +240,7 @@ namespace ChainsOfFate.Gerallt
             RaiseStatChanged("HP", HP);
             RaiseStatChanged("Resolve", Resolve);
             RaiseStatChanged("Arcana", Arcana);
+            RaiseStatChanged("XP", XP);
         }
 
         public List<AppliedMove> GetMoves()
@@ -255,6 +276,11 @@ namespace ChainsOfFate.Gerallt
         public string GetDescription()
         {
             return string.Empty;
+        }
+
+        public void ResetState()
+        {
+            currentState = States.NotSet;
         }
         
         protected void RaiseStatChanged(string propertyName, object newValue)
