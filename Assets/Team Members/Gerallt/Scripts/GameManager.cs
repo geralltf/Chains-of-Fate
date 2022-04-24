@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEditor;
@@ -27,6 +28,13 @@ namespace ChainsOfFate.Gerallt
         private bool shownIndicator = false;
         private bool animatingIndicator = false;
         [CanBeNull] private Material materialLoadingBackground;
+
+        private Champion mainCharacter;
+
+        public Champion GetPlayer()
+        {
+            return mainCharacter;
+        } 
         
         public void ShowCombatUI()
         {
@@ -58,7 +66,12 @@ namespace ChainsOfFate.Gerallt
             }
         }
 
-        Vector4 ToVec4(Color c)
+        public static Color RandomColour()
+        {
+            return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        }
+        
+        public static Vector4 ToVec4(Color c)
         {
             return new Vector4(c.r, c.g, c.b, c.a);
         }
@@ -119,6 +132,9 @@ namespace ChainsOfFate.Gerallt
         public override void Awake()
         {
             base.Awake();
+            
+            Champion currentPlayer = FindObjectsOfType<Champion>().FirstOrDefault(c=> c.isMainCharacter);
+            mainCharacter = currentPlayer;
             
             levelLoadingIndicatorUI.SetActive(false);
         }

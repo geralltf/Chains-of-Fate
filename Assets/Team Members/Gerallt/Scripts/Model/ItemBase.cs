@@ -15,7 +15,8 @@ namespace ChainsOfFate.Gerallt
 
         [SerializeField] private string itemName;
         [SerializeField] private string itemDescription;
-
+        [SerializeField] private Color representation;
+        
         #endregion
 
         #region Properties
@@ -75,11 +76,18 @@ namespace ChainsOfFate.Gerallt
         {
             return ItemDescription;
         }
+
+        public Color GetTint()
+        {
+            return representation;
+        }
         
         public virtual void Awake()
         {
             Guid newId = Guid.NewGuid(); //TODO: Check for collisions with items that by pure unluck might have the same GUID.
             id = newId.ToString();
+
+            representation = GameManager.RandomColour();
         }
     }
 }

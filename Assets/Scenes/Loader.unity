@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cf87ce3aab44a7bf7501e0cd25830a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
+  itemName: Test item thingy
+  itemDescription: Something special
 --- !u!4 &651343383
 Transform:
   m_ObjectHideFlags: 0

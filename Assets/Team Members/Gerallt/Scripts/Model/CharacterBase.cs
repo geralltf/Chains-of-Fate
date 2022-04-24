@@ -354,6 +354,20 @@ namespace ChainsOfFate.Gerallt
             return string.Empty;
         }
 
+        public Color GetTint()
+        {
+            return representation;
+        }
+
+        public List<IDescriptive> GetInventory()
+        {
+            List<IDescriptive> allItems = new List<IDescriptive>();
+            allItems.AddRange(availableWeapons);
+            allItems.AddRange(availableSpells);
+            allItems.AddRange(availableItems);
+            return allItems;
+        }
+
         public void ResetState()
         {
             currentState = States.NotSet;
@@ -362,11 +376,6 @@ namespace ChainsOfFate.Gerallt
         protected void RaiseStatChanged(string propertyName, object newValue)
         {
             OnStatChanged?.Invoke(this, propertyName, newValue);
-        }
-        
-        static internal Color RandomColour()
-        {
-            return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
         }
 
         public virtual void Awake()

@@ -42,5 +42,6 @@ namespace ChainsOfFate.Gerallt
         string GetId();
         string GetName();
         string GetDescription();
+        Color GetTint();
     }
 }

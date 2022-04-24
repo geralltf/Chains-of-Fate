@@ -17,7 +17,8 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private string spellDescription;
         [SerializeField] private int baseDamage;
         [SerializeField] private int spellCost; // Arcana cost
-
+        [SerializeField] private Color representation;
+        
         #endregion
 
         #region Properties
@@ -100,10 +101,17 @@ namespace ChainsOfFate.Gerallt
             return SpellDescription;
         }
         
+        public Color GetTint()
+        {
+            return representation;
+        }
+        
         public virtual void Awake()
         {
             Guid newId = Guid.NewGuid(); //TODO: Check for collisions with spells that by pure unluck might have the same GUID.
             id = newId.ToString();
+            
+            representation = GameManager.RandomColour();
         }
     }
 }
