@@ -173,6 +173,12 @@ namespace ChainsOfFate.Gerallt
                 // HACK: Just pick a random party member for now
                 target = GetRandomFriend();
             }
+
+            if (target == null)
+            {
+                Debug.Log("Test encourage action invalid target");
+                return;
+            }
             
             // Encourage, the target gains 35% (encouragePercent) of the casting Characters WIS: Wisdom stat to the target's Resolve Gauge.
             int gain = (int)((encouragePercent / 100.0f) * Wisdom);
@@ -213,7 +219,12 @@ namespace ChainsOfFate.Gerallt
         public CharacterBase GetRandomEnemy()
         {
             var enemies = CombatGameManager.Instance.turnsQueue.GetEnemies();
-            CharacterBase target = enemies[Random.Range(0, enemies.Count -1)];
+            CharacterBase target = null;
+
+            if (enemies.Any())
+            {
+                target = enemies[Random.Range(0, enemies.Count -1)];
+            }
             return target;
         }
         
@@ -221,7 +232,14 @@ namespace ChainsOfFate.Gerallt
         {
             var friends = CombatGameManager.Instance.turnsQueue.GetChampions()
                 .Where(c=> c.ID != this.ID).ToArray();
-            CharacterBase target = friends[Random.Range(0, friends.Length -1)];
+
+            CharacterBase target = null;
+
+            if (friends.Any())
+            {
+                target = friends[Random.Range(0, friends.Length -1)];
+            }
+
             return target;
         }
         

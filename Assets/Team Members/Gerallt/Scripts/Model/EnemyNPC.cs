@@ -152,7 +152,15 @@ namespace ChainsOfFate.Gerallt
                         }
                         break;
                     case EnemyState.ResolveEncourage:
-                        Encourage(agentTarget);
+                        if (agentTarget == null)
+                        {
+                            newState = RandomStateExcluding(EnemyState.ResolveEncourage);
+                            tryAgain = true;
+                        }
+                        else
+                        {
+                            Encourage(agentTarget);
+                        }
                         break;
                     case EnemyState.ResolveTaunt:
                         Taunt(target);
@@ -346,7 +354,12 @@ namespace ChainsOfFate.Gerallt
         public CharacterBase GetRandomEnemy()
         {
             var enemies = CombatGameManager.Instance.turnsQueue.GetChampions();
-            CharacterBase target = enemies[Random.Range(0, enemies.Count -1)];
+            CharacterBase target = null;
+
+            if (enemies.Any())
+            {
+                target = enemies[Random.Range(0, enemies.Count -1)];
+            }
             return target;
         }
         
@@ -354,7 +367,12 @@ namespace ChainsOfFate.Gerallt
         {
             var friends = CombatGameManager.Instance.turnsQueue.GetEnemies()
                 .Where(c=> c.ID != this.ID).ToArray();
-            CharacterBase target = friends[Random.Range(0, friends.Length -1)];
+            CharacterBase target = null;
+
+            if (friends.Any())
+            {
+                target = friends[Random.Range(0, friends.Length -1)];
+            }
             return target;
         }
         
