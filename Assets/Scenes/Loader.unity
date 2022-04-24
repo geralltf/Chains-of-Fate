@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Test item thingy
   itemDescription: Something special
+  representation: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &651343383
 Transform:
   m_ObjectHideFlags: 0

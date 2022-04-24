@@ -19,6 +19,8 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private Button buttonFilterSpells;
         [SerializeField] private Button buttonFilterItems;
         [SerializeField] private Button buttonFilterAll;
+        [SerializeField] private Button buttonQuit;
+        [SerializeField] private GameObject tooltipGameObject;
         [SerializeField] private FilterBy filterBy = FilterBy.All;
         [SerializeField] private int xSpaceBetweenItem = 60;
         [SerializeField] private int ySpaceBetweenItems = 60;
@@ -47,6 +49,8 @@ namespace ChainsOfFate.Gerallt
         {
             ClearItems();
             
+            tooltipGameObject.SetActive(false);
+            
             List<IDescriptive> allItems = currentPlayer.GetInventory();
 
             switch (filterBy)
@@ -71,19 +75,17 @@ namespace ChainsOfFate.Gerallt
                 foreach (IDescriptive item in allItems)
                 {
                     GameObject itemUIInstance = Instantiate(itemViewPrefab, content.transform);
-
+                    GameInventoryItemUI uiItem = itemUIInstance.GetComponent<GameInventoryItemUI>();
                     Button button = itemUIInstance.GetComponentInChildren<Button>();
-                    TextMeshProUGUI buttonText = itemUIInstance.GetComponentInChildren<TextMeshProUGUI>();
-                    Image buttonImage = itemUIInstance.GetComponentInChildren<Image>();
-                    
-                    buttonText.text = item.GetName() + " " + i;
-                    buttonImage.color = item.GetTint();
+
+                    uiItem.parentView = this;
+                    uiItem.UpdateView(item, i);
                     
                     button.onClick.AddListener(() =>
                     {
                         ItemButton_OnClick(item);
                     });
-                    
+
                     i++;
                 }
             }
@@ -113,13 +115,40 @@ namespace ChainsOfFate.Gerallt
         public void SetVisibility(bool visibility)
         {
             view.SetActive(visibility);
-
+            tooltipGameObject.SetActive(false);
+            
             if (visibility)
             {
                 PopulateView();
             }
         }
 
+        public void ShowTooltip(GameInventoryItemUI itemUI, IDescriptive itemData)
+        {
+            tooltipGameObject.SetActive(true);
+
+            // Vector3 mouse = Mouse.current.position.ReadValue();
+            // Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mouse);
+            // Vector3 mousePosView = Camera.main.ScreenToViewportPoint(mouse);
+            //
+            // Vector3 local = tooltipGameObject.GetComponent<RectTransform>().InverseTransformPoint(mousePosWorld);
+            //
+            // RectTransform parentRect = tooltipGameObject.transform.parent.GetComponent<RectTransform>();
+            // //parentRect = tooltipGameObject.GetComponent<RectTransform>();
+            // RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, mouse, Camera.main, out Vector2 localPoint);
+
+            //tooltipGameObject.GetComponent<RectTransform>().anchoredPosition  = localPoint;
+            
+            //tooltipGameObject.GetComponent<RectTransform>().position = itemUI.gameObject.GetComponent<RectTransform>().position;
+            
+            tooltipGameObject.GetComponentInChildren<TextMeshProUGUI>().text = itemData.GetDescription();
+        }
+        
+        public void HideTooltip()
+        {
+            tooltipGameObject.SetActive(false);
+        }
+        
         private IEnumerator ToggleVisibilityCoroutine()
         {
             yield return new WaitForSeconds(toggleInSeconds);
@@ -155,6 +184,12 @@ namespace ChainsOfFate.Gerallt
             {
                 filterBy = FilterBy.All;
                 PopulateView();
+            });
+            
+            buttonQuit.onClick.AddListener(() =>
+            {
+                SetVisibility(false);
+                ClearItems();
             });
         }
 
