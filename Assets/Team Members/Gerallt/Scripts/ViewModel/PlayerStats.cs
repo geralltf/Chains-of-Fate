@@ -18,6 +18,7 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private Slider healthBar;
         [SerializeField] private Slider resolveBar;
         [SerializeField] private Slider arcanaBar;
+        [SerializeField] private Slider wisdomBar;
         [SerializeField] private Image playerPortrait;
 
         private void OnEnable()
@@ -81,6 +82,12 @@ namespace ChainsOfFate.Gerallt
             {
                 resolveBar.maxValue = character.maxResolve;
                 resolveBar.value = (int) newValue;
+            }
+
+            if (propertyName == "Wisdom")
+            {
+                wisdomBar.maxValue = character.maxWisdom;
+                wisdomBar.value = (int) newValue;
             }
 
             playerPortrait.color = character.representation;

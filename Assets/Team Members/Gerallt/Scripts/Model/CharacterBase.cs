@@ -50,6 +50,10 @@ namespace ChainsOfFate.Gerallt
         public int maxHealth = 100;
         public int maxArcana = 100;
         public int maxResolve = 100;
+        public int maxWisdom = 100;
+        
+        public int encouragePercent = 35;
+        public int tauntPercent = 35;
 
         public Color representation;
         
@@ -63,7 +67,7 @@ namespace ChainsOfFate.Gerallt
 
         [SerializeField] private int arcana = 100;
 
-        [SerializeField] private int resolve = 0;
+        [SerializeField] private int resolve = 100;
 
         [SerializeField] private int defense = 0;
 
@@ -229,6 +233,11 @@ namespace ChainsOfFate.Gerallt
             {
                 hitPoints = 0;
             }
+
+            if (hitPoints > maxHealth)
+            {
+                hitPoints = maxHealth;
+            }
             
             HP = hitPoints;
         }
@@ -246,10 +255,59 @@ namespace ChainsOfFate.Gerallt
             {
                 arc = 0;
             }
+
+            if (arc > maxArcana)
+            {
+                arc = maxArcana;
+            }
             
             Arcana = arc;
         }
 
+        /// <summary>
+        /// Actually apply change to the resolve right now.
+        /// </summary>
+        public virtual void ApplyResolve(int resolveChange)
+        {
+            int res = Resolve;
+            
+            res += resolveChange;
+            
+            if (res < 0)
+            {
+                res = 0;
+            }
+
+            if (res > maxResolve)
+            {
+                res = maxResolve;
+            }
+            
+            Resolve = res;
+        }
+        
+        /// <summary>
+        /// Actually apply change to the resolve right now.
+        /// </summary>
+        public virtual void ApplyWisdom(int wisdomChange)
+        {
+            int wis = Wisdom;
+            
+            wis += wisdomChange;
+            
+            if (wis < 0)
+            {
+                wis = 0;
+            }
+
+            if (wis > maxWisdom)
+            {
+                wis = maxWisdom;
+            }
+            
+            Wisdom = wis;
+        }
+        
         public virtual void UpdatePrimaryStats()
         {
             RaiseStatChanged("ID", ID);
@@ -257,6 +315,7 @@ namespace ChainsOfFate.Gerallt
             RaiseStatChanged("HP", HP);
             RaiseStatChanged("Resolve", Resolve);
             RaiseStatChanged("Arcana", Arcana);
+            RaiseStatChanged("Wisdom", Wisdom);
             RaiseStatChanged("XP", XP);
         }
 

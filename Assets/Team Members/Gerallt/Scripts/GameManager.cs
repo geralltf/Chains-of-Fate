@@ -7,10 +7,8 @@ using UnityEngine.UI;
 
 namespace ChainsOfFate.Gerallt
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : SingletonBase<GameManager>
     {
-        public static GameManager Instance;
-
         public float outofboundsBounceForce = 10.0f;
         public float boundaryMinDistance = 10.0f;
         public float loadRange = 10.0f;
@@ -118,9 +116,9 @@ namespace ChainsOfFate.Gerallt
             shownIndicator = false;
         }
         
-        public virtual void Awake()
+        public override void Awake()
         {
-            Instance = this;
+            base.Awake();
             
             levelLoadingIndicatorUI.SetActive(false);
         }

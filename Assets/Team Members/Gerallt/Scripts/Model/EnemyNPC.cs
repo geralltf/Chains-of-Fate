@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ChainsOfFate.Gerallt;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -60,10 +61,8 @@ namespace ChainsOfFate.Gerallt
         /// </summary>
         public void DecideMove()
         {
-            List<CharacterBase> champions = CombatGameManager.Instance.turnsQueue.GetChampions();
-            List<CharacterBase> agents = CombatGameManager.Instance.turnsQueue.GetEnemies();
-            CharacterBase target = champions[Random.Range(0, champions.Count - 1)];
-            CharacterBase agentTarget = agents[Random.Range(0, agents.Count - 1)];
+            CharacterBase target = GetRandomEnemy();
+            CharacterBase agentTarget = GetRandomFriend();
             WeaponBase equippedWeapon = null;
             SpellBase equippedSpell = null;
             ItemBase equippedItem = null;
@@ -314,16 +313,49 @@ namespace ChainsOfFate.Gerallt
         
         public void Encourage(CharacterBase targetCharacter)
         {
-            Debug.Log("ENEMY Test encourage action");
+            // Encourage, the target gains 35% (encouragePercent) of the casting Characters WIS: Wisdom stat to the target's Resolve Gauge.
+            int gain = (int)((encouragePercent / 100.0f) * Wisdom);
 
+            Debug.Log("ENEMY Test encourage action target " + targetCharacter.CharacterName + " gains " + gain + " wisdom");
+            
+            // Loose the same amount of wisdom from casting encourage 
+            ApplyWisdom(-gain);
+            
+            // Target gains specified percentage of this character's wisdom
+            targetCharacter.ApplyResolve(gain);
+            
             currentState = States.Encouraging;
         }
 
         public void Taunt(CharacterBase targetCharacter)
         {
-            Debug.Log("ENEMY Test taunt action");
+            // Taunt, the target looses 35% (tauntPercent) of the casting Characters WIS: Wisdom stat to the target's Resolve Gauge.
+            int loss = (int)((tauntPercent / 100.0f) * Wisdom);
 
+            Debug.Log("ENEMY Test taunt action target " + targetCharacter.CharacterName + " looses " + loss + " wisdom");
+            
+            // Loose the same amount of wisdom from casting encourage 
+            ApplyWisdom(-loss);
+            
+            // Target looses specified percentage of this character's wisdom
+            targetCharacter.ApplyResolve(-loss);
+            
             currentState = States.Taunting;
+        }
+        
+        public CharacterBase GetRandomEnemy()
+        {
+            var enemies = CombatGameManager.Instance.turnsQueue.GetChampions();
+            CharacterBase target = enemies[Random.Range(0, enemies.Count -1)];
+            return target;
+        }
+        
+        public CharacterBase GetRandomFriend()
+        {
+            var friends = CombatGameManager.Instance.turnsQueue.GetEnemies()
+                .Where(c=> c.ID != this.ID).ToArray();
+            CharacterBase target = friends[Random.Range(0, friends.Length -1)];
+            return target;
         }
         
         // Start is called before the first frame update
