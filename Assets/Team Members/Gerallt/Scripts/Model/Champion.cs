@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ChainsOfFate.Gerallt;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -73,8 +74,7 @@ namespace ChainsOfFate.Gerallt
             if (target == null) // TODO: Implement target selection
             {
                 // HACK: Just pick a random enemy for now
-                var enemies = CombatGameManager.Instance.turnsQueue.GetEnemies();
-                target = enemies[Random.Range(0, enemies.Count -1)];
+                target = GetRandomEnemy();
             }
 
             float weaponBaseDamage = weapon.BaseDamage;
@@ -107,8 +107,7 @@ namespace ChainsOfFate.Gerallt
             if (target == null) // TODO: Implement target selection
             {
                 // HACK: Just pick a random enemy for now
-                var enemies = CombatGameManager.Instance.turnsQueue.GetEnemies();
-                target = enemies[Random.Range(0, enemies.Count -1)];
+                target = GetRandomEnemy();
             }
 
             float spellBaseDamage = spell.BaseDamage;
@@ -143,14 +142,14 @@ namespace ChainsOfFate.Gerallt
 
             if (currentState == States.Defending)
             {
-                BlockBarUI blockBarUI = GetBlockBarUI();
+                BlockBarUI blockBarUI = CombatGameManager.Instance.GetBlockBarUI();
 
                 blockBarUI.totalDamageRecieved = damage;
                 blockBarUI.onWonEvent += BlockBarUI_OnWonEvent;
                 blockBarUI.onLostEvent += BlockBarUI_OnLostEvent;
                 blockBarUI.defendingCharacter = this;
                 blockBarUI.attackingCharacter = attacker;
-                blockBarUI.isTestMode = GetCombatUI().isTestMode;
+                blockBarUI.isTestMode = CombatGameManager.Instance.GetCombatUI().isTestMode;
                 blockBarUI.SetVisibility(true);
             }
             else
@@ -167,30 +166,63 @@ namespace ChainsOfFate.Gerallt
             currentState = States.UsingItem;
         }
         
-        public void Encourage(CharacterBase targetCharacter)
+        public void Encourage(CharacterBase target)
         {
-            Debug.Log("Test encourage action");
+            if (target == null) // TODO: Implement target selection
+            {
+                // HACK: Just pick a random party member for now
+                target = GetRandomFriend();
+            }
+            
+            // Encourage, the target gains 35% (encouragePercent) of the casting Characters WIS: Wisdom stat to the target's Resolve Gauge.
+            int gain = (int)((encouragePercent / 100.0f) * Wisdom);
 
+            Debug.Log("Test encourage action target " + target.CharacterName + " gains " + gain + " wisdom");
+            
+            // Loose the same amount of wisdom from casting encourage 
+            ApplyWisdom(-gain);
+            
+            // Target gains specified percentage of this character's wisdom
+            target.ApplyResolve(gain);
+            
             currentState = States.Encouraging;
         }
 
-        public void Taunt(CharacterBase targetCharacter)
+        public void Taunt(CharacterBase target)
         {
-            Debug.Log("Test taunt action");
+            if (target == null) // TODO: Implement target selection
+            {
+                // HACK: Just pick a random enemy for now
+                target = GetRandomEnemy();
+            }
+            
+            // Taunt, the target looses 35% (tauntPercent) of the casting Characters WIS: Wisdom stat to the target's Resolve Gauge.
+            int loss = (int) ((tauntPercent / 100.0f) * Wisdom);
+
+            Debug.Log("Test taunt action target " + target.CharacterName + " looses " + loss + " wisdom");
+
+            // Loose the same amount of wisdom from casting encourage 
+            ApplyWisdom(-loss);
+
+            // Target looses specified percentage of this character's wisdom
+            target.ApplyResolve(-loss);
 
             currentState = States.Taunting;
         }
 
-        private CombatUI GetCombatUI()
+        public CharacterBase GetRandomEnemy()
         {
-            CombatGameManager combatGameManager = CombatGameManager.Instance;
-            CombatUI combatUI = combatGameManager.transform.parent.GetComponent<CombatUI>(); // HACK: can't always guarantee UI is a parent of game manager 
-            return combatUI;
+            var enemies = CombatGameManager.Instance.turnsQueue.GetEnemies();
+            CharacterBase target = enemies[Random.Range(0, enemies.Count -1)];
+            return target;
         }
         
-        private BlockBarUI GetBlockBarUI()
+        public CharacterBase GetRandomFriend()
         {
-            return GetCombatUI().blockBarUI;
+            var friends = CombatGameManager.Instance.turnsQueue.GetChampions()
+                .Where(c=> c.ID != this.ID).ToArray();
+            CharacterBase target = friends[Random.Range(0, friends.Length -1)];
+            return target;
         }
         
         private void BlockBarUI_OnLostEvent()
@@ -198,7 +230,7 @@ namespace ChainsOfFate.Gerallt
             Cleanup();
             
             // APPLY DAMAGE
-            Defend(0, GetBlockBarUI().totalDamageRecieved);
+            Defend(0, CombatGameManager.Instance.GetBlockBarUI().totalDamageRecieved);
             
             ResetState();
             
@@ -209,7 +241,7 @@ namespace ChainsOfFate.Gerallt
         {
             Cleanup();
 
-            BlockBarUI blockBarUI = GetBlockBarUI();
+            BlockBarUI blockBarUI = CombatGameManager.Instance.GetBlockBarUI();
             
             // APPLY DAMAGE
             Defend(blockPercentage, blockBarUI.totalDamageRecieved);
@@ -228,7 +260,7 @@ namespace ChainsOfFate.Gerallt
 
         private void Cleanup()
         {
-            BlockBarUI blockBarUI = GetBlockBarUI();
+            BlockBarUI blockBarUI = CombatGameManager.Instance.GetBlockBarUI();
 
             blockBarUI.onWonEvent -= BlockBarUI_OnWonEvent;
             blockBarUI.onLostEvent -= BlockBarUI_OnLostEvent;
@@ -237,7 +269,7 @@ namespace ChainsOfFate.Gerallt
         private IEnumerator CompleteTurnSequence()
         {
             CombatGameManager combatGameManager = CombatGameManager.Instance;
-            BlockBarUI blockBarUI = GetBlockBarUI();
+            BlockBarUI blockBarUI = CombatGameManager.Instance.GetBlockBarUI();
 
             blockBarUI.SetVisibility(false);
             yield return new WaitForSeconds(CombatGameManager.Instance.havingTurnDelaySeconds);

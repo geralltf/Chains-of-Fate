@@ -8,10 +8,8 @@ using Random = UnityEngine.Random;
 
 namespace ChainsOfFate.Gerallt
 {
-    public class CombatGameManager : MonoBehaviour
+    public class CombatGameManager : SingletonBase<CombatGameManager>
     {
-        public static CombatGameManager Instance;
-        
         /// <summary>
         /// The delay the agent waits before completing their turn.
         /// </summary>
@@ -283,6 +281,17 @@ namespace ChainsOfFate.Gerallt
                 }
             }
         }
+        
+        public CombatUI GetCombatUI()
+        {
+            CombatUI combatUI = transform.parent.GetComponent<CombatUI>(); // HACK: can't always guarantee UI is a parent of game manager 
+            return combatUI;
+        }
+        
+        public BlockBarUI GetBlockBarUI()
+        {
+            return GetCombatUI().blockBarUI;
+        }
 
         private bool CheckGameOver()
         {
@@ -449,9 +458,9 @@ namespace ChainsOfFate.Gerallt
             }
         }
 
-        private void Awake()
+        public override void Awake()
         {
-            Instance = this;
+            base.Awake();
         }
     }
 }

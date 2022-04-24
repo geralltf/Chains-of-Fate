@@ -37,8 +37,7 @@ namespace ChainsOfFate.Gerallt
 
         private TweenerCore<Vector3, Vector3, VectorOptions> currentTween;
         private CameraFollow cameraFollow;
-        private Quaternion defaultCameraRotation;
-        
+
         public void SetVisibility(bool visibility)
         {
             if (view != null)
@@ -65,26 +64,12 @@ namespace ChainsOfFate.Gerallt
                 
                 if (visibility)
                 {
-                    defaultCameraRotation = cameraFollow.transform.rotation;
-
-                    // if (!isTestMode)
-                    // {
-                    //     gameObject.transform.rotation = quaternion.identity;
-                    //     
-                    //     cameraFollow.transform.rotation = quaternion.identity;
-                    // }
-                    
                     StartAnim();
 
                     StartCoroutine(TimeUntilLost());
                 }
                 else
                 {
-                    // if (!isTestMode)
-                    // {
-                    //     cameraFollow.transform.rotation = defaultCameraRotation;
-                    // }
-                    
                     StopAnim();
                 }
                 
