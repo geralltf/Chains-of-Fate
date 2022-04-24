@@ -64,6 +64,7 @@ namespace ChainsOfFate.Gerallt
         public event ResolveDelegate OnResolveTauntEvent;
         public event FleeDelegate OnFleeEvent;
         public event CounterAttackDelegate OnCounterAttackEvent;
+        public event Action OnCounterAttackCompleteEvent;
         
 
         private void OnDestroy()
@@ -423,6 +424,11 @@ namespace ChainsOfFate.Gerallt
         public void RaiseCounterAttackEvent(CharacterBase attacker, CharacterBase target)
         {
             OnCounterAttackEvent?.Invoke(attacker, target);
+        }
+        
+        public void RaiseCounterAttackCompleteEvent()
+        {
+            OnCounterAttackCompleteEvent?.Invoke();
         }
 
         private static void ShuffleList<T>(ref List<T> list)

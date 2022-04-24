@@ -211,7 +211,7 @@ namespace ChainsOfFate.Gerallt
         /// Apply the damage to health later when the player processed moves applied to them.
         /// </summary>
         /// <param name="damage"></param>
-        public virtual void AddDamage(int damage)
+        public virtual void AddDamage(int damage, CharacterBase attacker)
         {
             // Individual characters implement this differently.
         }

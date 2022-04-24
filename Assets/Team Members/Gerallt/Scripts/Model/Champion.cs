@@ -14,6 +14,12 @@ namespace ChainsOfFate.Gerallt
         /// </summary>
         public bool isMainCharacter;
 
+        
+        /// <summary>
+        /// The specified damage that is used when this champion does a counter attack.
+        /// </summary>
+        public int counterAttackDamage;
+
         /// <summary>
         /// Select the defensive stance.
         /// </summary>
@@ -54,6 +60,12 @@ namespace ChainsOfFate.Gerallt
             return Random.value > 0.5f;
         }
 
+        public void CounterAttack(CharacterBase target)
+        {
+            // Apply the champions counter attack damage to the target.
+            target.ApplyDamage(counterAttackDamage);
+        }
+        
         public void Attack(CharacterBase target, WeaponBase weapon)
         {
             Debug.Log("Test attack action - weapon " + weapon.GetName());
@@ -83,12 +95,9 @@ namespace ChainsOfFate.Gerallt
             Debug.Log("target has a defense = " + totalDefense + " total damage " + totalDamage);
             
             // APPLY DAMAGE to target later. Enemies always have to respond to damage immediately when its their turn. 
-            target.AddDamage(totalDamage);
+            target.AddDamage(totalDamage, this);
              
             currentState = States.AttackingWeapon;
-            
-            // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
-            //CombatGameManager.Instance.RaiseCounterAttackEvent(this, target);
         }
 
         public void Attack(CharacterBase target, SpellBase spell)
@@ -120,20 +129,17 @@ namespace ChainsOfFate.Gerallt
             Debug.Log("target has a defense = " + totalDefense + " total damage " + totalDamage);
             
             // APPLY DAMAGE to target later. Enemies always have to respond to damage immediately when its their turn. 
-            target.AddDamage(totalDamage);
+            target.AddDamage(totalDamage, this);
 
             // Reduce the arcana by the spell's cost.
             ReduceArcana(spell.SpellCost);
             
             currentState = States.AttackingSpell;
-            
-            // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
-            //CombatGameManager.Instance.RaiseCounterAttackEvent(this, target);
         }
 
-        public override void AddDamage(int damage)
+        public override void AddDamage(int damage, CharacterBase attacker)
         {
-            //base.AddDamage(damage);
+            base.AddDamage(damage, attacker);
 
             if (currentState == States.Defending)
             {
@@ -143,6 +149,8 @@ namespace ChainsOfFate.Gerallt
                 blockBarUI.onWonEvent += BlockBarUI_OnWonEvent;
                 blockBarUI.onLostEvent += BlockBarUI_OnLostEvent;
                 blockBarUI.defendingCharacter = this;
+                blockBarUI.attackingCharacter = attacker;
+                blockBarUI.isTestMode = GetCombatUI().isTestMode;
                 blockBarUI.SetVisibility(true);
             }
             else
@@ -172,12 +180,17 @@ namespace ChainsOfFate.Gerallt
 
             currentState = States.Taunting;
         }
-        
-        private BlockBarUI GetBlockBarUI()
+
+        private CombatUI GetCombatUI()
         {
             CombatGameManager combatGameManager = CombatGameManager.Instance;
             CombatUI combatUI = combatGameManager.transform.parent.GetComponent<CombatUI>(); // HACK: can't always guarantee UI is a parent of game manager 
-            return combatUI.blockBarUI;
+            return combatUI;
+        }
+        
+        private BlockBarUI GetBlockBarUI()
+        {
+            return GetCombatUI().blockBarUI;
         }
         
         private void BlockBarUI_OnLostEvent()
@@ -195,11 +208,20 @@ namespace ChainsOfFate.Gerallt
         private void BlockBarUI_OnWonEvent(float blockPercentage, bool doCounterAttack)
         {
             Cleanup();
+
+            BlockBarUI blockBarUI = GetBlockBarUI();
             
             // APPLY DAMAGE
-            Defend(blockPercentage, GetBlockBarUI().totalDamageRecieved);
+            Defend(blockPercentage, blockBarUI.totalDamageRecieved);
             
             ResetState();
+
+            // COUNTERATTACK
+            if (doCounterAttack)
+            {
+                // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
+                CombatGameManager.Instance.RaiseCounterAttackEvent(this, blockBarUI.attackingCharacter);
+            }
             
             StartCoroutine(CompleteTurnSequence());
         }
@@ -218,7 +240,7 @@ namespace ChainsOfFate.Gerallt
             BlockBarUI blockBarUI = GetBlockBarUI();
 
             blockBarUI.SetVisibility(false);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(CombatGameManager.Instance.havingTurnDelaySeconds);
             
             combatGameManager.FinishedTurn(this);
             combatGameManager.RaiseDefendEvent(this, null);

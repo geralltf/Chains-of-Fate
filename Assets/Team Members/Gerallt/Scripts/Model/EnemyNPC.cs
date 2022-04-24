@@ -250,15 +250,9 @@ namespace ChainsOfFate.Gerallt
             Debug.Log("target has a defense = " + totalDefense + " total damage " + totalDamage);
             
             // APPLY DAMAGE to target later. Champions always have to respond to damage after their QTE. 
-            target.AddDamage(totalDamage);
+            target.AddDamage(totalDamage, this);
 
             currentState = States.AttackingWeapon;
-            
-            if (target is Champion)
-            {
-                // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
-                CombatGameManager.Instance.RaiseCounterAttackEvent(this, target);
-            }
         }
         
         public void Attack(CharacterBase target, SpellBase spell)
@@ -283,21 +277,15 @@ namespace ChainsOfFate.Gerallt
             Debug.Log("target has a defense = " + totalDefense + " total damage " + totalDamage);
             
             // APPLY DAMAGE to target later. Champions always have to respond to damage after their QTE. 
-            target.AddDamage(totalDamage);
+            target.AddDamage(totalDamage, this);
 
             // Reduce the arcana by the spell's cost.
             ReduceArcana(spell.SpellCost);
             
             currentState = States.AttackingSpell;
-            
-            if (target is Champion)
-            {
-                // Raise Counter Attack event for the specified target, so the target can apply a counter attack.
-                CombatGameManager.Instance.RaiseCounterAttackEvent(this, target);
-            }
         }
         
-        public override void AddDamage(int damage)
+        public override void AddDamage(int damage, CharacterBase attacker)
         {
             //base.AddDamage(damage);
 

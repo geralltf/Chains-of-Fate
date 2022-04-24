@@ -30,13 +30,6 @@ namespace ChainsOfFate.Gerallt
             PlayerButtons playerButtons = view.GetComponentInChildren<PlayerButtons>(true);
             playerButtons.ResetViewState();
             playerButtons.enabled = true;
-            
-            // // HACK: Set view states to default values before exiting
-            // view.GetComponentInChildren<PlayerButtons>(true).gameObject.SetActive(true);
-            // view.GetComponentInChildren<PlayerButtonsAttackSet>(true).gameObject.SetActive(false);
-            // view.GetComponentInChildren<PlayerButtonsDefensiveSet>(true).gameObject.SetActive(false);
-            // view.GetComponentInChildren<PlayerButtonsInventorySet>(true).gameObject.SetActive(false);
-            // view.GetComponentInChildren<PlayerButtonsResolveSet>(true).gameObject.SetActive(false);
         }
         
         public void RaiseCloseCombatUI(bool hasWon)

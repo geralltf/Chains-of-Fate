@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 25
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687320193506509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 50
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687320372977829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 10
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687320440054491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 10
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687320576629116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 75
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687320729202627
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1230,7 +1230,11 @@ MonoBehaviour:
   guessCooldown: 1.5
   animating: 0
   defendingCharacter: {fileID: 0}
+  attackingCharacter: {fileID: 0}
   isTestMode: 0
+  orthographicScale: {x: 2, y: 2, z: 2}
+  projectionScale: {x: 0.02, y: 0.02, z: 0.02}
+  totalDamageRecieved: 0
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1355,7 +1359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 50
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687321204320382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1469,7 +1473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentView: {fileID: 727687321092993544}
   defenseBlockPerentage: 25
-  isCounterAttack: 0
+  isCounterAttack: 1
 --- !u!65 &727687321283412693
 BoxCollider:
   m_ObjectHideFlags: 0
