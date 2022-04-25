@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ChainsOfFate.Gerallt
 {
@@ -31,10 +32,33 @@ namespace ChainsOfFate.Gerallt
             playerButtons.ResetViewState();
             playerButtons.enabled = true;
         }
+
+        public void SetRootGridVisibilities(bool visibility)
+        {
+            Scene active = SceneManager.GetActiveScene();
+
+            GameObject[] roots = active.GetRootGameObjects();
+            for (int i = 0; i < roots.Length; i++)
+            {
+                GameObject child = roots[i];
+
+                Grid comp = child.GetComponent<Grid>();
+                if (comp != null)
+                {
+                    comp.gameObject.SetActive(visibility); 
+                }
+            }
+            
+        }
         
         public void RaiseCloseCombatUI(bool hasWon)
         {
             ResetViewState();
+
+            if (!isTestMode)
+            {
+                SetRootGridVisibilities(true); // HACK: Because Grids draw on top of block bar and scene background, so lets enable them back.
+            }
 
             onCloseCombatUI?.Invoke(this, hasWon);
         }
@@ -82,6 +106,8 @@ namespace ChainsOfFate.Gerallt
             
                 sceneBg.transform.position = offset;
                 sceneBg.transform.rotation = cameraFollow.transform.rotation;
+                
+                SetRootGridVisibilities(false); // HACK: Because Grids draw on top of block bar and scene background, so lets disable them.
             }
 
             combatGameManager.SetUpQueue(enemies, partyMembers, currentPlayer);

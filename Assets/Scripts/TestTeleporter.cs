@@ -32,8 +32,16 @@ public class TestTeleporter : MonoBehaviour
                 // Disable movement of enemy and player.
                 GetComponent<EnemyMove>().enabled = false;
                 GetComponent<TestTeleporter>().enabled = false;
-                GetComponent<Rigidbody2D>().isKinematic = true;
-                playerController.GetComponent<Rigidbody2D>().isKinematic = true;
+
+                Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
+                enemyRigidbody.velocity = Vector2.zero;
+                enemyRigidbody.angularVelocity = 0;
+                enemyRigidbody.isKinematic = true;
+                
+                Rigidbody2D playerRigidbody = playerController.GetComponent<Rigidbody2D>();
+                playerRigidbody.velocity = Vector2.zero;
+                playerRigidbody.angularVelocity = 0;
+                playerRigidbody.isKinematic = true;
             }
             
             if (loadCombatScene) // Old approach to loading combat scene.
@@ -56,6 +64,7 @@ public class TestTeleporter : MonoBehaviour
                 playerController.controls.Player.Disable();
                 
                 combatUI.isTestMode = false;
+                CombatGameManager.Instance.GetBlockBarUI().isTestMode = false;
                 combatUI.onCloseCombatUI += CombatUI_OnCloseCombatUI;
                 //combatUI.onSceneDestroyed += CombatUI_OnSceneDestroyed;
                 combatUI.SetCurrentParty(enemies, partyMembers, playerController.gameObject);

@@ -38,29 +38,39 @@ namespace ChainsOfFate.Gerallt
         private TweenerCore<Vector3, Vector3, VectorOptions> currentTween;
         private CameraFollow cameraFollow;
 
+        private void FixPosition()
+        {
+            if (!isTestMode)
+            {
+                Camera _camera = cameraFollow.GetComponent<Camera>();
+                Vector3 offset = cameraFollow.GetCenterWorldPosition();
+                //offset.z = 0.1f;
+                // FindObjectOfType<WorldInfo>().sceneBounds.center
+                gameObject.transform.position = offset;
+                gameObject.transform.rotation = cameraFollow.transform.rotation;
+                    
+                if (_camera.orthographic)
+                {
+                    // float height = _camera.orthographicSize * 2.0f;
+                    // float width =  height * Screen.height / Screen.width;
+                    // float SIZE_ON_SCREEN = 5.0f;
+                    
+                    //gameObject.transform.localScale = Vector3.one * width / SIZE_ON_SCREEN;
+                    
+                    gameObject.transform.localScale = orthographicScale;
+                }
+                else
+                {
+                    gameObject.transform.localScale = projectionScale;
+                }
+            }
+        }
+        
         public void SetVisibility(bool visibility)
         {
             if (view != null)
             {
-                if (!isTestMode)
-                {
-                    Camera _camera = cameraFollow.GetComponent<Camera>();
-                    Vector3 offset = cameraFollow.GetCenterWorldPosition();
-                    //offset.z = 0.1f;
-                    // FindObjectOfType<WorldInfo>().sceneBounds.center
-                    gameObject.transform.position = offset;
-                    gameObject.transform.rotation = cameraFollow.transform.rotation;
-                    
-                    if (_camera.orthographic)
-                    {
-                        gameObject.transform.localScale = orthographicScale;
-                    }
-                    else
-                    {
-                        gameObject.transform.localScale = projectionScale;
-                    }
-                }
-
+                FixPosition();
                 
                 if (visibility)
                 {
@@ -153,10 +163,14 @@ namespace ChainsOfFate.Gerallt
         private void Start()
         {
             cameraFollow = FindObjectOfType<CameraFollow>();
+
+            isTestMode = GameManager.Instance.combatUI.isTestMode;
         }
 
         private void OnEnable()
         {
+            FixPosition();
+            
             StartAnim();
         }
 
