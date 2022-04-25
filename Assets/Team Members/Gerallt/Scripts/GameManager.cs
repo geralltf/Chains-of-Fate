@@ -11,10 +11,12 @@ namespace ChainsOfFate.Gerallt
     public class GameManager : SingletonBase<GameManager>
     {
         public float outofboundsBounceForce = 10.0f;
+        public bool checkBoundaryCollisions = true;
         public float boundaryMinDistance = 10.0f;
         public float loadRange = 10.0f;
         public float unloadRange = 15.0f;
         public float boundaryRange = 3.0f;
+        public bool dontUnloadScenes = false;
         public float loadingAnimationSpeed = 1.0f;
         public Color fadeInColourStart;
         public Color fadeInColourEnd;

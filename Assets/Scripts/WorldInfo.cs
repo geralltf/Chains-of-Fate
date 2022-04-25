@@ -13,7 +13,6 @@ public class WorldInfo : MonoBehaviour
 {
     //public float loadRange = 50; // Dont need this anymore. Found dynamically from ground plane collider bounds extents.
     public Object leftScene, rightScene, upScene, downScene;
-    public bool checkBoundaryCollisions = true;
     public bool enableDebugColour = false;
     public Color debugColour;
     
@@ -27,6 +26,7 @@ public class WorldInfo : MonoBehaviour
 
     private Scene? thisScene;
     private Scene? theNewScene;
+    internal Collider2D thisCollider;
 
     public enum SceneDirection
     {
@@ -45,15 +45,14 @@ public class WorldInfo : MonoBehaviour
         Tilemap tilemap = GetComponent<Tilemap>();
         
         // Fetch the Collider from the 2D tilemap ground plane
-        Collider2D thisCollider = GetComponent<Collider2D>();
+        thisCollider = GetComponent<Collider2D>();
+
+        //UpdateBounds();
+        
         Vector3 mapSize = thisCollider.bounds.size;
-        //mapSize = tilemap.size;
-        //mapSize = tilemap.CellToWorld(tilemap.size);
-        
-        centrePoint = thisCollider.bounds.center;
-        
-        //Vector3 mapSize = thisCollider.bounds.extents;
-        
+        centrePoint = transform.position + thisCollider.bounds.center;
+        //centrePoint = thisCollider.bounds.center;
+
         // Get the map bounds for this scene.
         sceneBounds = new Bounds(centrePoint, mapSize);
 
@@ -63,6 +62,21 @@ public class WorldInfo : MonoBehaviour
         }
     }
 
+    private void UpdateBounds()
+    {
+        Vector3 mapSize = thisCollider.bounds.size;
+        //mapSize = tilemap.size;
+        //mapSize = tilemap.CellToWorld(tilemap.size);
+        
+        centrePoint = transform.position + thisCollider.bounds.center;
+        //centrePoint = thisCollider.bounds.center;
+        
+        //Vector3 mapSize = thisCollider.bounds.extents;
+        
+        // Get the map bounds for this scene.
+        sceneBounds = new Bounds(centrePoint, mapSize);
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(sceneBounds.center, sceneBounds.size);
@@ -72,7 +86,7 @@ public class WorldInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //UpdateBounds();
     }
 
     // Update is called once per frame
@@ -216,7 +230,7 @@ public class WorldInfo : MonoBehaviour
                 break;
         }
 
-        if (string.IsNullOrEmpty(sceneName) && dist < gameManager.boundaryMinDistance && boundsTest && checkBoundaryCollisions)
+        if (string.IsNullOrEmpty(sceneName) && dist < gameManager.boundaryMinDistance && boundsTest && ChainsOfFate.Gerallt.GameManager.Instance.checkBoundaryCollisions)
         {
             float oldZ = pos.z;
             pos.x += posDelta.x;
@@ -266,23 +280,30 @@ public class WorldInfo : MonoBehaviour
         {
             GameObject go = rootObjects[i];
 
+            Tilemap[] tilemaps = go.GetComponentsInChildren<Tilemap>();
+            foreach (Tilemap tilemap in tilemaps)
+            {
+                tilemap.transform.position = transform.position + loadOffset;
+            }
+            
             Transform rootTransform = go.GetComponent<Transform>();
-            WorldInfo worldInfo = go.GetComponent<WorldInfo>();
+            WorldInfo worldInfo = go.GetComponentInChildren<WorldInfo>();
             
             if (worldInfo != null)
             {
-                worldInfo.sceneBounds.center = sceneBounds.center + loadOffset;
-                worldInfo.transform.position = sceneBounds.center + loadOffset;
-                worldInfo.centrePoint = worldInfo.transform.position;
+                worldInfo.sceneBounds.center = worldInfo.thisCollider.bounds.center + transform.position + loadOffset;
+                worldInfo.transform.position = transform.position + loadOffset;
+                worldInfo.centrePoint = worldInfo.sceneBounds.center;
                 worldInfo.thisScene = newScene;
                 worldInfo.approachingDirection = approaching;
-
+                //worldInfo.UpdateBounds();
+                
                 continue;
             }
 
             if (rootTransform != null)
             {
-                rootTransform.position = sceneBounds.center + loadOffset;
+                rootTransform.position = transform.position + loadOffset;
             }
         }
         
@@ -302,7 +323,10 @@ public class WorldInfo : MonoBehaviour
     {
         if (theNewScene.HasValue)
         {
-            SceneManager.UnloadSceneAsync(thisScene.Value);
+            if (!ChainsOfFate.Gerallt.GameManager.Instance.dontUnloadScenes)
+            {
+                SceneManager.UnloadSceneAsync(thisScene.Value);
+            }
             SceneManager.SetActiveScene(theNewScene.Value);
 
             theNewScene = null;
