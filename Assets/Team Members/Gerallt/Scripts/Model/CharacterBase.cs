@@ -368,6 +368,50 @@ namespace ChainsOfFate.Gerallt
             return allItems;
         }
 
+        public void RemoveItem(IDescriptive item)
+        {
+            int i = 0;
+            if (item is WeaponBase) // TODO: Refactor this generalising item lists into one IDescriptive list
+            {
+                WeaponBase weapon = item as WeaponBase;
+                foreach (WeaponBase w in availableWeapons)
+                {
+                    if (w.ID == weapon.ID)
+                    {
+                        availableWeapons.RemoveAt(i);
+                        break;
+                    }
+                    i++;
+                }
+            }
+            else if (item is SpellBase)
+            {
+                SpellBase spell = item as SpellBase;
+                foreach (SpellBase s in availableSpells)
+                {
+                    if (s.ID == spell.ID)
+                    {
+                        availableSpells.RemoveAt(i);
+                        break;
+                    }
+                    i++;
+                }
+            }
+            else if (item is ItemBase)
+            {
+                ItemBase itemBase = item as ItemBase;
+                foreach (ItemBase it in availableItems)
+                {
+                    if (it.ID == itemBase.ID)
+                    {
+                        availableItems.RemoveAt(i);
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+        
         public void ResetState()
         {
             currentState = States.NotSet;
