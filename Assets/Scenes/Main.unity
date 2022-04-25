@@ -150,7 +150,7 @@ Grid:
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 0
+  m_CellLayout: 2
   m_CellSwizzle: 0
 --- !u!4 &503365389
 Transform:
@@ -314,7 +314,6 @@ MonoBehaviour:
   rightScene: {fileID: 102900000, guid: 7ad93cb4788e071448ade3cbf43b8bcc, type: 3}
   upScene: {fileID: 102900000, guid: a4649b3933fe73346b86972179d4335b, type: 3}
   downScene: {fileID: 102900000, guid: 7681ac715407d73439f9148b5475e7f9, type: 3}
-  checkBoundaryCollisions: 1
   enableDebugColour: 0
   debugColour: {r: 0, g: 0, b: 0, a: 0}
   approachingDirection: 0

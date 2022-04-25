@@ -174,7 +174,6 @@ MonoBehaviour:
   rightScene: {fileID: 0}
   upScene: {fileID: 0}
   downScene: {fileID: 0}
-  checkBoundaryCollisions: 1
   enableDebugColour: 0
   debugColour: {r: 0, g: 0, b: 0, a: 0}
   approachingDirection: 0
@@ -34219,7 +34218,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 16
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

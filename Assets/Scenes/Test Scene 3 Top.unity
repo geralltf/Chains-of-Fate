@@ -174,7 +174,6 @@ MonoBehaviour:
   rightScene: {fileID: 0}
   upScene: {fileID: 0}
   downScene: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
-  checkBoundaryCollisions: 1
   enableDebugColour: 0
   debugColour: {r: 0, g: 0, b: 0, a: 0}
   approachingDirection: 0
@@ -31182,7 +31181,7 @@ Grid:
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 0
+  m_CellLayout: 2
   m_CellSwizzle: 0
 --- !u!4 &1134362576
 Transform:
