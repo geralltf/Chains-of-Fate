@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     
     public GameObject player;
     public Vector3 orthoOffset;
+    public Vector3 perspectiveOffset;
     public float trackingSpeed = 2.0f;
     
     public Vector3 GetCenterWorldPosition()
@@ -50,6 +51,10 @@ public class CameraFollow : MonoBehaviour
         if (_camera.orthographic)
         {
             transform.position += orthoOffset;
+        }
+        else
+        {
+            transform.position += perspectiveOffset;
         }
     }
 }
