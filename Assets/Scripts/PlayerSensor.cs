@@ -43,7 +43,7 @@ public class PlayerSensor : MonoBehaviour
     //     }
     // }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var playerController = other.GetComponent<PlayerController>();
         if (playerController != null)
@@ -52,7 +52,7 @@ public class PlayerSensor : MonoBehaviour
         }
     }
     
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         var playerController = other.GetComponent<PlayerController>();
         if (playerController != null)

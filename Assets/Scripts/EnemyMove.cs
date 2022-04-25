@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -35,6 +36,7 @@ public class EnemyMove : MonoBehaviour
     
     private PlayerSensor playerSensor;
     private WorldInfo worldInfo;
+    private Rigidbody2D rb;
 
     public enum MovementType
     {
@@ -110,7 +112,9 @@ public class EnemyMove : MonoBehaviour
 
         //pos = Vector3.MoveTowards(pos, playerPos, speed * Time.deltaTime); // Old way
 
-        transform.position = pos;
+        rb.MovePosition(pos);
+        
+        //transform.position = pos;
     }
 
     public void PatrolMove()
@@ -131,11 +135,13 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            Vector3 posDelta = Vector3.Lerp(pos, patrolPoint, patrollingSpeed * Time.deltaTime);
+            Vector3 posDelta = Vector3.Lerp(pos, patrolPoint, patrollingSpeed * Time.fixedDeltaTime);
             pos.x = posDelta.x;
-            pos.z = posDelta.z;
+            pos.y = posDelta.y;
             
-            transform.position = pos;
+            //transform.position = pos;
+            
+            rb.MovePosition(pos);
         }
     }
 
@@ -148,8 +154,8 @@ public class EnemyMove : MonoBehaviour
             
             Vector3 patrolPoint = new Vector3(
                 patrolPointMinDistance + (Random.insideUnitSphere.x * patrolPointRadius),
-                0.0f, 
-                patrolPointMinDistance + (Random.insideUnitSphere.z * patrolPointRadius)
+                patrolPointMinDistance + (Random.insideUnitSphere.y * patrolPointRadius), 
+                0.0f
             );
             patrolPoints.Add(patrolPoint);
         }
@@ -163,17 +169,29 @@ public class EnemyMove : MonoBehaviour
         {
             StartCoroutine(ChangeDirection());
         }
-            
-        Vector3 pos = transform.position;
-        float oldY = pos.y;
 
-        transform.RotateAround(enemy.transform.position, Vector3.up, 360 * circularMoveDirection * circularTurnSpeed * Time.deltaTime);
-            
-        pos = transform.position;
-        pos.y = oldY;
-        transform.position = pos;
+        float angle = 360 * circularMoveDirection * circularTurnSpeed * Time.fixedDeltaTime;
+        Vector3 point = enemy.transform.position;
+        Vector3 axis = Vector3.forward;
+        
+        //transform.RotateAround(point, axis, angle); // Deprecated API
+
+        Quaternion rotatedAngle =  Quaternion.AngleAxis(angle, axis);
+
+        Vector3 pos = RotateAroundPivot(rb.position, point, rotatedAngle);
+
+        //transform.position = pos;
+        transform.rotation *= rotatedAngle;
+
+        rb.MovePosition(pos);
+        //rb.MoveRotation(rotatedAngle);
     }
         
+    Vector3 RotateAroundPivot(Vector3 point, Vector3 pivot, Quaternion angle)
+    {
+        return angle * ( point - pivot) + pivot;
+    }
+    
     IEnumerator ChangeDirection()
     {
         waitTurning = true;
@@ -207,5 +225,10 @@ public class EnemyMove : MonoBehaviour
     public MovementType RandomMovementType()
     {
         return (MovementType)Random.Range(0, (int)MovementType.Count);
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 }

@@ -8,14 +8,14 @@ using UnityEngine.SceneManagement;
 
 public class TestTeleporter : MonoBehaviour
 {
-    public string scene;
+    public UnityEngine.Object scene;
     private bool loadCombatScene = false; // Old way to load combat UI was to actually load the scene.
     public bool quickShowCombatScene = true;
     
     private PlayerController playerController;
     private bool collisionsDisabled = false;
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (collisionsDisabled) return;
         
@@ -32,14 +32,14 @@ public class TestTeleporter : MonoBehaviour
                 // Disable movement of enemy and player.
                 GetComponent<EnemyMove>().enabled = false;
                 GetComponent<TestTeleporter>().enabled = false;
-                GetComponent<Rigidbody>().isKinematic = true;
-                playerController.GetComponent<Rigidbody>().isKinematic = true;
+                GetComponent<Rigidbody2D>().isKinematic = true;
+                playerController.GetComponent<Rigidbody2D>().isKinematic = true;
             }
             
             if (loadCombatScene) // Old approach to loading combat scene.
             {
                 SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
-                SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+                SceneManager.LoadScene(WorldInfo.GetSceneName(scene), LoadSceneMode.Additive);
             }
             else if (quickShowCombatScene) // New approach to loading combat scene without using Scene Manager.
             {
@@ -67,7 +67,7 @@ public class TestTeleporter : MonoBehaviour
             // General teleporter function.
             // TODO: Need to test general teleporting
             SceneManager.sceneLoaded += SceneManager_GeneralTeleport_OnSceneLoaded;
-            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+            SceneManager.LoadScene(WorldInfo.GetSceneName(scene), LoadSceneMode.Additive);
         }
     }
 
@@ -80,14 +80,14 @@ public class TestTeleporter : MonoBehaviour
         // Enable movement of enemy and player.
         playerController.controls.Player.Enable();
 
-        Rigidbody enemyRigidbody = GetComponent<Rigidbody>();
-        enemyRigidbody.velocity = Vector3.zero;
-        enemyRigidbody.angularVelocity = Vector3.zero;
+        Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
+        enemyRigidbody.velocity = Vector2.zero;
+        enemyRigidbody.angularVelocity = 0;
         enemyRigidbody.isKinematic = false;
 
-        Rigidbody playerRigidbody = playerController.GetComponent<Rigidbody>();
-        playerRigidbody.velocity = Vector3.zero;
-        playerRigidbody.angularVelocity = Vector3.zero;
+        Rigidbody2D playerRigidbody = playerController.GetComponent<Rigidbody2D>();
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.angularVelocity = 0;
         playerRigidbody.isKinematic = false;
 
         if (hasWon)
@@ -143,10 +143,10 @@ public class TestTeleporter : MonoBehaviour
         // Enable movement of enemy and player.
         playerController.controls.Player.Enable();
         
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        GetComponent<Rigidbody>().isKinematic = false;
-        playerController.GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().angularVelocity = 0;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        playerController.GetComponent<Rigidbody2D>().isKinematic = false;
         
         StartCoroutine(ResumeFunctionAndMovement());
     }

@@ -1,15 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class WorldInfo : MonoBehaviour
 {
     //public float loadRange = 50; // Dont need this anymore. Found dynamically from ground plane collider bounds extents.
-    public string leftScene, rightScene, upScene, downScene;
+    public Object leftScene, rightScene, upScene, downScene;
+    public bool checkBoundaryCollisions = true;
     public bool enableDebugColour = false;
     public Color debugColour;
     
@@ -24,15 +28,32 @@ public class WorldInfo : MonoBehaviour
     private Scene? thisScene;
     private Scene? theNewScene;
 
+    public enum SceneDirection
+    {
+        Undefined,
+        Left,
+        Right,
+        Top,
+        Bottom
+    }
+    
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>().transform;
         centrePoint = transform.position;
 
-        // Fetch the Collider from the ground plane 
-        Collider thisCollider = GetComponent<Collider>();
+        Tilemap tilemap = GetComponent<Tilemap>();
+        
+        // Fetch the Collider from the 2D tilemap ground plane
+        Collider2D thisCollider = GetComponent<Collider2D>();
         Vector3 mapSize = thisCollider.bounds.size;
-
+        //mapSize = tilemap.size;
+        //mapSize = tilemap.CellToWorld(tilemap.size);
+        
+        centrePoint = thisCollider.bounds.center;
+        
+        //Vector3 mapSize = thisCollider.bounds.extents;
+        
         // Get the map bounds for this scene.
         sceneBounds = new Bounds(centrePoint, mapSize);
 
@@ -41,7 +62,12 @@ public class WorldInfo : MonoBehaviour
             GetComponent<MeshRenderer>().material.color = debugColour;
         }
     }
-        
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(sceneBounds.center, sceneBounds.size);
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,15 +80,26 @@ public class WorldInfo : MonoBehaviour
     {
         CheckPosition();
     }
+    
 
-    public enum SceneDirection
+    public static string GetSceneName(Object sceneObj)
     {
-        Undefined,
-        Left,
-        Right,
-        Top,
-        Bottom
+        if (sceneObj == null)
+        {
+            return string.Empty;
+        }
+        
+        SceneAsset sceneAsset = sceneObj as SceneAsset;
+        ;
+        if (sceneAsset == null)
+        {
+            throw new ArgumentException(
+                "Object is meant to be of type 'SceneAsset'. Drag an actual Scene file using the inspector.");
+        }
+        
+        return sceneAsset.name;
     }
+    
     public void TryLoadScene(SceneDirection sceneDirection)
     {
         bool sceneLoaded = false;
@@ -75,19 +112,19 @@ public class WorldInfo : MonoBehaviour
         {
             case SceneDirection.Left:
                 sceneLoaded = leftSceneLoaded;
-                sceneName = leftScene;
+                sceneName = GetSceneName(leftScene);
                 break;
             case SceneDirection.Right:
                 sceneLoaded = rightSceneLoaded;
-                sceneName = rightScene;
+                sceneName = GetSceneName(rightScene);
                 break;
             case SceneDirection.Top:
                 sceneLoaded = upSceneLoaded;
-                sceneName = upScene;
+                sceneName = GetSceneName(upScene);
                 break;
             case SceneDirection.Bottom:
                 sceneLoaded = downSceneLoaded;
-                sceneName = downScene;
+                sceneName = GetSceneName(downScene);
                 break;
         }
         
@@ -146,7 +183,7 @@ public class WorldInfo : MonoBehaviour
         switch (sceneDirection)
         {
             case SceneDirection.Left:
-                sceneName = leftScene;
+                sceneName = GetSceneName(leftScene);
                 dirBounds.x += -sceneBounds.extents.x;
                 boundaryLocation.x = (sceneBounds.center.x + dirBounds.x);
                 dist = (pos.x - boundaryLocation.x);
@@ -154,7 +191,7 @@ public class WorldInfo : MonoBehaviour
                 boundsTest = (pos.x < centrePoint.x - (sceneBounds.extents.x - gameManager.boundaryRange));
                 break;
             case SceneDirection.Right:
-                sceneName = rightScene;
+                sceneName = GetSceneName(rightScene);
                 dirBounds.x += sceneBounds.extents.x;
                 boundaryLocation.x = (sceneBounds.center.x + dirBounds.x);
                 dist = (pos.x - boundaryLocation.x);
@@ -162,29 +199,29 @@ public class WorldInfo : MonoBehaviour
                 boundsTest = (pos.x > centrePoint.x + (sceneBounds.extents.x - gameManager.boundaryRange));
                 break;
             case SceneDirection.Top:
-                sceneName = upScene;
-                dirBounds.z += sceneBounds.extents.z;
-                boundaryLocation.z = (sceneBounds.center.z + dirBounds.z);
-                dist = (pos.z - boundaryLocation.z);
-                posDelta.z = dist * gameManager.outofboundsBounceForce * dt;
-                boundsTest = (pos.z > centrePoint.z + (sceneBounds.extents.z - gameManager.boundaryRange));
+                sceneName = GetSceneName(upScene);
+                dirBounds.y += sceneBounds.extents.y;
+                boundaryLocation.y = (sceneBounds.center.y + dirBounds.y);
+                dist = (pos.y - boundaryLocation.y);
+                posDelta.y = dist * gameManager.outofboundsBounceForce * dt;
+                boundsTest = (pos.y > centrePoint.y + (sceneBounds.extents.y - gameManager.boundaryRange));
                 break;
             case SceneDirection.Bottom:
-                sceneName = downScene;
-                dirBounds.z += -sceneBounds.extents.z;
-                boundaryLocation.z = (sceneBounds.center.z + dirBounds.z);
-                dist = (pos.z - boundaryLocation.z);
-                posDelta.z = dist * gameManager.outofboundsBounceForce * dt;
-                boundsTest = (pos.z < centrePoint.z - (sceneBounds.extents.z - gameManager.boundaryRange));
+                sceneName = GetSceneName(downScene);
+                dirBounds.y += -sceneBounds.extents.y;
+                boundaryLocation.y = (sceneBounds.center.y + dirBounds.y);
+                dist = (pos.y - boundaryLocation.y);
+                posDelta.y = dist * gameManager.outofboundsBounceForce * dt;
+                boundsTest = (pos.y < centrePoint.y - (sceneBounds.extents.y - gameManager.boundaryRange));
                 break;
         }
 
-        if (string.IsNullOrEmpty(sceneName) && dist < gameManager.boundaryMinDistance && boundsTest)
+        if (string.IsNullOrEmpty(sceneName) && dist < gameManager.boundaryMinDistance && boundsTest && checkBoundaryCollisions)
         {
-            float oldY = pos.y;
+            float oldZ = pos.z;
             pos.x += posDelta.x;
-            pos.z += posDelta.z;
-            pos.y = oldY;
+            pos.y += posDelta.y;
+            pos.z = oldZ;
                 
             player.position = pos;
 
@@ -213,11 +250,11 @@ public class WorldInfo : MonoBehaviour
                 approaching = SceneDirection.Left;
                 break;
             case SceneDirection.Top:
-                loadOffset.z += sceneBounds.extents.z;
+                loadOffset.y += sceneBounds.extents.y;
                 approaching = SceneDirection.Bottom;
                 break;
             case SceneDirection.Bottom:
-                loadOffset.z += -sceneBounds.extents.z;
+                loadOffset.y += -sceneBounds.extents.y;
                 approaching = SceneDirection.Top;
                 break;
         }
@@ -322,20 +359,20 @@ public class WorldInfo : MonoBehaviour
     void CheckTop(Vector3 pos, ChainsOfFate.Gerallt.GameManager gameManager)
     {
         // Test if finished approaching Top
-        if ((pos.z < centrePoint.z + sceneBounds.extents.z - gameManager.unloadRange) && approachingDirection == SceneDirection.Top)
+        if ((pos.y < centrePoint.y + sceneBounds.extents.y - gameManager.unloadRange) && approachingDirection == SceneDirection.Top)
         {
             approachingDirection = SceneDirection.Undefined;
         }
         
         // Top scene
-        if (pos.z > centrePoint.z + (sceneBounds.extents.z - gameManager.loadRange) && approachingDirection == SceneDirection.Undefined)
+        if (pos.y > centrePoint.y + (sceneBounds.extents.y - gameManager.loadRange) && approachingDirection == SceneDirection.Undefined)
         {
             if(!CheckOutsideBounds(SceneDirection.Top))
             {
                 TryLoadScene(SceneDirection.Top);
             }
         }
-        if (pos.z > centrePoint.z + sceneBounds.extents.z)
+        if (pos.y > centrePoint.y + sceneBounds.extents.y)
         {
             FinishLoading();
         }
@@ -344,20 +381,20 @@ public class WorldInfo : MonoBehaviour
     void CheckBottom(Vector3 pos, ChainsOfFate.Gerallt.GameManager gameManager)
     {
         // Test if finished approaching Bottom
-        if ((pos.z > centrePoint.z - sceneBounds.extents.z + gameManager.unloadRange) && approachingDirection == SceneDirection.Bottom)
+        if ((pos.y > centrePoint.y - sceneBounds.extents.y + gameManager.unloadRange) && approachingDirection == SceneDirection.Bottom)
         {
             approachingDirection = SceneDirection.Undefined;
         }
         
         // Bottom scene
-        if (pos.z < centrePoint.z - (sceneBounds.extents.z - gameManager.loadRange) && approachingDirection == SceneDirection.Undefined)
+        if (pos.y < centrePoint.y - (sceneBounds.extents.y - gameManager.loadRange) && approachingDirection == SceneDirection.Undefined)
         {
             if(!CheckOutsideBounds(SceneDirection.Bottom))
             {
                 TryLoadScene(SceneDirection.Bottom);
             }
         }
-        if (pos.z < centrePoint.z - sceneBounds.extents.z)
+        if (pos.y < centrePoint.y - sceneBounds.extents.y)
         {
             FinishLoading();
         }
@@ -375,82 +412,5 @@ public class WorldInfo : MonoBehaviour
             CheckTop(pos, gameManager);
             CheckBottom(pos, gameManager);
         }
-        
-        // Old scene loading code by Tim: 
-        
-        // if (player.hasChanged)
-        // {
-        //     if (player.position.x > centrePoint.x + loadRange)
-        //     {
-        //         if (player.position.x > centrePoint.x + (loadRange))
-        //         {
-        //             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        //         }
-        //
-        //         if (!rightSceneLoaded)
-        //         {
-        //             if (rightScene != null)
-        //             {
-        //                 SceneManager.LoadScene(rightScene, LoadSceneMode.Additive);
-        //                 rightSceneLoaded = true;
-        //             }
-        //         }
-        //     }
-        //
-        //     if (player.position.x < centrePoint.x - loadRange)
-        //     {
-        //         if (player.position.x < centrePoint.x - (loadRange))
-        //         {
-        //             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        //         }
-        //
-        //         if (!leftSceneLoaded)
-        //         {
-        //             if (leftScene != null)
-        //             {
-        //                 SceneManager.LoadScene(leftScene, LoadSceneMode.Additive);
-        //                 leftSceneLoaded = true;
-        //             }
-        //             
-        //         }
-        //     }
-        //
-        //     if (player.position.y > centrePoint.y + loadRange)
-        //     {
-        //         if (player.position.y > centrePoint.y + (loadRange * 2))
-        //         {
-        //             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        //         }
-        //
-        //         if (!downSceneLoaded)
-        //         {
-        //             if (downScene != null)
-        //             {
-        //                 SceneManager.LoadScene(downScene, LoadSceneMode.Additive);
-        //                 downSceneLoaded = true;
-        //             }
-        //             
-        //         }
-        //     }
-        //
-        //     if (player.position.y < centrePoint.y - loadRange)
-        //     {
-        //         if (player.position.y < centrePoint.y - (loadRange * 2))
-        //         {
-        //             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        //         }
-        //
-        //         if (!upSceneLoaded)
-        //         {
-        //             if (upScene != null)
-        //             {
-        //                 SceneManager.LoadScene(upScene, LoadSceneMode.Additive);
-        //                 upSceneLoaded = true;
-        //             }
-        //             
-        //         }
-        //     }
-        //
-        // }
     }
 }
