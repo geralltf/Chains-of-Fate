@@ -103,15 +103,25 @@ public class WorldInfo : MonoBehaviour
             return string.Empty;
         }
         
-        SceneAsset sceneAsset = sceneObj as SceneAsset;
+        //SceneAsset sceneAsset = sceneObj as SceneAsset; // Editor only. SceneAsset Isn't available when project is built.
         ;
-        if (sceneAsset == null)
+        // if (sceneAsset == null)
+        // {
+        //     throw new ArgumentException(
+        //         "Object is meant to be of type 'SceneAsset'. Drag an actual Scene file using the inspector.");
+        // }
+        
+        //return sceneAsset.name;
+
+        Scene scene = SceneManager.GetSceneByName(sceneObj.name);
+
+        if (!scene.IsValid())
         {
             throw new ArgumentException(
-                "Object is meant to be of type 'SceneAsset'. Drag an actual Scene file using the inspector.");
+                "Object is not a valid Scene. Drag an actual Scene file using the inspector and add it to the build scene index in project settings.");
         }
         
-        return sceneAsset.name;
+        return sceneObj.name;
     }
     
     public void TryLoadScene(SceneDirection sceneDirection)
