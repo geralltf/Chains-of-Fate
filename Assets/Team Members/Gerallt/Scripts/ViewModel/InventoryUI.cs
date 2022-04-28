@@ -119,6 +119,8 @@ namespace ChainsOfFate.Gerallt
             
             if (visibility)
             {
+                InGameUI.Instance.SetVisibility(false);
+                
                 PopulateView();
             }
         }
