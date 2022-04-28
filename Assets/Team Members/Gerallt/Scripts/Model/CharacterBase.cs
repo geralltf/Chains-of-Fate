@@ -221,25 +221,54 @@ namespace ChainsOfFate.Gerallt
 
         public event StatChangeDelegate OnStatChanged;
 
-        public void LevelUp(int newLevel, int maxLevel)
+        public void LevelUp(int newLevel, int maxLevel, bool debugOutput = false, bool raiseEvent = true)
         {
             int oldLevel = Level;
 
             List<IStat> toLevelUp = GetStatComponents(); // A generic list of stat components to level up.
             List<IStat> statsAffected = new List<IStat>(); // The stats that have had actual changes.
-            
+
+
+            string debug = "";
+            if (debugOutput)
+            {
+                debug = "Level " + newLevel;
+            }
+
+            int s = 0;
+            bool showDebug = false;
             foreach (IStat stat in toLevelUp)
             {
                 if (stat.LevelUp(newLevel, maxLevel))
                 {
                     // If the stat value has changed given the level up, add it to the list.
                     statsAffected.Add(stat);
+
+                    if (debugOutput)
+                    {
+                        object newMaximum = stat.GetMaximum();
+                        object absoluteMax = stat.GetAbsoluteMaximum();
+
+                        debug += ((s == 0) ? " " : ", ") + "[" + stat.StatName + "] " + newMaximum + "/" + absoluteMax;
+                        
+                        showDebug = true;
+                    }
+
+                    s++;
                 }
             }
 
-            Level = newLevel;
+            if (debugOutput && showDebug)
+            {
+                Debug.Log(debug);
+            }
             
-            LevelingManager.Instance.RaiseLevelUp(this, oldLevel, newLevel, maxLevel, statsAffected);
+            Level = newLevel;
+
+            if (raiseEvent)
+            {
+                LevelingManager.Instance.RaiseLevelUp(this, oldLevel, newLevel, maxLevel, statsAffected);
+            }
         }
         
         /// <summary>

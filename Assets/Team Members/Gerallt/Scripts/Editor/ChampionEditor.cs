@@ -6,24 +6,37 @@ namespace ChainsOfFate.Gerallt
     [CustomEditor(typeof(Champion))]
     public class ChampionEditor : Editor
     {
-        public override void OnInspectorGUI() 
+        public override void OnInspectorGUI()
         {
             if (Application.isPlaying)
             {
-                if (GUILayout.Button("Level Up!"))
+                CharacterBase character = target as CharacterBase;
+
+                if (character != null)
                 {
-                    CharacterBase character = target as CharacterBase;
-                
-                    if (character != null)
+                    if (GUILayout.Button("Level Up!"))
                     {
                         character.LevelUp(character.Level + 1, LevelingManager.Instance.maxLevels);
                     }
+                    
+                    if (GUILayout.Button("Simulate All Level Ups!"))
+                    {
+                        //for (int level = character.Level + 1; ; level++)
+                        int savedLevel = character.Level;
+                        int level = character.Level;
+                        while(level < LevelingManager.Instance.maxLevels)
+                        {
+                            character.LevelUp(level + 1, LevelingManager.Instance.maxLevels, true, false);
+                            
+                            level = character.Level;
+                        }
+
+                        character.Level = savedLevel;
+                    }
                 }
             }
-            
+
             DrawDefaultInspector();
         }
-
     }
 }
-    

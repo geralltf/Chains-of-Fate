@@ -67,6 +67,11 @@ namespace ChainsOfFate.Gerallt
             
             maxValue += (int) range;
 
+            if (maxValue > absoluteMax)
+            {
+                maxValue = absoluteMax;
+            }
+            
             return oldValue != maxValue;
         }
 
