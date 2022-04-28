@@ -20,6 +20,8 @@ namespace ChainsOfFate.Gerallt
                     }
                 }
             }
+            
+            DrawDefaultInspector();
         }
 
     }
