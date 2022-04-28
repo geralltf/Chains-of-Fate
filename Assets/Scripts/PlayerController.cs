@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     //public PlayerInput playerInput;
     public CoFPlayerControls controls;
     public float speed = 10f;
+
+    public event Action OnReady;
     
     private CombatUI CUI;
     private Vector2 move;
@@ -34,6 +36,11 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         controls.Player.Disable();
+    }
+
+    private void Start()
+    {
+        OnReady?.Invoke();
     }
 
     private void FixedUpdate()

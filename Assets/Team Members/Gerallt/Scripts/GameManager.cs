@@ -32,11 +32,17 @@ namespace ChainsOfFate.Gerallt
         [CanBeNull] private Material materialLoadingBackground;
 
         private Champion mainCharacter;
+        private PlayerController playerController;
 
         public Champion GetPlayer()
         {
             return mainCharacter;
-        } 
+        }
+
+        public PlayerController GetPlayerController()
+        {
+            return playerController;
+        }
         
         public void ShowCombatUI()
         {
@@ -137,6 +143,7 @@ namespace ChainsOfFate.Gerallt
             
             Champion currentPlayer = FindObjectsOfType<Champion>().FirstOrDefault(c=> c.isMainCharacter);
             mainCharacter = currentPlayer;
+            playerController = currentPlayer.GetComponent<PlayerController>();
             
             levelLoadingIndicatorUI.SetActive(false);
         }

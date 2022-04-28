@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Vector3 offset;
-    private Camera _camera;
-    
     public GameObject player;
     public Vector3 orthoOffset;
     public Vector3 perspectiveOffset;
     public float trackingSpeed = 2.0f;
+
+    private Vector3 offset;
+    private Camera _camera;
+    private PlayerController playerController;
     
     public Vector3 GetCenterWorldPosition()
     {
@@ -35,26 +36,34 @@ public class CameraFollow : MonoBehaviour
         {
             player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer().gameObject;
         }
+
+        playerController = FindObjectOfType<PlayerController>();
+        playerController.OnReady += PlayerController_OnReady;
     }
-    
+
+    private void PlayerController_OnReady()
+    {
+        transform.position = player.transform.position + offset;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (_camera.orthographic)
+        {
+            offset = orthoOffset;
+        }
+        else
+        {
+            offset = perspectiveOffset;
+        }
+        
         //transform.position = player.transform.position + offset;
-        transform.position = Vector3.Lerp(player.transform.position + offset, player.transform.position + offset, trackingSpeed * Time.fixedDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, player.transform.position, trackingSpeed * Time.fixedDeltaTime);
         
         // Vector3 position = transform.position;
         // position.x = Mathf.Lerp(transform.position.x, player.transform.position.x + offset.x, trackingSpeed * Time.fixedDeltaTime);
         // position.y = Mathf.Lerp(transform.position.y, player.transform.position.y + offset.y, trackingSpeed * Time.fixedDeltaTime);
         // transform.position = position;
-        
-        if (_camera.orthographic)
-        {
-            transform.position += orthoOffset;
-        }
-        else
-        {
-            transform.position += perspectiveOffset;
-        }
     }
 }
