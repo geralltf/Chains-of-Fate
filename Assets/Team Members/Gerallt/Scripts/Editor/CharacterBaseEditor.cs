@@ -38,10 +38,12 @@ namespace ChainsOfFate.Gerallt
                         //for (int level = character.Level + 1; ; level++)
                         int savedLevel = character.Level;
                         int level = character.Level;
-                        while(level < LevelingManager.Instance.maxLevels)
+                        bool @continue = true;
+                        while(level < LevelingManager.Instance.maxLevels && @continue)
                         {
-                            character.LevelUp(level + 1, LevelingManager.Instance.maxLevels, true, false);
-                            
+                            @continue = character.LevelUp(level + 1, LevelingManager.Instance.maxLevels, true, false);
+
+                            @continue = true; 
                             level = character.Level;
                         }
 

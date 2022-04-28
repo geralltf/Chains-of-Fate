@@ -221,7 +221,7 @@ namespace ChainsOfFate.Gerallt
 
         public event StatChangeDelegate OnStatChanged;
 
-        public void LevelUp(int newLevel, int maxLevel, bool debugOutput = false, bool raiseEvent = true)
+        public bool LevelUp(int newLevel, int maxLevel, bool debugOutput = false, bool raiseEvent = true)
         {
             int oldLevel = Level;
 
@@ -269,6 +269,8 @@ namespace ChainsOfFate.Gerallt
             {
                 LevelingManager.Instance.RaiseLevelUp(this, oldLevel, newLevel, maxLevel, statsAffected);
             }
+
+            return statsAffected.Count > 0;
         }
         
         /// <summary>
