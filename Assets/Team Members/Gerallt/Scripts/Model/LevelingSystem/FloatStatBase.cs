@@ -80,7 +80,14 @@ namespace ChainsOfFate.Gerallt
         
         public virtual bool LevelUp(int newLevel, int maxLevels, bool debugOutput = false)
         {
-            return LevelUp(newLevel / (float) maxLevels, debugOutput);
+            bool hasChanged = LevelUp(newLevel / (float) maxLevels, debugOutput);
+            
+            if (hasChanged && debugOutput)
+            {
+                Debug.Log("Level " + newLevel + "/" + maxLevels + " [" + StatName + "] " + maxValue + "/" + absoluteMax);
+            }
+
+            return hasChanged;
         }
         
         public virtual bool LevelUp(float ratio, bool debugOutput = false)
@@ -100,12 +107,7 @@ namespace ChainsOfFate.Gerallt
             }
             
             bool hasChanged = !Mathf.Approximately(oldValue, maxValue);
-            
-            if (hasChanged && debugOutput)
-            {
-                Debug.Log("[" + StatName + "] " + maxValue + "/" + absoluteMax);
-            }
-            
+
             return hasChanged;
         }
 
