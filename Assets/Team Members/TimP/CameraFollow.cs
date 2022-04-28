@@ -43,12 +43,6 @@ public class CameraFollow : MonoBehaviour
 
     private void PlayerController_OnReady()
     {
-        transform.position = player.transform.position + offset;
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
         if (_camera.orthographic)
         {
             offset = orthoOffset;
@@ -58,6 +52,12 @@ public class CameraFollow : MonoBehaviour
             offset = perspectiveOffset;
         }
         
+        transform.position = player.transform.position + offset;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         //transform.position = player.transform.position + offset;
         transform.position = Vector3.Lerp(transform.position, player.transform.position, trackingSpeed * Time.fixedDeltaTime);
         
