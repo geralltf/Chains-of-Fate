@@ -82,6 +82,11 @@ namespace ChainsOfFate.Gerallt
             maxValue = DefaultMaxValue;
         }
         
+        public virtual void Replenish()
+        {
+            value = maxValue;
+        }
+        
         public virtual void Awake()
         {
             value = defaultValue;

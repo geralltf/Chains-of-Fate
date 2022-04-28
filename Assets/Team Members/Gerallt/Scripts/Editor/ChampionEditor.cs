@@ -16,7 +16,7 @@ namespace ChainsOfFate.Gerallt
                 {
                     if (GUILayout.Button("Level Up!"))
                     {
-                        character.LevelUp(character.Level + 1, LevelingManager.Instance.maxLevels);
+                        character.LevelUp(character.Level + 1, LevelingManager.Instance.maxLevels, true, false);
                     }
                     
                     if (GUILayout.Button("Simulate All Level Ups!"))
@@ -34,6 +34,11 @@ namespace ChainsOfFate.Gerallt
                         // Reset level and stats back to default values:
                         character.Level = savedLevel;
                         character.ResetStats();
+                    }
+                    
+                    if (GUILayout.Button("Replenish stats!"))
+                    {
+                        character.ReplenishStats();
                     }
                 }
             }

@@ -496,6 +496,15 @@ namespace ChainsOfFate.Gerallt
             }
         }
         
+        public void ReplenishStats()
+        {
+            List<IStat> stats = GetStatComponents();
+            foreach (IStat stat in stats)
+            {
+                stat.Replenish();
+            }
+        }
+        
         private void UpdateStatComponents()
         {
             GetComponent(ref healthStat);

@@ -55,5 +55,6 @@ namespace ChainsOfFate.Gerallt
         bool LevelUp(int newLevel, int maxLevels);
         bool LevelUp(float ratio);
         void Reset();
+        void Replenish();
     }
 }
