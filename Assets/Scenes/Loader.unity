@@ -34099,7 +34099,7 @@ MonoBehaviour:
   player: {fileID: 8350055717422942272}
   orthoOffset: {x: 0, y: 0, z: 0}
   perspectiveOffset: {x: 0, y: -22.8, z: -10}
-  trackingSpeed: 300
+  trackingSpeed: 5
 --- !u!20 &1025578688
 Camera:
   m_ObjectHideFlags: 0
@@ -34192,7 +34192,7 @@ MonoBehaviour:
   player: {fileID: 8350055717422942272}
   orthoOffset: {x: 0, y: -23.3, z: 0}
   perspectiveOffset: {x: 0, y: 0, z: 0}
-  trackingSpeed: 300
+  trackingSpeed: 5
 --- !u!20 &1427681832
 Camera:
   m_ObjectHideFlags: 0
