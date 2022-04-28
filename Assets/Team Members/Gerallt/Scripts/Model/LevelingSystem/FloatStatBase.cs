@@ -18,6 +18,8 @@ namespace ChainsOfFate.Gerallt
         public float defaultValue;
         
         public AnimationCurve levelingCurve;
+
+        protected float DefaultMaxValue;
         
         public event Action<float, FloatStatBase> OnValueChanged;
         
@@ -74,10 +76,16 @@ namespace ChainsOfFate.Gerallt
             
             return !Mathf.Approximately(oldValue, maxValue);
         }
+
+        public virtual void Reset()
+        {
+            maxValue = DefaultMaxValue;
+        }
         
         public virtual void Awake()
         {
             value = defaultValue;
+            DefaultMaxValue = maxValue;
         }
     }
 }

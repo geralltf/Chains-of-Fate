@@ -18,6 +18,8 @@ namespace ChainsOfFate.Gerallt
         public int defaultValue;
         
         public AnimationCurve levelingCurve;
+
+        protected int DefaultMaxValue;
         
         public event Action<int, IntStatBase> OnValueChanged;
 
@@ -75,9 +77,15 @@ namespace ChainsOfFate.Gerallt
             return oldValue != maxValue;
         }
 
+        public virtual void Reset()
+        {
+            maxValue = DefaultMaxValue;
+        }
+        
         public virtual void Awake()
         {
             value = defaultValue;
+            DefaultMaxValue = maxValue;
         }
     }
 }

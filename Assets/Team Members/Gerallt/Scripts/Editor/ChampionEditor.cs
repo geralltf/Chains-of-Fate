@@ -31,7 +31,9 @@ namespace ChainsOfFate.Gerallt
                             level = character.Level;
                         }
 
+                        // Reset level and stats back to default values:
                         character.Level = savedLevel;
+                        character.ResetStats();
                     }
                 }
             }
