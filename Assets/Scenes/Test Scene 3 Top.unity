@@ -170,10 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e8342ec99b87849b95d49c4d6b90a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftScene: {fileID: 0}
-  rightScene: {fileID: 0}
-  upScene: {fileID: 0}
-  downScene: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+  leftScene: 
+  rightScene: 
+  upScene: 
+  downScene: Main
   enableDebugColour: 0
   debugColour: {r: 0, g: 0, b: 0, a: 0}
   approachingDirection: 0

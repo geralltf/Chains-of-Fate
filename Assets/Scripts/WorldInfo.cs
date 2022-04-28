@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class WorldInfo : MonoBehaviour
 {
     //public float loadRange = 50; // Dont need this anymore. Found dynamically from ground plane collider bounds extents.
-    public Object leftScene, rightScene, upScene, downScene;
+    public string leftScene, rightScene, upScene, downScene; // Object type doesn't work in build: references are lost! 
     public bool enableDebugColour = false;
     public Color debugColour;
     
@@ -58,7 +58,7 @@ public class WorldInfo : MonoBehaviour
 
         if (enableDebugColour)
         {
-            GetComponent<MeshRenderer>().material.color = debugColour;
+            GetComponent<TilemapRenderer>().material.color = debugColour;
         }
     }
 
@@ -136,19 +136,19 @@ public class WorldInfo : MonoBehaviour
         {
             case SceneDirection.Left:
                 sceneLoaded = leftSceneLoaded;
-                sceneName = GetSceneName(leftScene);
+                sceneName = leftScene;
                 break;
             case SceneDirection.Right:
                 sceneLoaded = rightSceneLoaded;
-                sceneName = GetSceneName(rightScene);
+                sceneName = rightScene;
                 break;
             case SceneDirection.Top:
                 sceneLoaded = upSceneLoaded;
-                sceneName = GetSceneName(upScene);
+                sceneName = upScene;
                 break;
             case SceneDirection.Bottom:
                 sceneLoaded = downSceneLoaded;
-                sceneName = GetSceneName(downScene);
+                sceneName = downScene;
                 break;
         }
         
@@ -207,7 +207,7 @@ public class WorldInfo : MonoBehaviour
         switch (sceneDirection)
         {
             case SceneDirection.Left:
-                sceneName = GetSceneName(leftScene);
+                sceneName = leftScene;
                 dirBounds.x += -sceneBounds.extents.x;
                 boundaryLocation.x = (sceneBounds.center.x + dirBounds.x);
                 dist = (pos.x - boundaryLocation.x);
@@ -215,7 +215,7 @@ public class WorldInfo : MonoBehaviour
                 boundsTest = (pos.x < centrePoint.x - (sceneBounds.extents.x - gameManager.boundaryRange));
                 break;
             case SceneDirection.Right:
-                sceneName = GetSceneName(rightScene);
+                sceneName = rightScene;
                 dirBounds.x += sceneBounds.extents.x;
                 boundaryLocation.x = (sceneBounds.center.x + dirBounds.x);
                 dist = (pos.x - boundaryLocation.x);
@@ -223,7 +223,7 @@ public class WorldInfo : MonoBehaviour
                 boundsTest = (pos.x > centrePoint.x + (sceneBounds.extents.x - gameManager.boundaryRange));
                 break;
             case SceneDirection.Top:
-                sceneName = GetSceneName(upScene);
+                sceneName = upScene;
                 dirBounds.y += sceneBounds.extents.y;
                 boundaryLocation.y = (sceneBounds.center.y + dirBounds.y);
                 dist = (pos.y - boundaryLocation.y);
@@ -231,7 +231,7 @@ public class WorldInfo : MonoBehaviour
                 boundsTest = (pos.y > centrePoint.y + (sceneBounds.extents.y - gameManager.boundaryRange));
                 break;
             case SceneDirection.Bottom:
-                sceneName = GetSceneName(downScene);
+                sceneName = downScene;
                 dirBounds.y += -sceneBounds.extents.y;
                 boundaryLocation.y = (sceneBounds.center.y + dirBounds.y);
                 dist = (pos.y - boundaryLocation.y);

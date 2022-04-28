@@ -310,12 +310,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e8342ec99b87849b95d49c4d6b90a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftScene: {fileID: 102900000, guid: 4ffc8a3493b377548856076f0212a43e, type: 3}
-  rightScene: {fileID: 102900000, guid: 7ad93cb4788e071448ade3cbf43b8bcc, type: 3}
-  upScene: {fileID: 102900000, guid: a4649b3933fe73346b86972179d4335b, type: 3}
-  downScene: {fileID: 102900000, guid: 7681ac715407d73439f9148b5475e7f9, type: 3}
+  leftScene: Test Scene 2
+  rightScene: Test Scene
+  upScene: Test Scene 3 Top
+  downScene: Test Scene 4 Bottom
   enableDebugColour: 0
-  debugColour: {r: 0, g: 0, b: 0, a: 0}
+  debugColour: {r: 1, g: 1, b: 1, a: 1}
   approachingDirection: 0
 --- !u!19719996 &1185330701
 TilemapCollider2D:
