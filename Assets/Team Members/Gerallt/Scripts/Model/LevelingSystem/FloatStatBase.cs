@@ -20,6 +20,7 @@ namespace ChainsOfFate.Gerallt
         public AnimationCurve levelingCurve;
 
         protected float DefaultMaxValue;
+        private CharacterBase owner;
         
         public event Action<float, FloatStatBase> OnValueChanged;
         
@@ -48,17 +49,41 @@ namespace ChainsOfFate.Gerallt
             return absoluteMax;
         }
         
+        public CharacterBase GetOwner()
+        {
+            if (owner == null)
+            {
+                Transform curr = transform;
+                bool searching = true;
+                while (curr != null && searching)
+                {
+                    CharacterBase characterBase = curr.GetComponent<CharacterBase>();
+
+                    if (characterBase != null)
+                    {
+                        owner = characterBase;
+                        searching = false;
+                    }
+                    else
+                    {
+                        curr = curr.parent;
+                    }
+                }
+            }
+            return owner;
+        }
+        
         public void RaiseOnValueChanged(float newValue)
         {
             OnValueChanged?.Invoke(newValue, this);
         }
         
-        public virtual bool LevelUp(int newLevel, int maxLevels)
+        public virtual bool LevelUp(int newLevel, int maxLevels, bool debugOutput = false)
         {
-            return LevelUp(newLevel / (float) maxLevels);
+            return LevelUp(newLevel / (float) maxLevels, debugOutput);
         }
         
-        public virtual bool LevelUp(float ratio)
+        public virtual bool LevelUp(float ratio, bool debugOutput = false)
         {
             float animatedValue = levelingCurve.Evaluate(ratio);
 

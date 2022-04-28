@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace ChainsOfFate.Gerallt
 {
-    [CustomEditor(typeof(Grunt))]
-    public class GruntEditor : CharacterBaseEditor
+    [CustomEditor(typeof(DefenseStat))]
+    public class DefenseEditor : StatBaseEditor
     {
         public override void OnInspectorGUI()
         {
-            ShowCharacterButtons();
+            ShowStatButtons();
 
             DrawDefaultInspector();
         }

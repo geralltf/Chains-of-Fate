@@ -52,9 +52,10 @@ namespace ChainsOfFate.Gerallt
         object GetMaximum();
         object GetAbsoluteMaximum();
         
-        bool LevelUp(int newLevel, int maxLevels);
-        bool LevelUp(float ratio);
+        bool LevelUp(int newLevel, int maxLevels, bool debugOutput = false);
+        bool LevelUp(float ratio, bool debugOutput = false);
         void Reset();
         void Replenish();
+        CharacterBase GetOwner();
     }
 }
