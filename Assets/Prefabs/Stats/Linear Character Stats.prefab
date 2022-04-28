@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48b6d0cb899476ab39cea81f54e553f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   minValue: 0
   maxValue: 100
   absoluteMax: 1000
@@ -55,20 +55,47 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0.083893806
+      outSlope: 0.083893806
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2569397
+      value: 0.021555651
+      inSlope: 0.38239962
+      outSlope: 0.38239962
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.19112897
+    - serializedVersion: 3
+      time: 0.44788018
+      value: 0.085859105
+      inSlope: 0.29882497
+      outSlope: 0.29882497
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.72409207
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6708538
+      value: 0.17956369
+      inSlope: 0.53719527
+      outSlope: 0.53719527
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.45566234
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 2.4926198
+      outSlope: 2.4926198
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -118,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0b088d55984cf1a91d4058bbbed20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   minValue: 0
   maxValue: 100
   absoluteMax: 1000
@@ -129,18 +156,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -192,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a034c3105f274096925a0ed44f4a96f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   minValue: 0
   maxValue: 100
   absoluteMax: 1000
@@ -203,18 +230,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -266,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436e289f23494ae2ae52daf0920d9051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   minValue: 0
   maxValue: 100
   absoluteMax: 1000
@@ -277,18 +304,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -377,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77604e6bea5e4cbe965f157d23a5a4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   minValue: 0
   maxValue: 100
   absoluteMax: 1000
@@ -451,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99288fd4b6f64312bcddc0a58e34deed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   minValue: 0
   maxValue: 100
   absoluteMax: 1000
@@ -462,20 +489,56 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0.2681205
+      outSlope: 0.2681205
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.22439477
+      value: 0.060164835
+      inSlope: 0.3377994
+      outSlope: 0.3377994
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4233137
+      value: 0.14121999
+      inSlope: 0.41397697
+      outSlope: 0.41397697
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.883089
+      value: 0.3345443
+      inSlope: 1.9172665
+      outSlope: 1.9172665
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9645102
+      value: 0.61252093
+      inSlope: 7.166049
+      outSlope: 7.166049
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 10.918041
+      outSlope: 10.918041
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
