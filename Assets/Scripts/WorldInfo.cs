@@ -112,14 +112,14 @@ public class WorldInfo : MonoBehaviour
         // }
         
         //return sceneAsset.name;
-
-        Scene scene = SceneManager.GetSceneByName(sceneObj.name);
-
-        if (!scene.IsValid())
-        {
-            throw new ArgumentException(
-                "Object is not a valid Scene. Drag an actual Scene file using the inspector and add it to the build scene index in project settings.");
-        }
+        
+        // Damn! Scenes have to be loaded first before they can be looked up by name!
+        // Scene scene = SceneManager.GetSceneByName(sceneObj.name); 
+        // if (!scene.IsValid())
+        // {
+        //     throw new ArgumentException(
+        //         "Object is not a valid Scene. Drag an actual Scene file using the inspector and add it to the build scene index in project settings.");
+        // }
         
         return sceneObj.name;
     }
