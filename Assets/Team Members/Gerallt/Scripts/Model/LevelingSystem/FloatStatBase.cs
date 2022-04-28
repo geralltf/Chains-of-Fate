@@ -99,7 +99,14 @@ namespace ChainsOfFate.Gerallt
                 maxValue = absoluteMax;
             }
             
-            return !Mathf.Approximately(oldValue, maxValue);
+            bool hasChanged = !Mathf.Approximately(oldValue, maxValue);
+            
+            if (hasChanged && debugOutput)
+            {
+                Debug.Log("[" + StatName + "] " + maxValue + "/" + absoluteMax);
+            }
+            
+            return hasChanged;
         }
 
         public virtual void Reset()
