@@ -68,25 +68,25 @@ namespace ChainsOfFate.Gerallt
 
             if (propertyName == "HP")
             {
-                healthBar.maxValue = character.maxHealth;
+                healthBar.maxValue = character.MaxHealth;
                 healthBar.value = (int) newValue;
             }
 
             if (propertyName == "Arcana")
             {
-                arcanaBar.maxValue = character.maxArcana;
+                arcanaBar.maxValue = character.MaxArcana;
                 arcanaBar.value = (int) newValue;
             }
 
             if (propertyName == "Resolve")
             {
-                resolveBar.maxValue = character.maxResolve;
+                resolveBar.maxValue = character.MaxResolve;
                 resolveBar.value = (int) newValue;
             }
 
             if (propertyName == "Wisdom")
             {
-                wisdomBar.maxValue = character.maxWisdom;
+                wisdomBar.maxValue = character.MaxWisdom;
                 wisdomBar.value = (int) newValue;
             }
 

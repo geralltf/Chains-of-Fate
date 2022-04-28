@@ -44,4 +44,10 @@ namespace ChainsOfFate.Gerallt
         string GetDescription();
         Color GetTint();
     }
+
+    public interface IStat
+    {
+        void LevelUp(int newLevel, int maxLevels);
+        void LevelUp(float ratio);
+    }
 }
