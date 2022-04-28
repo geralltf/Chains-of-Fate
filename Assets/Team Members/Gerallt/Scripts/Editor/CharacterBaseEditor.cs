@@ -48,6 +48,11 @@ namespace ChainsOfFate.Gerallt
                         character.ReplenishStats();
                     }
                     
+                    if (GUILayout.Button("Reset stats!"))
+                    {
+                        character.ResetStats();
+                    }
+                    
                     if (GUILayout.Button("Kill"))
                     {
                         character.HP = 0;
