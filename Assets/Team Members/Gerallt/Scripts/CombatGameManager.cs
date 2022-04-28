@@ -372,6 +372,14 @@ namespace ChainsOfFate.Gerallt
                 OnLostGameEvent?.Invoke();
             }
 
+            if (defeated > 0)
+            {
+                // Level up the main character.
+                CharacterBase mainCharacter = GameManager.Instance.GetMainCharacter();
+                
+                LevelingManager.Instance.LevelUp(mainCharacter, defeated, enemies.Count);
+            }
+            
             UnloadScene();
         }
 

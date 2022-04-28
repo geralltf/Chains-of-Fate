@@ -8,10 +8,23 @@ namespace ChainsOfFate.Gerallt
     {
         [SerializeField] private int value;
         public int minValue;
+        
+        [Tooltip("The maximum value you see in the UI")]
         public int maxValue;
+        
+        [Tooltip("The absolute maximum value this stat can be leveled up to")]
+        public int absoluteMax;
+        
         public int defaultValue;
+        
         public AnimationCurve levelingCurve;
+        
         public event Action<int, IntStatBase> OnValueChanged;
+
+        public string StatName
+        {
+            get => this.name;
+        }
 
         public int Value
         {
@@ -23,23 +36,38 @@ namespace ChainsOfFate.Gerallt
             }
         }
         
+        public object GetMaximum()
+        {
+            return maxValue;
+        }
+
+        public object GetAbsoluteMaximum()
+        {
+            return absoluteMax;
+        }
+        
         public void RaiseOnValueChanged(int newValue)
         {
             OnValueChanged?.Invoke(newValue, this);
         }
         
-        public virtual void LevelUp(int newLevel, int maxLevels)
+        public virtual bool LevelUp(int newLevel, int maxLevels)
         {
-            LevelUp(newLevel / (float) maxLevels);
+            return LevelUp(newLevel / (float) maxLevels);
         }
         
-        public virtual void LevelUp(float ratio)
+        public virtual bool LevelUp(float ratio)
         {
             float animatedValue = levelingCurve.Evaluate(ratio);
             
-            float range = minValue + (animatedValue * maxValue);
+            float range = minValue + (animatedValue * absoluteMax);
+
+            // Leveling up changes only the maximum value
+            int oldValue = maxValue;
             
-            value = (int) range;
+            maxValue += (int) range;
+
+            return oldValue != maxValue;
         }
 
         public virtual void Awake()

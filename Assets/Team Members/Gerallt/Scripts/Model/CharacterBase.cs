@@ -221,18 +221,25 @@ namespace ChainsOfFate.Gerallt
 
         public event StatChangeDelegate OnStatChanged;
 
-        public virtual void LevelUp(int newLevel, int maxLevel)
+        public void LevelUp(int newLevel, int maxLevel)
         {
             int oldLevel = Level;
+
+            List<IStat> toLevelUp = GetStatComponents(); // A generic list of stat components to level up.
+            List<IStat> statsAffected = new List<IStat>(); // The stats that have had actual changes.
             
-            healthStat.LevelUp(newLevel, maxLevel);
-            arcanaStat.LevelUp(newLevel, maxLevel);
-            resolveStat.LevelUp(newLevel, maxLevel);
-            wisdomStat.LevelUp(newLevel, maxLevel);
-            defenseStat.LevelUp(newLevel, maxLevel);
-            strengthStat.LevelUp(newLevel, maxLevel);
+            foreach (IStat stat in toLevelUp)
+            {
+                if (stat.LevelUp(newLevel, maxLevel))
+                {
+                    // If the stat value has changed given the level up, add it to the list.
+                    statsAffected.Add(stat);
+                }
+            }
+
+            Level = newLevel;
             
-            LevelingManager.Instance.RaiseLevelUp(this, oldLevel, newLevel, maxLevel);
+            LevelingManager.Instance.RaiseLevelUp(this, oldLevel, newLevel, maxLevel, statsAffected);
         }
         
         /// <summary>
@@ -446,7 +453,12 @@ namespace ChainsOfFate.Gerallt
             OnStatChanged?.Invoke(this, propertyName, newValue);
         }
 
-        private void GetStatComponents()
+        public List<IStat> GetStatComponents()
+        {
+            return GetComponentsInTree<IStat>();
+        }
+        
+        private void UpdateStatComponents()
         {
             GetComponent(ref healthStat);
             GetComponent(ref arcanaStat);
@@ -473,13 +485,23 @@ namespace ChainsOfFate.Gerallt
             }
         }
         
+        public List<T> GetComponentsInTree<T>()
+        {
+            List<T> componentsList = new List<T>();
+
+            componentsList.AddRange(GetComponents<T>());
+            componentsList.AddRange(GetComponentsInChildren<T>());
+            
+            return componentsList;
+        }
+        
         public virtual void Awake()
         {
             Guid newId = Guid.NewGuid(); //TODO: Check for collisions with characters that by pure unluck might have the same GUID.
             id = newId.ToString();
 
             // Get stat components and store them as variables on the current character.
-            GetStatComponents();
+            UpdateStatComponents();
         }
     }
 }

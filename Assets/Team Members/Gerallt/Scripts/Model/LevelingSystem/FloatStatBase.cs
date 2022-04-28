@@ -8,10 +8,23 @@ namespace ChainsOfFate.Gerallt
     {
         [SerializeField] private float value;
         public float minValue;
+        
+        [Tooltip("The maximum value you see in the UI")]
         public float maxValue;
-        public int defaultValue;
+        
+        [Tooltip("The absolute maximum value this stat can be leveled up to")]
+        public float absoluteMax;
+        
+        public float defaultValue;
+        
         public AnimationCurve levelingCurve;
+        
         public event Action<float, FloatStatBase> OnValueChanged;
+        
+        public string StatName
+        {
+            get => this.name;
+        }
         
         public float Value
         {
@@ -22,22 +35,39 @@ namespace ChainsOfFate.Gerallt
                 this.value = value;
             }
         }
+
+        public object GetMaximum()
+        {
+            return maxValue;
+        }
+        
+        public object GetAbsoluteMaximum()
+        {
+            return absoluteMax;
+        }
         
         public void RaiseOnValueChanged(float newValue)
         {
             OnValueChanged?.Invoke(newValue, this);
         }
         
-        public virtual void LevelUp(int newLevel, int maxLevels)
+        public virtual bool LevelUp(int newLevel, int maxLevels)
         {
-            LevelUp(newLevel / (float) maxLevels);
+            return LevelUp(newLevel / (float) maxLevels);
         }
         
-        public virtual void LevelUp(float ratio)
+        public virtual bool LevelUp(float ratio)
         {
             float animatedValue = levelingCurve.Evaluate(ratio);
+
+            float range = minValue + (animatedValue * absoluteMax);
             
-            value = minValue + (animatedValue * maxValue);
+            // Leveling up changes only the maximum value
+            float oldValue = maxValue;
+            
+            maxValue += range;
+            
+            return !Mathf.Approximately(oldValue, maxValue);
         }
         
         public virtual void Awake()

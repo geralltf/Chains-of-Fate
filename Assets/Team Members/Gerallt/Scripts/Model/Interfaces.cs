@@ -47,7 +47,12 @@ namespace ChainsOfFate.Gerallt
 
     public interface IStat
     {
-        void LevelUp(int newLevel, int maxLevels);
-        void LevelUp(float ratio);
+        string StatName { get; }
+
+        object GetMaximum();
+        object GetAbsoluteMaximum();
+        
+        bool LevelUp(int newLevel, int maxLevels);
+        bool LevelUp(float ratio);
     }
 }

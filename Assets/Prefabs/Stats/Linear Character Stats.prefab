@@ -47,6 +47,7 @@ MonoBehaviour:
   value: 0
   minValue: 0
   maxValue: 100
+  absoluteMax: 1000
   defaultValue: 100
   levelingCurve:
     serializedVersion: 2
@@ -72,6 +73,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  statName: HP
 --- !u!1 &1109442640336510641
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +121,7 @@ MonoBehaviour:
   value: 0
   minValue: 0
   maxValue: 100
+  absoluteMax: 1000
   defaultValue: 100
   levelingCurve:
     serializedVersion: 2
@@ -144,6 +147,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  statName: DEF
 --- !u!1 &2793594932187625485
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +195,7 @@ MonoBehaviour:
   value: 0
   minValue: 0
   maxValue: 100
+  absoluteMax: 1000
   defaultValue: 100
   levelingCurve:
     serializedVersion: 2
@@ -216,6 +221,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  statName: Strength
 --- !u!1 &6999438140683490895
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +269,7 @@ MonoBehaviour:
   value: 0
   minValue: 0
   maxValue: 100
+  absoluteMax: 1000
   defaultValue: 100
   levelingCurve:
     serializedVersion: 2
@@ -288,6 +295,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  statName: WIS
 --- !u!1 &7613176804891163077
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +380,7 @@ MonoBehaviour:
   value: 0
   minValue: 0
   maxValue: 100
+  absoluteMax: 1000
   defaultValue: 100
   levelingCurve:
     serializedVersion: 2
@@ -397,6 +406,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  statName: ARC
 --- !u!1 &8859367042113390391
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +454,7 @@ MonoBehaviour:
   value: 0
   minValue: 0
   maxValue: 100
+  absoluteMax: 1000
   defaultValue: 100
   levelingCurve:
     serializedVersion: 2
@@ -469,3 +480,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  statName: RES

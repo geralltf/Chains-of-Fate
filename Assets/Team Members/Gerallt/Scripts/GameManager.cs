@@ -38,6 +38,11 @@ namespace ChainsOfFate.Gerallt
         {
             return mainCharacter;
         }
+        
+        public CharacterBase GetMainCharacter()
+        {
+            return (CharacterBase)mainCharacter;
+        }
 
         public PlayerController GetPlayerController()
         {
