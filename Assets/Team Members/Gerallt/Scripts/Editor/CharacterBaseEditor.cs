@@ -5,6 +5,8 @@ namespace ChainsOfFate.Gerallt
 {
     public abstract class CharacterBaseEditor : Editor
     {
+        private int? savedLevelTmp;
+        
         protected void ShowCharacterButtons()
         {
             if (Application.isPlaying)
@@ -15,6 +17,11 @@ namespace ChainsOfFate.Gerallt
                 {
                     if (GUILayout.Button("Level Up!"))
                     {
+                        if (!savedLevelTmp.HasValue)
+                        {
+                            savedLevelTmp = character.Level;
+                        }
+                        
                         character.LevelUp(character.Level + 1, LevelingManager.Instance.maxLevels, true, false);
                     }
 
@@ -51,6 +58,12 @@ namespace ChainsOfFate.Gerallt
                     if (GUILayout.Button("Reset stats!"))
                     {
                         character.ResetStats();
+                        
+                        if (savedLevelTmp.HasValue)
+                        {
+                            character.Level = savedLevelTmp.Value;
+                            savedLevelTmp = null;
+                        }
                     }
                     
                     if (GUILayout.Button("Kill"))
