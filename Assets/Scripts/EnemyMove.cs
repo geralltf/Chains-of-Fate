@@ -57,7 +57,7 @@ public class EnemyMove : MonoBehaviour
 
         Vector2 playerPos = playerSensor.DetectedPlayer.transform.position;
         Vector2 directionToPlayer = -(pos - playerPos).normalized;
-        Vector2 posDelta = directionToPlayer * speed * Time.deltaTime;
+        Vector2 posDelta = directionToPlayer * speed * Time.fixedDeltaTime;
             
         pos.x += posDelta.x;
         pos.y += posDelta.y;
@@ -97,7 +97,7 @@ public class EnemyMove : MonoBehaviour
 
             rb.MovePosition(pos);
             
-            UpdateSprite(pos);
+            UpdateSprite(posDelta);
         }
     }
 
@@ -163,7 +163,7 @@ public class EnemyMove : MonoBehaviour
             enemySpriteRenderer.flipX = false;
         }
 
-        enemySpriteRenderer.transform.rotation = quaternion.identity;
+        enemySpriteRenderer.transform.rotation = Quaternion.identity;
     }
     
     IEnumerator ChangeDirection()
@@ -256,12 +256,15 @@ public class EnemyMove : MonoBehaviour
             worldInfo = FindObjectOfType<WorldInfo>();
         }
 
-        int i = 0;
-        Vector3 sceneCenter = worldInfo.sceneBounds.center;
-        foreach (Vector3 patrol in patrolPoints)
+        if (worldInfo != null)
         {
-            Gizmos.DrawLine(sceneCenter + patrol, sceneCenter + patrolPoints[ (i + 1) % patrolPoints.Count]);
-            i++;
+            int i = 0;
+            Vector3 sceneCenter = worldInfo.sceneBounds.center;
+            foreach (Vector3 patrol in patrolPoints)
+            {
+                Gizmos.DrawLine(sceneCenter + patrol, sceneCenter + patrolPoints[ (i + 1) % patrolPoints.Count]);
+                i++;
+            }
         }
     }
 }

@@ -27,8 +27,11 @@ public class Loader : MonoBehaviour
 
         if (gameManager == null)
         {
-            StartCoroutine(WorldInfo.LoadSceneAsync(managersScene));
-            //SceneManager.LoadSceneAsync(managersScene, LoadSceneMode.Additive);
+            if (!SceneManager.GetSceneByName(managersScene).isLoaded)
+            {
+                StartCoroutine(WorldInfo.LoadSceneAsync(managersScene));
+                //SceneManager.LoadSceneAsync(managersScene, LoadSceneMode.Additive);
+            }
         }
 
         if (loadMainScene)

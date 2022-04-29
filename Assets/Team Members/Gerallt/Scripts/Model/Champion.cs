@@ -21,6 +21,8 @@ namespace ChainsOfFate.Gerallt
         /// </summary>
         public int counterAttackDamage;
 
+        public List<Champion> partyMembers;
+
         /// <summary>
         /// Select the defensive stance.
         /// </summary>

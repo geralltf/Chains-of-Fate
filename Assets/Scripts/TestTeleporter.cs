@@ -58,8 +58,14 @@ public class TestTeleporter : MonoBehaviour
                 List<GameObject> enemies = new List<GameObject>();
                 enemies.Add(this.gameObject);
 
+                // Add current party members from current player to this list
                 List<GameObject> partyMembers = new List<GameObject>();
-                // TODO: add current party members from current player to this list
+                Champion player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
+                foreach (Champion partyMember in player.partyMembers)
+                {
+                    partyMembers.Add(partyMember.gameObject);
+                }
+                
                 
                 playerController.controls.Player.Disable();
                 

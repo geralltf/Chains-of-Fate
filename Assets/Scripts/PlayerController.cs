@@ -21,6 +21,25 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Champion player;
     
+    private void UpdateSprite(Vector2 pos)
+    {
+        if (pos.x < 0)
+        {
+            flipState = true;
+        }
+        else
+        {
+            flipState = false;
+        }
+
+        if (flipState != characterSpriteRenderer.flipX)
+        {
+            characterSpriteRenderer.flipX = flipState;
+        }
+
+        characterSpriteRenderer.transform.rotation = Quaternion.identity;
+    }
+    
     private void Awake()
     {
         controls = new CoFPlayerControls();
@@ -56,20 +75,6 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector2.zero)
         {
-            if (movement.x < 0)
-            {
-                flipState = true;
-            }
-            else
-            {
-                flipState = false;
-            }
-
-            if (flipState != characterSpriteRenderer.flipX)
-            {
-                characterSpriteRenderer.flipX = flipState;
-            }
-            
             //transform.Translate(movement,Space.World);
         
             // Switched to a rigidbody version instead of directly affecting transform
@@ -79,6 +84,8 @@ public class PlayerController : MonoBehaviour
             //rb.AddRelativeForce(movement, ForceMode2D.Force);
             //rb.AddRelativeForce(movement, ForceMode2D.Impulse);
             //rb.velocity += movement;
+
+            UpdateSprite(movement);
         }
     }
 }

@@ -327,7 +327,18 @@ namespace ChainsOfFate.Gerallt
                 CharacterBase character = queue[i];
 
                 GameObject nodeInstance = Instantiate(nodePrefab, contentParent);
-                nodeInstance.GetComponentInChildren<Image>().color = character.representation;
+                Image image = nodeInstance.GetComponentInChildren<Image>();
+
+                SpriteRenderer characterSpriteRenderer = character.GetComponentInChildren<SpriteRenderer>();
+                Color representation = character.representation;
+                //representation.a = 1;
+                
+                if (characterSpriteRenderer != null)
+                {
+                    image.sprite = characterSpriteRenderer.sprite;
+                }
+                image.color = representation;
+                
                 nodeInstance.GetComponentInChildren<TextMeshProUGUI>().text = character.CharacterName;
                 PriorityQueueNode node = nodeInstance.GetComponent<PriorityQueueNode>();
                 node.id = character.ID;
