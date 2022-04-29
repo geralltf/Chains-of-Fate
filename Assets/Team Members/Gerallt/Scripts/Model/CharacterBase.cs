@@ -305,6 +305,28 @@ namespace ChainsOfFate.Gerallt
         }
         
         /// <summary>
+        /// Actually apply the damage to health right now.
+        /// </summary>
+        public virtual void ApplyHealth(int healthChange)
+        {
+            int hitPoints = HP;
+            
+            hitPoints += healthChange;
+            
+            if (hitPoints < 0)
+            {
+                hitPoints = 0;
+            }
+
+            if (hitPoints > MaxHealth)
+            {
+                hitPoints = MaxHealth;
+            }
+            
+            HP = hitPoints;
+        }
+        
+        /// <summary>
         /// Actually apply reducing the arcana by the specified cost right now.
         /// </summary>
         public virtual void ReduceArcana(int spellCost)
@@ -312,6 +334,28 @@ namespace ChainsOfFate.Gerallt
             int arc = Arcana;
             
             arc -= spellCost;
+            
+            if (arc < 0)
+            {
+                arc = 0;
+            }
+
+            if (arc > MaxArcana)
+            {
+                arc = MaxArcana;
+            }
+            
+            Arcana = arc;
+        }
+        
+        /// <summary>
+        /// Actually apply change to the arcana right now.
+        /// </summary>
+        public virtual void ApplyArcana(int arcanaChange)
+        {
+            int arc = Arcana;
+            
+            arc += arcanaChange;
             
             if (arc < 0)
             {
@@ -349,7 +393,7 @@ namespace ChainsOfFate.Gerallt
         }
         
         /// <summary>
-        /// Actually apply change to the resolve right now.
+        /// Actually apply change to the wisdom right now.
         /// </summary>
         public virtual void ApplyWisdom(int wisdomChange)
         {
@@ -368,6 +412,50 @@ namespace ChainsOfFate.Gerallt
             }
             
             Wisdom = wis;
+        }
+        
+        /// <summary>
+        /// Actually apply change to the strength right now.
+        /// </summary>
+        public virtual void ApplyStrength(int strengthChange)
+        {
+            int strength = Strength;
+            
+            strength += strengthChange;
+            
+            if (strength < 0)
+            {
+                strength = 0;
+            }
+
+            if (strength > MaxStrength)
+            {
+                strength = MaxStrength;
+            }
+            
+            Strength = strength;
+        }
+        
+        /// <summary>
+        /// Actually apply change to the strength right now.
+        /// </summary>
+        public virtual void ApplyDefense(int defenseChange)
+        {
+            int defense = Defense;
+            
+            defense += defenseChange;
+            
+            if (defense < 0)
+            {
+                defense = 0;
+            }
+
+            if (defense > MaxDefense)
+            {
+                defense = MaxDefense;
+            }
+            
+            Defense = defense;
         }
         
         public virtual void UpdatePrimaryStats()
@@ -551,6 +639,15 @@ namespace ChainsOfFate.Gerallt
 
             // Get stat components and store them as variables on the current character.
             UpdateStatComponents();
+            
+            // Automatically add items, weapons, spells to their respective lists.
+            availableItems.Clear();
+            availableSpells.Clear();
+            availableWeapons.Clear();
+            
+            availableItems.AddRange(GetComponentsInTree<ItemBase>());
+            availableSpells.AddRange(GetComponentsInTree<SpellBase>());
+            availableWeapons.AddRange(GetComponentsInTree<WeaponBase>());
         }
     }
 }

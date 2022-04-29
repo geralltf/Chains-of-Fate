@@ -1,5 +1,61 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &388704803739146622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7837634498928876416}
+  - component: {fileID: 4530911124609269474}
+  m_Layer: 0
+  m_Name: Item 1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7837634498928876416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388704803739146622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1641870680625215409}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4530911124609269474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388704803739146622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30cf87ce3aab44a7bf7501e0cd25830a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Arc potion
+  itemDescription: Increases your arcana
+  representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
+  healthModifier: 0
+  arcanaModifier: 15
+  defenseModifier: 0
+  resolveModifier: 0
+  strengthModifier: 0
+  wisdomModifier: 0
+  speedModifier: 0
+  movementSpeedModifier: 0
 --- !u!1 &1641870680625215410
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,6 +85,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1641870680904429208}
+  - {fileID: 7837634498928876416}
+  - {fileID: 1542193409605520326}
+  - {fileID: 3595947791658114242}
   m_Father: {fileID: 4028925856220782079}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,9 +135,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cf87ce3aab44a7bf7501e0cd25830a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Test item thingy
-  itemDescription: Something special
+  itemName: Health potion
+  itemDescription: Increases your health
   representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
+  healthModifier: 15
+  arcanaModifier: 0
+  defenseModifier: 0
+  resolveModifier: 0
+  strengthModifier: 0
+  wisdomModifier: 0
+  speedModifier: 0
+  movementSpeedModifier: 0
+--- !u!1 &3925979331259773326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3595947791658114242}
+  - component: {fileID: 700416812365479449}
+  m_Layer: 0
+  m_Name: Item 1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3595947791658114242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925979331259773326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1641870680625215409}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700416812365479449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925979331259773326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30cf87ce3aab44a7bf7501e0cd25830a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Move fast potion
+  itemDescription: Increases your movement speed
+  representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
+  healthModifier: 0
+  arcanaModifier: 0
+  defenseModifier: 0
+  resolveModifier: 0
+  strengthModifier: 0
+  wisdomModifier: 0
+  speedModifier: 1
+  movementSpeedModifier: 2.5
 --- !u!1 &4028925856220782075
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +393,62 @@ Transform:
   m_Father: {fileID: 4028925856220782079}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5559087237900617471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1542193409605520326}
+  - component: {fileID: 5906870214972641620}
+  m_Layer: 0
+  m_Name: Item 1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1542193409605520326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559087237900617471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1641870680625215409}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5906870214972641620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559087237900617471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30cf87ce3aab44a7bf7501e0cd25830a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Minor increase potion
+  itemDescription: Increases your base stats a little
+  representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
+  healthModifier: 3
+  arcanaModifier: 3
+  defenseModifier: 3
+  resolveModifier: 3
+  strengthModifier: 3
+  wisdomModifier: 3
+  speedModifier: 0
+  movementSpeedModifier: 0
 --- !u!1 &5946514099744249055
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +498,7 @@ MonoBehaviour:
   baseDamage: 50
   statusPercentage: 0
   representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
 --- !u!1 &6959365925997072714
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +548,7 @@ MonoBehaviour:
   baseDamage: 60
   statusPercentage: 0
   representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
 --- !u!1 &8019833613808162089
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +630,7 @@ MonoBehaviour:
   baseDamage: 10
   spellCost: 3
   representation: {r: 0, g: 0, b: 0, a: 0}
+  randomTintColour: 1
 --- !u!1 &9177387154576367383
 GameObject:
   m_ObjectHideFlags: 0

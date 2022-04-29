@@ -18,6 +18,7 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private int baseDamage;
         [SerializeField] private float statusPercentage;
         [SerializeField] private Color representation;
+        [SerializeField] private bool randomTintColour = true;
         
         #endregion
 
@@ -111,7 +112,10 @@ namespace ChainsOfFate.Gerallt
             Guid newId = Guid.NewGuid(); //TODO: Check for collisions with weapons that by pure unluck might have the same GUID.
             id = newId.ToString();
             
-            representation = GameManager.RandomColour();
+            if (randomTintColour)
+            {
+                representation = GameManager.RandomColour();
+            }
         }
     }
 }

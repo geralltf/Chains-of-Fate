@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private CombatUI CUI;
     private Vector2 move;
     private Rigidbody2D rb;
+    private Champion player;
     
     private void Awake()
     {
@@ -41,11 +42,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         OnReady?.Invoke();
+
+        player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
     }
 
     private void FixedUpdate()
     {
-        Vector2 movement = new Vector2(move.x, move.y) * speed * Time.fixedDeltaTime; //gets a value based on actual seconds not pc specs that is used to calculate movement
+        Vector2 movement = new Vector2(move.x, move.y) * speed * player.MovementSpeed * Time.fixedDeltaTime; //gets a value based on actual seconds not pc specs that is used to calculate movement
 
         if (movement != Vector2.zero)
         {

@@ -42,7 +42,18 @@ namespace ChainsOfFate.Gerallt
         
         public void ItemButton_OnClick(IDescriptive item)
         {
-            Debug.Log("TODO: Inventory Item use " + item.GetName() + " " + item.GetDescription());
+            ItemTest itemTest = item as ItemTest;
+            if (itemTest != null)
+            {
+                itemTest.UseItem(currentPlayer);
+                
+                // Item has been used and removed, so update inventory view.
+                PopulateView();
+            }
+            else
+            {
+                Debug.Log("TODO: Inventory Item use " + item.GetName() + " " + item.GetDescription());
+            }
         }
 
         public void PopulateView()
@@ -70,7 +81,7 @@ namespace ChainsOfFate.Gerallt
             
             int i = 0;
             
-            for (int test = 0; test < 100; test++)
+            //for (int test = 0; test < 100; test++)
             {
                 foreach (IDescriptive item in allItems)
                 {
@@ -142,8 +153,19 @@ namespace ChainsOfFate.Gerallt
             //tooltipGameObject.GetComponent<RectTransform>().anchoredPosition  = localPoint;
             
             //tooltipGameObject.GetComponent<RectTransform>().position = itemUI.gameObject.GetComponent<RectTransform>().position;
-            
-            tooltipGameObject.GetComponentInChildren<TextMeshProUGUI>().text = itemData.GetDescription();
+
+            string msg = string.Empty;
+            ItemTest itemTest = itemData as ItemTest;
+            if (itemTest != null)
+            {
+                msg = itemTest.GetDescription() + itemTest.GetModifiers(currentPlayer);
+            }
+            else
+            {
+                msg = itemData.GetDescription();
+            }
+
+            tooltipGameObject.GetComponentInChildren<TextMeshProUGUI>().text = msg;
         }
         
         public void HideTooltip()
