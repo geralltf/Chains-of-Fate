@@ -201,7 +201,7 @@ MonoBehaviour:
   resolveModifier: 0
   strengthModifier: 0
   wisdomModifier: 0
-  speedModifier: 1
+  speedModifier: 0
   movementSpeedModifier: 2.5
 --- !u!1 &4028925856220782075
 GameObject:
@@ -324,6 +324,7 @@ MonoBehaviour:
   xp: 0
   isMainCharacter: 1
   counterAttackDamage: 11
+  partyMembers: []
 --- !u!50 &524826007362081
 Rigidbody2D:
   serializedVersion: 4

@@ -467,6 +467,8 @@ MonoBehaviour:
   - Hi!
   movementSpeed: 3.7
   minDistanceToPlayer: 3
+  separationForce: 0.4
+  minSeparationDistance: 1.2999999523162842
   friendlySpriteRenderer: {fileID: 7803630601157363460}
   greetingDisappearTime: 1
   viewGreeting: {fileID: 4392068241019597866}
@@ -474,6 +476,7 @@ MonoBehaviour:
   viewGreetInteractButtons: {fileID: 124516397277809543}
   isPartyMember: 0
   playerTarget: {fileID: 0}
+  championTarget: {fileID: 0}
   state: 0
 --- !u!114 &7803630601155136274
 MonoBehaviour:
@@ -501,7 +504,7 @@ MonoBehaviour:
   defenseStat: {fileID: 0}
   strengthStat: {fileID: 0}
   characterName: Maria
-  speed: 0
+  speed: 1
   movementSpeed: 1
   level: 0
   xp: 0
