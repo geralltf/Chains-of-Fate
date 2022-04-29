@@ -68,6 +68,10 @@ public class PlayerController : MonoBehaviour
             // Switched to a rigidbody version instead of directly affecting transform
             // because there's a 2D collision system using 2D Colliders
             rb.MovePosition(rb.position + movement);
+            
+            //rb.AddRelativeForce(movement, ForceMode2D.Force);
+            //rb.AddRelativeForce(movement, ForceMode2D.Impulse);
+            //rb.velocity += movement;
         }
     }
 }
