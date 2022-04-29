@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
         player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
     }
 
+    private bool flipState = false;
+    
     private void FixedUpdate()
     {
         Vector2 movement = new Vector2(move.x, move.y) * speed * player.MovementSpeed * Time.fixedDeltaTime; //gets a value based on actual seconds not pc specs that is used to calculate movement
@@ -56,11 +58,16 @@ public class PlayerController : MonoBehaviour
         {
             if (movement.x < 0)
             {
-                characterSpriteRenderer.flipX = true;
+                flipState = true;
             }
             else
             {
-                characterSpriteRenderer.flipX = false;
+                flipState = false;
+            }
+
+            if (flipState != characterSpriteRenderer.flipX)
+            {
+                characterSpriteRenderer.flipX = flipState;
             }
             
             //transform.Translate(movement,Space.World);
