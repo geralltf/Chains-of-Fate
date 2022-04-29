@@ -138,8 +138,11 @@ namespace ChainsOfFate.Gerallt
         {
             if (playerSensor.DetectedPlayer == null)
             {
-                state = NpcState.Idle;
-
+                if (state != NpcState.FollowingPlayer)
+                {
+                    state = NpcState.Idle;
+                }
+                
                 if (inDialogue)
                 {
                     StartCoroutine(EndDialogueCoroutine());
