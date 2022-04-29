@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -9,6 +10,8 @@ using Random = UnityEngine.Random;
 public class EnemyMove : MonoBehaviour
 {
     public GameObject enemy;
+    
+    [SerializeField] private SpriteRenderer enemySpriteRenderer;
     
     //public float detectionRadius = 10.0f;
     public float speed = 4.0f;
@@ -38,6 +41,8 @@ public class EnemyMove : MonoBehaviour
     private WorldInfo worldInfo;
     private Rigidbody2D rb;
 
+    private float spawnZ;
+
     public enum MovementType
     {
         Circular = 0,
@@ -46,75 +51,24 @@ public class EnemyMove : MonoBehaviour
         Count = 2 // The count of all MovementTypes
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerSensor = GetComponentInChildren<PlayerSensor>();
-        worldInfo = FindObjectOfType<WorldInfo>();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (ChainsOfFate.Gerallt.GameManager.Instance.levelLoadingLock) return;
-        
-        //playerSensor.detectionRadius = detectionRadius;
-        
-        if (playerSensor.DetectedPlayer != null)
-        {
-            MoveTowardsPlayer();
-        }
-        else
-        {
-            if (movementBehaviourFixedType == MovementType.Different && !waitNewBehaviour)
-            {
-                StartCoroutine(ChangeBehaviour());
-            }
-
-            switch (currMovementBehaviour)
-            {
-                case MovementType.Circular:
-                    CircularMove();
-                    break;
-                case MovementType.Patrolling:
-                    PatrolMove();
-                    break;
-            }
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (worldInfo == null)
-        {
-            worldInfo = FindObjectOfType<WorldInfo>();
-        }
-
-        int i = 0;
-        Vector3 sceneCenter = worldInfo.sceneBounds.center;
-        foreach (Vector3 patrol in patrolPoints)
-        {
-            Gizmos.DrawLine(sceneCenter + patrol, sceneCenter + patrolPoints[ (i + 1) % patrolPoints.Count]);
-            i++;
-        }
-    }
-
     public void MoveTowardsPlayer()
     {
-        Vector3 pos = transform.position;
+        Vector2 pos = transform.position;
 
-        Vector3 playerPos = playerSensor.DetectedPlayer.transform.position;
-        Vector3 directionToPlayer = -(pos - playerPos).normalized;
-        Vector3 posDelta = directionToPlayer * speed * Time.deltaTime;
+        Vector2 playerPos = playerSensor.DetectedPlayer.transform.position;
+        Vector2 directionToPlayer = -(pos - playerPos).normalized;
+        Vector2 posDelta = directionToPlayer * speed * Time.deltaTime;
             
         pos.x += posDelta.x;
-        pos.z += posDelta.z;
+        pos.y += posDelta.y;
 
         //pos = Vector3.MoveTowards(pos, playerPos, speed * Time.deltaTime); // Old way
 
         rb.MovePosition(pos);
         
         //transform.position = pos;
+        
+        UpdateSprite(pos);
     }
 
     public void PatrolMove()
@@ -127,7 +81,7 @@ public class EnemyMove : MonoBehaviour
         Vector3 pos = transform.position;
         Vector3 patrolPoint = worldInfo.sceneBounds.center + patrolPoints[currentPatrolPointIndex];
 
-        float dist = Vector3.Distance(pos, patrolPoint);
+        float dist = Vector2.Distance(pos, patrolPoint);
         if (dist <= patrolNearDistance)
         {
             // Change to next patrol point.
@@ -140,8 +94,10 @@ public class EnemyMove : MonoBehaviour
             pos.y = posDelta.y;
             
             //transform.position = pos;
-            
+
             rb.MovePosition(pos);
+            
+            UpdateSprite(pos);
         }
     }
 
@@ -185,11 +141,29 @@ public class EnemyMove : MonoBehaviour
 
         rb.MovePosition(pos);
         //rb.MoveRotation(rotatedAngle);
+        
+        UpdateSprite(pos);
     }
         
     Vector3 RotateAroundPivot(Vector3 point, Vector3 pivot, Quaternion angle)
     {
         return angle * ( point - pivot) + pivot;
+    }
+
+    private void UpdateSprite(Vector2 pos)
+    {
+        //pos = transform.rotation * rb.position;
+        
+        if (pos.x < 0)
+        {
+            enemySpriteRenderer.flipX = true;
+        }
+        else
+        {
+            enemySpriteRenderer.flipX = false;
+        }
+
+        enemySpriteRenderer.transform.rotation = quaternion.identity;
     }
     
     IEnumerator ChangeDirection()
@@ -230,5 +204,64 @@ public class EnemyMove : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+        spawnZ = transform.position.z; // HACK: 
+    }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerSensor = GetComponentInChildren<PlayerSensor>();
+        worldInfo = FindObjectOfType<WorldInfo>();
+    }
+
+    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        if (ChainsOfFate.Gerallt.GameManager.Instance.levelLoadingLock) return;
+        
+        //playerSensor.detectionRadius = detectionRadius;
+        
+        if (playerSensor.DetectedPlayer != null)
+        {
+            MoveTowardsPlayer();
+        }
+        else
+        {
+            if (movementBehaviourFixedType == MovementType.Different && !waitNewBehaviour)
+            {
+                StartCoroutine(ChangeBehaviour());
+            }
+
+            switch (currMovementBehaviour)
+            {
+                case MovementType.Circular:
+                    CircularMove();
+                    break;
+                case MovementType.Patrolling:
+                    PatrolMove();
+                    break;
+            }
+        }
+        
+        Vector3 currPos = transform.position;
+        currPos.z = spawnZ; // HACK:
+        transform.position = currPos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (worldInfo == null)
+        {
+            worldInfo = FindObjectOfType<WorldInfo>();
+        }
+
+        int i = 0;
+        Vector3 sceneCenter = worldInfo.sceneBounds.center;
+        foreach (Vector3 patrol in patrolPoints)
+        {
+            Gizmos.DrawLine(sceneCenter + patrol, sceneCenter + patrolPoints[ (i + 1) % patrolPoints.Count]);
+            i++;
+        }
     }
 }
