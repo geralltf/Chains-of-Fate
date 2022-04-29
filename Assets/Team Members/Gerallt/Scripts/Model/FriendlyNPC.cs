@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor.TerrainTools;
 using UnityEngine;
@@ -15,6 +16,17 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private List<string> greetingList;
         [SerializeField] private float movementSpeed = 3.7f;
         [SerializeField] private float minDistanceToPlayer = 0.1f;
+        
+        /// <summary>
+        /// The separation force keeping this NPC away from other party members.
+        /// </summary>
+        [SerializeField] private float separationForce = 0.4f;
+        
+        /// <summary>
+        /// The minimum distance of separation kept between other party members.
+        /// </summary>
+        [SerializeField] private double minSeparationDistance = 1.3f;
+        
         [SerializeField] private SpriteRenderer friendlySpriteRenderer;
 
         [SerializeField] private float greetingDisappearTime = 5.0f;
@@ -25,6 +37,7 @@ namespace ChainsOfFate.Gerallt
 
         public bool isPartyMember = false;
         public Transform playerTarget;
+        public Champion championTarget;
         public NpcState state = NpcState.Idle;
 
         private Champion champion;
@@ -34,6 +47,7 @@ namespace ChainsOfFate.Gerallt
         private bool inDialogue = false;
         private bool canExitDialogue = false;
         private bool canEnterDialogue = true;
+
         private float spawnZ; //HACK: 
 
         public enum NpcState
@@ -58,8 +72,34 @@ namespace ChainsOfFate.Gerallt
                 pos.x += posDelta.x;
                 pos.y += posDelta.y;
 
-                rb.MovePosition(pos);
-        
+                Vector2 separation = Vector2.zero;
+                //IEnumerable<Champion> neighbours = championTarget.partyMembers.Where(p=>p.ID != champion.ID);
+                var neighbours = championTarget.partyMembers;
+                int neighboursCount = neighbours.Count();
+                if (neighboursCount > 0)
+                {
+                    foreach (Champion neighbour in neighbours)
+                    {
+                        Vector2 nPos = neighbour.transform.position;
+
+                        float distToNeighbour = Vector2.Distance(pos, nPos);
+
+                        if (distToNeighbour < minSeparationDistance)
+                        {
+                            separation.x += nPos.x - pos.x;
+                            separation.y += nPos.y - pos.y;
+                        }
+                    }
+
+                    separation /= neighboursCount;
+                    
+                    separation.x *= -1;
+                    separation.y *= -1;
+                }
+
+                
+                rb.MovePosition(pos + (separation * separationForce));
+
                 UpdateSprite(posDelta);
             }
         }
@@ -230,6 +270,8 @@ namespace ChainsOfFate.Gerallt
             Vector3 oldPos = transform.position;
             oldPos.z = spawnZ; // HACK: 
             transform.position = oldPos;
+            
+            rb.velocity = Vector2.zero; // Cancel any unwanted velocities!
         }
 
         public void AddAsPartyMember(Champion player)
@@ -238,7 +280,8 @@ namespace ChainsOfFate.Gerallt
             {
                 isPartyMember = true;
                 playerTarget = playerSensor.DetectedPlayer.transform;
-
+                championTarget = player;
+                
                 if (!player.partyMembers.Contains(champion))
                 {
                     player.partyMembers.Add(champion);
