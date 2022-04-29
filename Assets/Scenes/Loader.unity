@@ -170,10 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e8342ec99b87849b95d49c4d6b90a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftScene: {fileID: 0}
-  rightScene: {fileID: 0}
-  upScene: {fileID: 0}
-  downScene: {fileID: 0}
+  leftScene: 
+  rightScene: 
+  upScene: 
+  downScene: 
   enableDebugColour: 0
   debugColour: {r: 0, g: 0, b: 0, a: 0}
   approachingDirection: 0
@@ -34318,6 +34318,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2633860179057119418, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633860179057119418, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633860179057119418, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782075, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_Name
       value: Test Player

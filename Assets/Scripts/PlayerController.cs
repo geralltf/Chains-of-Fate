@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
 
     public event Action OnReady;
+
+    [SerializeField] private SpriteRenderer characterSpriteRenderer;
     
     private CombatUI CUI;
     private Vector2 move;
@@ -52,6 +54,15 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector2.zero)
         {
+            if (movement.x < 0)
+            {
+                characterSpriteRenderer.flipX = true;
+            }
+            else
+            {
+                characterSpriteRenderer.flipX = false;
+            }
+            
             //transform.Translate(movement,Space.World);
         
             // Switched to a rigidbody version instead of directly affecting transform
