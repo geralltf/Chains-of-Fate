@@ -76,6 +76,8 @@ namespace ChainsOfFate.Gerallt
 
         public void AddPartyMember()
         {
+            Debug.Log("Add Party Member");
+            
             if (talkingToCharacter is Champion)
             {
                 buttonAddPartyMember.gameObject.SetActive(false);
@@ -165,12 +167,14 @@ namespace ChainsOfFate.Gerallt
                 {
                     // Tell Yarn to select the specified dialogue option.
                     onOptionSelected(dialogueOption.DialogueOptionID);
-
-                    // line:Assets/Dialogue/COF-Maria.yarn-Start-6
-                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Maria.yarn-Start-6") // HACK: Yarn needs to provide a better way to identify options by name or ID.
+                    
+                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Maria.yarn-MariaStart-6") // HACK: Yarn needs to provide a better way to identify options by name or ID. So if script line numbers change the code doesn't have to
                     {
-                        Debug.Log("Add Party Member");
-                        
+                        AddPartyMember();
+                    }
+                    
+                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Bann'jo.yarn-BannjoStart-13") // HACK: Yarn needs to provide a better way to identify options by name or ID. So if script line numbers change the code doesn't have to
+                    {
                         AddPartyMember();
                     }
                     
