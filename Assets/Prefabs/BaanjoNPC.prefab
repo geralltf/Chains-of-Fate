@@ -157,7 +157,7 @@ MonoBehaviour:
   wisdomStat: {fileID: 0}
   defenseStat: {fileID: 0}
   strengthStat: {fileID: 0}
-  characterName: Baanjo
+  characterName: Bann'jo
   speed: 1
   movementSpeed: 1
   level: 0
