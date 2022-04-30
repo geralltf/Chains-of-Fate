@@ -47,6 +47,8 @@ namespace ChainsOfFate.Gerallt
         private bool canExitDialogue = false;
         private bool canEnterDialogue = true;
 
+        private bool flipState;
+        
         private float spawnZ; //HACK: 
 
         public enum NpcState
@@ -134,11 +136,16 @@ namespace ChainsOfFate.Gerallt
         {
             if (pos.x < 0)
             {
-                friendlySpriteRenderer.flipX = true;
+                flipState = true;
             }
             else
             {
-                friendlySpriteRenderer.flipX = false;
+                flipState = false;
+            }
+
+            if (flipState != friendlySpriteRenderer.flipX)
+            {
+                friendlySpriteRenderer.flipX = flipState;
             }
 
             friendlySpriteRenderer.transform.rotation = Quaternion.identity;
