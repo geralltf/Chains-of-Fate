@@ -24,7 +24,7 @@ namespace ChainsOfFate.Gerallt
         /// <summary>
         /// The minimum distance of separation kept between other party members.
         /// </summary>
-        [SerializeField] private double minSeparationDistance = 1.3f;
+        [SerializeField] private float minSeparationDistance = 1.3f;
         
         [SerializeField] private SpriteRenderer friendlySpriteRenderer;
 
@@ -70,36 +70,19 @@ namespace ChainsOfFate.Gerallt
             {
                 pos.x += posDelta.x;
                 pos.y += posDelta.y;
-
-                Vector2 separation = Vector2.zero;
-                //IEnumerable<Champion> neighbours = championTarget.partyMembers.Where(p=>p.ID != champion.ID);
-                var neighbours = championTarget.partyMembers;
-                int neighboursCount = neighbours.Count();
-                if (neighboursCount > 0)
-                {
-                    foreach (Champion neighbour in neighbours)
-                    {
-                        Vector2 nPos = neighbour.transform.position;
-
-                        float distToNeighbour = Vector2.Distance(pos, nPos);
-
-                        if (distToNeighbour < minSeparationDistance)
-                        {
-                            separation.x += nPos.x - pos.x;
-                            separation.y += nPos.y - pos.y;
-                        }
-                    }
-
-                    separation /= neighboursCount;
-                    
-                    separation.x *= -1;
-                    separation.y *= -1;
-                }
-
                 
-                rb.MovePosition(pos + (separation * separationForce));
+                var neighbours = championTarget.partyMembers;
+
+                Vector2 separationFactor = CharacterBase.FlockSeparation(neighbours, minSeparationDistance, pos);
+
+                rb.simulated = true;
+                rb.MovePosition(pos + (separationFactor * separationForce));
 
                 UpdateSprite(posDelta);
+            }
+            else
+            {
+                rb.simulated = false;
             }
         }
 

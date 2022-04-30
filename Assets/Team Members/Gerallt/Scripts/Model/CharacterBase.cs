@@ -594,6 +594,34 @@ namespace ChainsOfFate.Gerallt
                 stat.Replenish();
             }
         }
+
+        public static Vector2 FlockSeparation<T>(List<T> neighbours, float minSeparationDistance, Vector2 leaderPosition) where T: MonoBehaviour
+        {
+            Vector2 separation = Vector2.zero;
+            int neighboursCount = neighbours.Count;
+            if (neighboursCount > 0)
+            {
+                foreach (T neighbour in neighbours)
+                {
+                    Vector2 nPos = neighbour.transform.position;
+
+                    float distToNeighbour = Vector2.Distance(leaderPosition, nPos);
+
+                    if (distToNeighbour < minSeparationDistance)
+                    {
+                        separation.x += nPos.x - leaderPosition.x;
+                        separation.y += nPos.y - leaderPosition.y;
+                    }
+                }
+
+                separation /= neighboursCount;
+                    
+                separation.x *= -1;
+                separation.y *= -1;
+            }
+
+            return separation;
+        }
         
         private void UpdateStatComponents()
         {
