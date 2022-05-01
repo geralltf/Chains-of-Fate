@@ -9,8 +9,8 @@ public class YarnInteractable : MonoBehaviour
     [SerializeField] private string conversationStartNode;
 
     // internal properties not exposed to editor
-    private DialogueRunner dialogueRunner;
-    private Light lightIndicatorObject = null;
+    [SerializeField] private DialogueRunner dialogueRunner;
+    
     private bool interactable = true;
     private bool isCurrentConversation = false;
 
@@ -29,7 +29,9 @@ public class YarnInteractable : MonoBehaviour
         if (isCurrentConversation)
         {
             isCurrentConversation = false;
-            Debug.Log($"Started conversation with {name}.");
+            Debug.Log($"Ended conversation with {name}.");
+
+            dialogueRunner.Stop();
         }
     }
 
@@ -41,7 +43,10 @@ public class YarnInteractable : MonoBehaviour
     
     private void Start()
     {
-        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        if (dialogueRunner == null)
+        {
+            dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        }
         dialogueRunner.onDialogueComplete.AddListener(EndConversation);
     }
 }

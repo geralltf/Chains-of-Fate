@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -14,22 +15,29 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private Button buttonInterruptConversation;
         [SerializeField] private Button buttonAdvanceConversation;
         [SerializeField] private Button buttonTestPopulateOptionsView;
+        [SerializeField] private Button buttonTestPlayAllLines;
+        [SerializeField] private Button buttonTestResetDialogue;
         [SerializeField] private TextMeshProUGUI textCharacterName;
         [SerializeField] private TextMeshProUGUI textTalkerLine;
         [SerializeField] private GameObject viewButtonOptions;
         [SerializeField] private GameObject optionButtonPrefab;
+        [SerializeField] private float nextLineWaitTime = 1.5f;
         
         public float openAllowTime = 1.0f;
         public float closeAllowTime = 2.0f;
         public CharacterBase talkingToCharacter;
-
+        public bool playAllLines = false;
+        
         private DialogueUI dialogueUI;
         private YarnInteractable yarnInteractable;
         private Champion player;
         private DialogueOption[] dialogueOptionsTmp;
-
+        private bool waitingForNextLine = false;
+        private bool showingDialogueOptions = false;
+        
         private Action lastDialogueLineOnFinished;
-
+        private Action lastDismissalOnComplete;
+        
         public void Show(CharacterBase talkingTo)
         {
             talkingToCharacter = talkingTo;
@@ -68,7 +76,7 @@ namespace ChainsOfFate.Gerallt
                     }
                 }
                 
-                buttonAddPartyMember.gameObject.SetActive(showButton);
+                //buttonAddPartyMember.gameObject.SetActive(showButton);
             }
             
             view.SetActive(visibility);
@@ -109,13 +117,21 @@ namespace ChainsOfFate.Gerallt
             
             Debug.Log(dialogueLine.CharacterName + " says: " + dialogueLine.RawText);
 
+            showingDialogueOptions = false;
+            
             textCharacterName.text = dialogueLine.CharacterName;
             textTalkerLine.text = dialogueLine.TextWithoutCharacterName.Text;
-            
-            // Tell YarnSpinner that the dialogue has finished.
-            //onDialogueLineFinished?.Invoke();
 
-            lastDialogueLineOnFinished = onDialogueLineFinished; // Defer line finishing until player presses 'Next' button "Advance Line"
+            if (playAllLines)
+            {
+                lastDialogueLineOnFinished = onDialogueLineFinished; // Do the next line after a certain amount of time 
+                
+                NextLine();
+            }
+            else
+            {
+                lastDialogueLineOnFinished = onDialogueLineFinished; // Defer line finishing until player presses 'Next' button "Advance Line"
+            }
         }
 
         public void InterruptLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
@@ -128,12 +144,20 @@ namespace ChainsOfFate.Gerallt
             Debug.Log("DialogueUI.DismissLine(): ");
 
             //textTalkerLine.text = string.Empty;
+
+            //onDismissalComplete?.Invoke();
+
+            lastDismissalOnComplete = onDismissalComplete;
         }
 
         public void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected)
         {
             Debug.Log("DialogueUI.RunOptions(): ");
 
+            playAllLines = false;
+            showingDialogueOptions = true;
+            //lastDismissalOnComplete = null;
+            
             PopulateView(dialogueOptions, onOptionSelected);
 
             dialogueOptionsTmp = dialogueOptions; // Store temporarily for testing
@@ -190,7 +214,22 @@ namespace ChainsOfFate.Gerallt
 
         public void NextLine()
         {
-            lastDialogueLineOnFinished?.Invoke();
+            //if (!waitingForNextLine)
+            {
+                StartCoroutine(NextLineCoroutine());
+            }
+        }
+        
+        public void NextLineNoWait()
+        {
+            // Only continue dialogue if yarn Can Continue i.e. not showing dialogue options
+
+            if (!showingDialogueOptions)
+            {
+                // Tell YarnSpinner that the dialogue has finished.
+                lastDialogueLineOnFinished?.Invoke();
+                //lastDialogueLineOnFinished = null;  
+            }
         }
 
         public void PopulateOptionsView_OnClick()
@@ -200,7 +239,41 @@ namespace ChainsOfFate.Gerallt
                 PopulateView(dialogueOptionsTmp, null);
             }
         }
+        
+        private void PlayAllLines_OnClick()
+        {
+            playAllLines = true;
 
+            NextLine();
+        }
+        
+        private void NextLineWithNoWait()
+        {
+            playAllLines = false;
+            
+            NextLineNoWait();
+        }
+
+        private void TestResetDialogue()
+        {
+            ClearView();
+            
+            yarnInteractable.EndConversation();
+            yarnInteractable.StartConversation();
+        }
+        
+        private IEnumerator NextLineCoroutine()
+        {
+            waitingForNextLine = true;
+            yield return new WaitForSeconds(nextLineWaitTime);
+            if (!showingDialogueOptions)
+            {
+                lastDismissalOnComplete?.Invoke();
+                NextLineNoWait();
+            }
+            waitingForNextLine = false;
+        }
+        
         public override void Awake()
         {
             base.Awake();
@@ -209,8 +282,10 @@ namespace ChainsOfFate.Gerallt
             
             buttonAddPartyMember.onClick.AddListener(AddPartyMember);
             buttonInterruptConversation.onClick.AddListener(InterruptLine);
-            buttonAdvanceConversation.onClick.AddListener(NextLine);
+            buttonAdvanceConversation.onClick.AddListener(NextLineWithNoWait);
             buttonTestPopulateOptionsView.onClick.AddListener(PopulateOptionsView_OnClick);
+            buttonTestPlayAllLines.onClick.AddListener(PlayAllLines_OnClick);
+            buttonTestResetDialogue.onClick.AddListener(TestResetDialogue);
         }
     }
 }
