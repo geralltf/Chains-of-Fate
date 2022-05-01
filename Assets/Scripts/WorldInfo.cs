@@ -83,9 +83,32 @@ public class WorldInfo : MonoBehaviour
     }
 
 
+    public void ChangeViewMode()
+    {
+        Grid[] grids = FindObjectsOfType<Grid>(true);
+        
+        if (ChainsOfFate.Gerallt.GameManager.Instance.cameraMode ==
+            ChainsOfFate.Gerallt.GameManager.CameraMode.Isometric)
+        {
+            foreach (Grid g in grids)
+            {
+                g.cellLayout = GridLayout.CellLayout.Isometric;
+            }
+        }
+        else
+        {
+            foreach (Grid g in grids)
+            {
+                g.cellLayout = GridLayout.CellLayout.Rectangle;
+            }
+        }
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
+        ChangeViewMode();
+        
         //UpdateBounds();
     }
 

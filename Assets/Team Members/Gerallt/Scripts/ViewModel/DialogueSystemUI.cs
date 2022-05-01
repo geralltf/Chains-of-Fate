@@ -22,13 +22,13 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private GameObject viewButtonOptions;
         [SerializeField] private GameObject optionButtonPrefab;
         [SerializeField] private float nextLineWaitTime = 1.5f;
+        [SerializeField] private DialogueUI dialogueUI;
         
         public float openAllowTime = 1.0f;
         public float closeAllowTime = 2.0f;
         public CharacterBase talkingToCharacter;
         public bool playAllLines = false;
         
-        private DialogueUI dialogueUI;
         private YarnInteractable yarnInteractable;
         private Champion player;
         private DialogueOption[] dialogueOptionsTmp;
@@ -121,7 +121,7 @@ namespace ChainsOfFate.Gerallt
             Debug.Log("DialogueUI.RunLine(): ");
             
             Debug.Log(dialogueLine.CharacterName + " says: " + dialogueLine.RawText);
-
+            
             showingDialogueOptions = false;
             
             textCharacterName.text = dialogueLine.CharacterName;
@@ -168,6 +168,16 @@ namespace ChainsOfFate.Gerallt
             dialogueOptionsTmp = dialogueOptions; // Store temporarily for testing
         }
 
+        public void NodeStart(string nodeName)
+        {
+            if (nodeName.ToUpper().Contains("START")) // HACK: Need to distinguish between different node types in a better way
+            {
+                //NextLineNoWait();
+                // Advance to initial list of options
+                //yarnInteractable.OnViewRequestedInterrupt();
+            }
+        }
+        
         public void ClearView()
         {
             // Clear dialogue button options view.
@@ -219,8 +229,8 @@ namespace ChainsOfFate.Gerallt
         {
             dialogueUI.InterruptConversation();
         }
-
         public void NextLine()
+
         {
             //if (!waitingForNextLine)
             {

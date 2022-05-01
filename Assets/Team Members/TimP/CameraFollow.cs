@@ -37,11 +37,11 @@ public class CameraFollow : MonoBehaviour
             player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer().gameObject;
         }
 
-        playerController = FindObjectOfType<PlayerController>();
+        playerController = player.GetComponent<PlayerController>();
         playerController.OnReady += PlayerController_OnReady;
     }
 
-    private void PlayerController_OnReady()
+    private Vector3 GetOffset()
     {
         if (_camera.orthographic)
         {
@@ -51,19 +51,30 @@ public class CameraFollow : MonoBehaviour
         {
             offset = perspectiveOffset;
         }
-        
-        transform.position = player.transform.position + offset;
+
+        return offset;
+    }
+    
+    private void PlayerController_OnReady()
+    {
+        transform.position = playerController.defaultSpawnLocation + GetOffset();
     }
 
+    public void UpdateZ()
+    {
+        Vector3 pos = transform.position;
+
+        pos.z = playerController.transform.position.z + GetOffset().z;
+        
+        transform.position = pos;
+    }
+    
     // Update is called once per frame
     void FixedUpdate()
     {
+        UpdateZ();
+        
         //transform.position = player.transform.position + offset;
         transform.position = Vector3.Lerp(transform.position, player.transform.position, trackingSpeed * Time.fixedDeltaTime);
-        
-        // Vector3 position = transform.position;
-        // position.x = Mathf.Lerp(transform.position.x, player.transform.position.x + offset.x, trackingSpeed * Time.fixedDeltaTime);
-        // position.y = Mathf.Lerp(transform.position.y, player.transform.position.y + offset.y, trackingSpeed * Time.fixedDeltaTime);
-        // transform.position = position;
     }
 }

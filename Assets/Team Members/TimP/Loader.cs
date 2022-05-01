@@ -18,7 +18,12 @@ public class Loader : MonoBehaviour
         thisScene = SceneManager.GetActiveScene();
         
         DontDestroyOnLoad(FindObjectOfType<PlayerController>().gameObject);
-        DontDestroyOnLoad(FindObjectOfType<CameraFollow>().gameObject);
+
+        Camera[] cams = FindObjectsOfType<Camera>(true);
+        foreach (Camera cam in cams)
+        {
+            DontDestroyOnLoad(cam);
+        }
 
         // Have to enable the mouse cursor for game builds!
         Cursor.visible = true;

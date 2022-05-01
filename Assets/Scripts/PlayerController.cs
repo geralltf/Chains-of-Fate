@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public CoFPlayerControls controls;
     public float speed = 10f;
 
+    public Vector3 defaultSpawnLocation;
+    
     public event Action OnReady;
 
     [SerializeField] private SpriteRenderer characterSpriteRenderer;
@@ -62,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        defaultSpawnLocation = transform.position;
+        
         OnReady?.Invoke();
 
         player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
@@ -87,7 +91,5 @@ public class PlayerController : MonoBehaviour
 
             UpdateSprite(movement);
         }
-        
-        rb.velocity = Vector2.zero; // Cancel any unwanted velocities!
     }
 }

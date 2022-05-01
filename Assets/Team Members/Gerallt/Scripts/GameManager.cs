@@ -34,6 +34,18 @@ namespace ChainsOfFate.Gerallt
         private Champion mainCharacter;
         private PlayerController playerController;
 
+        public CameraMode cameraMode = CameraMode.Isometric;
+
+        public float spawnOrthoZ = -14.86f;
+        public float spawnPerspectiveZ = 0;
+        public float spawnZ = -14.86f;
+        
+        public enum CameraMode
+        {
+            Isometric,
+            TopDown
+        }
+
         public Champion GetPlayer()
         {
             return mainCharacter;

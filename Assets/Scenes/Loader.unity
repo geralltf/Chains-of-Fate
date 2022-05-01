@@ -34064,7 +34064,7 @@ GameObject:
   - component: {fileID: 1025578687}
   - component: {fileID: 1025578686}
   m_Layer: 0
-  m_Name: Main Camera Top Down
+  m_Name: Top Down
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34238,7 +34238,7 @@ GameObject:
   - component: {fileID: 1427681830}
   - component: {fileID: 1427681834}
   m_Layer: 0
-  m_Name: Main Camera Isometric
+  m_Name: Isometric
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

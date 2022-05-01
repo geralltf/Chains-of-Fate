@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ChainsOfFate.Gerallt;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -37,10 +38,20 @@ public class YarnInteractable : MonoBehaviour
         }
     }
 
+    public void OnViewRequestedInterrupt()
+    {
+        dialogueRunner.OnViewRequestedInterrupt();
+    }
+
 //    [YarnCommand("disable")]
     public void DisableConversation()
     {
         interactable = false;
+    }
+    
+    private void NodeStart(string nodeName)
+    {
+        DialogueSystemUI.Instance.NodeStart(nodeName);
     }
     
     private void Start()
@@ -50,5 +61,6 @@ public class YarnInteractable : MonoBehaviour
             dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
         }
         dialogueRunner.onDialogueComplete.AddListener(EndConversation);
+        dialogueRunner.onNodeStart.AddListener(NodeStart);
     }
 }

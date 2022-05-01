@@ -49,7 +49,7 @@ namespace ChainsOfFate.Gerallt
 
         private bool flipState;
         
-        private float spawnZ; //HACK: 
+        //private float spawnZ; //HACK: 
 
         public enum NpcState
         {
@@ -157,7 +157,7 @@ namespace ChainsOfFate.Gerallt
             rb = GetComponent<Rigidbody2D>();
             champion = GetComponent<Champion>();
             
-            spawnZ = transform.position.z; // HACK: 
+            //spawnZ = transform.position.z; // HACK: 
 
             SetGreetingVisibility(false);
             SetGreetInteractionVisibility(false);
@@ -254,14 +254,14 @@ namespace ChainsOfFate.Gerallt
             }
         }
         
-        private void FixedUpdate()
-        {
-            Vector3 oldPos = transform.position;
-            oldPos.z = spawnZ; // HACK: 
-            transform.position = oldPos;
-            
-            rb.velocity = Vector2.zero; // Cancel any unwanted velocities!
-        }
+        // private void FixedUpdate() // Now done in CharacterBase.FixedUpdate()
+        // {
+        //     Vector3 oldPos = transform.position;
+        //     oldPos.z = GameManager.Instance.spawnZ; // HACK: 
+        //     transform.position = oldPos;
+        //     
+        //     rb.velocity = Vector2.zero; // Cancel any unwanted velocities!
+        // }
 
         public void AddAsPartyMember(Champion player)
         {

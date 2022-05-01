@@ -48,6 +48,8 @@ namespace ChainsOfFate.Gerallt
         /// </summary>
         private string id;
 
+        private Rigidbody2D rb;
+        
         public int encouragePercent = 35;
         public int tauntPercent = 35;
 
@@ -676,6 +678,20 @@ namespace ChainsOfFate.Gerallt
             availableItems.AddRange(GetComponentsInTree<ItemBase>());
             availableSpells.AddRange(GetComponentsInTree<SpellBase>());
             availableWeapons.AddRange(GetComponentsInTree<WeaponBase>());
+            
+            if (rb == null)
+            {
+                rb = GetComponent<Rigidbody2D>();
+            }
+        }
+        
+        public void FixedUpdate()
+        {
+            Vector3 oldPos = transform.position;
+            oldPos.z = GameManager.Instance.spawnZ; // HACK: Changed by DebugUI when camera mode changes
+            transform.position = oldPos;
+
+            rb.velocity = Vector2.zero; // HACK: Cancel any unwanted velocities!
         }
     }
 }
