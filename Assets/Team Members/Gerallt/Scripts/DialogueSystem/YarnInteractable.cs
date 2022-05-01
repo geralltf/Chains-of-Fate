@@ -10,6 +10,8 @@ public class YarnInteractable : MonoBehaviour
 
     // internal properties not exposed to editor
     [SerializeField] private DialogueRunner dialogueRunner;
+
+    public bool resetDialogWhenComplete = true;
     
     private bool interactable = true;
     private bool isCurrentConversation = false;

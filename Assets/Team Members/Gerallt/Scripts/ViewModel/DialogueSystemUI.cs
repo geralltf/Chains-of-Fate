@@ -104,6 +104,11 @@ namespace ChainsOfFate.Gerallt
         public void DialogueComplete()
         {
             Debug.Log("DialogueUI.DialogueComplete(): ");
+
+            if (yarnInteractable.resetDialogWhenComplete)
+            {
+                TestResetDialogue();
+            }
         }
 
         public void UserRequestedViewAdvancement()
@@ -192,16 +197,19 @@ namespace ChainsOfFate.Gerallt
                     // Tell Yarn to select the specified dialogue option.
                     onOptionSelected(dialogueOption.DialogueOptionID);
                     
-                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Maria.yarn-MariaStart-6") // HACK: Yarn needs to provide a better way to identify options by name or ID. So if script line numbers change the code doesn't have to
+                    // HACK: Yarn needs to provide a better way to identify options by name or ID.
+                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Maria.yarn-MariaStart-2"
+                        || dialogueOption.TextID == "line:Assets/Dialogue/COF-Bann'jo.yarn-BannjoStart-11")
+                    {
+                        Hide();
+                    }
+
+                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Maria.yarn-MariaStart-8"
+                        || dialogueOption.TextID == "line:Assets/Dialogue/COF-Bann'jo.yarn-BannjoStart-17") // HACK: Yarn needs to provide a better way to identify options by name or ID. So if script line numbers change the code doesn't have to
                     {
                         AddPartyMember();
                     }
-                    
-                    if (dialogueOption.TextID == "line:Assets/Dialogue/COF-Bann'jo.yarn-BannjoStart-13") // HACK: Yarn needs to provide a better way to identify options by name or ID. So if script line numbers change the code doesn't have to
-                    {
-                        AddPartyMember();
-                    }
-                    
+
                     ClearView();
                 });
             }
