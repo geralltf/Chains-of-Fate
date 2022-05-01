@@ -10,6 +10,9 @@ namespace ChainsOfFate.Gerallt
     {
         public States currentState = States.NotSet;
         
+        // HACK: To get player and enemies to line up in correct position when camera mode is in top down
+        [SerializeField] private Vector3 topDownCameraOffset = new Vector3(-12, -12, -14);
+        
         public enum States
         {
             NotSet = 0,
@@ -87,7 +90,7 @@ namespace ChainsOfFate.Gerallt
         [SerializeField] private int level = 0;
 
         [SerializeField] private int xp = 0;
-        
+
         // /// <summary>
         // /// Schedule of moves the character has applied for their turn.
         // /// </summary>
@@ -689,6 +692,14 @@ namespace ChainsOfFate.Gerallt
         {
             Vector3 oldPos = transform.position;
             oldPos.z = GameManager.Instance.spawnZ; // HACK: Changed by DebugUI when camera mode changes
+
+            if (GameManager.Instance.cameraMode == GameManager.CameraMode.TopDown)
+            {
+                // CHECK: Test if top down camera mode works better with this offset 
+                
+                oldPos += topDownCameraOffset; // HACK: To get player and enemies to line up in correct position when camera mode is in top down
+            }
+            
             transform.position = oldPos;
 
             rb.velocity = Vector2.zero; // HACK: Cancel any unwanted velocities!
