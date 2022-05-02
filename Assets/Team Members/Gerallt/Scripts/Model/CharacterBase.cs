@@ -52,6 +52,7 @@ namespace ChainsOfFate.Gerallt
         private string id;
 
         private Rigidbody2D rb;
+        private Transform trans;
         
         public int encouragePercent = 35;
         public int tauntPercent = 35;
@@ -472,6 +473,7 @@ namespace ChainsOfFate.Gerallt
             RaiseStatChanged("Arcana", Arcana);
             RaiseStatChanged("Wisdom", Wisdom);
             RaiseStatChanged("XP", XP);
+            gameObject.SetActive(false);
         }
 
         // public List<AppliedMove> GetMoves()
@@ -686,6 +688,15 @@ namespace ChainsOfFate.Gerallt
             {
                 rb = GetComponent<Rigidbody2D>();
             }
+
+            trans = GetComponent<Transform>();
+        }
+
+        private Vector3 spawn;
+        
+        void Start()
+        {
+            spawn = transform.position;
         }
         
         public void FixedUpdate()
@@ -693,14 +704,32 @@ namespace ChainsOfFate.Gerallt
             Vector3 oldPos = transform.position;
             oldPos.z = GameManager.Instance.spawnZ; // HACK: Changed by DebugUI when camera mode changes
 
+            
+            
+            Vector3 pos = Camera.main.transform.position;
+            
+            Vector3 sp = GetComponent<Transform>().position;
+            
+            pos.x = sp.x; //test.x;
+            pos.y = 0;
+            pos.z = -15;
+
+            Camera.main.transform.position = pos;
+            
+            
             if (GameManager.Instance.cameraMode == GameManager.CameraMode.TopDown)
             {
                 // CHECK: Test if top down camera mode works better with this offset 
+
+                //oldPos.z = GameManager.Instance.spawnPerspectiveZ;
                 
-                oldPos += topDownCameraOffset; // HACK: To get player and enemies to line up in correct position when camera mode is in top down
+                //oldPos += topDownCameraOffset; // HACK: To get player and enemies to line up in correct position when camera mode is in top down
+            }
+            else
+            {
+
             }
             
-            transform.position = oldPos;
 
             rb.velocity = Vector2.zero; // HACK: Cancel any unwanted velocities!
         }
