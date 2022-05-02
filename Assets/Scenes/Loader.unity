@@ -34069,7 +34069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1025578686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34098,7 +34098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8350055717422942272}
   orthoOffset: {x: 0, y: 0, z: 0}
-  perspectiveOffset: {x: 0, y: -22.8, z: -10}
+  perspectiveOffset: {x: 0, y: 0, z: 0}
   trackingSpeed: 5
 --- !u!20 &1025578688
 Camera:
@@ -34151,12 +34151,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025578685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 23.3, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1078801262
 GameObject:
@@ -34243,7 +34243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1427681830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34257,7 +34257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8350055717422942272}
-  orthoOffset: {x: 0, y: -23.3, z: 0}
+  orthoOffset: {x: 0, y: 0, z: 0}
   perspectiveOffset: {x: 0, y: 0, z: 0}
   trackingSpeed: 5
 --- !u!20 &1427681832
@@ -34287,7 +34287,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.26
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -34316,7 +34316,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1427681834
 MonoBehaviour:
@@ -34359,7 +34359,7 @@ Grid:
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 2
+  m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &1769993700
 Transform:
@@ -34415,7 +34415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782079, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782079, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_LocalRotation.w

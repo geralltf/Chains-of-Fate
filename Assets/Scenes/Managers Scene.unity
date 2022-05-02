@@ -243,6 +243,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
+      propertyPath: cameraMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
       propertyPath: unloadRange
       value: 5
       objectReference: {fileID: 0}
@@ -281,6 +285,26 @@ PrefabInstance:
     - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
       propertyPath: outofboundsBounceForce
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
+      propertyPath: isometricCameraOffset.y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
+      propertyPath: isometricPlayerOffset.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
+      propertyPath: isometricPlayerOffset.y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
+      propertyPath: playerIsometricCameraOffset.x
+      value: 9.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155536608584893846, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
+      propertyPath: playerIsometricCameraOffset.y
+      value: 13.66
       objectReference: {fileID: 0}
     - target: {fileID: 3155536608584893847, guid: aa39563da0e4d5744b9db6354545d439, type: 3}
       propertyPath: m_Name
@@ -727,7 +751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 70, y: -50}
+  m_AnchoredPosition: {x: 84, y: -26}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1236289258257545146

@@ -8,11 +8,11 @@ namespace ChainsOfFate.Gerallt
 {
     public abstract class CharacterBase : MonoBehaviour, IDescriptive
     {
+        private GameManager.CameraMode cameraMode = GameManager.CameraMode.TopDown;
+        private Vector3 isometricPlayerOffset;
+        
         public States currentState = States.NotSet;
-        
-        // HACK: To get player and enemies to line up in correct position when camera mode is in top down
-        [SerializeField] private Vector3 topDownCameraOffset = new Vector3(-12, -12, -14);
-        
+
         public enum States
         {
             NotSet = 0,
@@ -692,46 +692,70 @@ namespace ChainsOfFate.Gerallt
         }
 
         private Vector3 spawn;
+        private Transform cameraTransform;
         
         void Start()
         {
-            spawn = transform.position;
+            spawn = trans.position;
+            isometricPlayerOffset = GameManager.Instance.isometricPlayerOffset;
         }
         
         public void FixedUpdate()
         {
-            gameObject.SetActive(false);
-            Vector3 oldPos = transform.position;
+            Vector3 oldPos = trans.position;
             oldPos.z = GameManager.Instance.spawnZ; // HACK: Changed by DebugUI when camera mode changes
 
-            
-            
-            Vector3 pos = Camera.main.transform.position;
-            
-            Vector3 sp = GetComponent<Transform>().position;
-            
-            pos.x = sp.x; //test.x;
-            pos.y = 0;
-            pos.z = -15;
+            cameraTransform = Camera.main.transform;
 
-            Camera.main.transform.position = pos;
-            
-            
-            if (GameManager.Instance.cameraMode == GameManager.CameraMode.TopDown)
+            if (GameManager.Instance.cameraMode == GameManager.CameraMode.Isometric)
             {
-                // CHECK: Test if top down camera mode works better with this offset 
-
-                //oldPos.z = GameManager.Instance.spawnPerspectiveZ;
-                
-                //oldPos += topDownCameraOffset; // HACK: To get player and enemies to line up in correct position when camera mode is in top down
+                oldPos.z = GameManager.Instance.spawnOrthoZ;
             }
             else
             {
-
+                oldPos.z = GameManager.Instance.spawnPerspectiveZ;
             }
-            
+            trans.position = oldPos;
 
+            ApplyOffsets();
+            
             rb.velocity = Vector2.zero; // HACK: Cancel any unwanted velocities!
+        }
+
+        public void ApplyOffsets()
+        {
+            Vector3 pos = transform.position;
+
+            Vector3 offset = Vector3.zero;
+
+            bool offsetChanged = false;
+            // if (isometricPlayerOffset != ChainsOfFate.Gerallt.GameManager.Instance.isometricPlayerOffset)
+            // {
+            //     isometricPlayerOffset = ChainsOfFate.Gerallt.GameManager.Instance.isometricPlayerOffset;
+            //     offsetChanged = true;
+            // }
+            
+            // Only apply offset if camera changes
+            if (cameraMode != ChainsOfFate.Gerallt.GameManager.Instance.cameraMode || offsetChanged)
+            {
+                offset = ChainsOfFate.Gerallt.GameManager.Instance.isometricPlayerOffset;
+                
+                if (ChainsOfFate.Gerallt.GameManager.Instance.cameraMode ==
+                    ChainsOfFate.Gerallt.GameManager.CameraMode.Isometric)
+                {
+                    pos.x += offset.x;
+                    pos.y += offset.y;
+                }
+                else
+                {
+                    pos.x -= offset.x;
+                    pos.y -= offset.y;
+                }
+
+                cameraMode = ChainsOfFate.Gerallt.GameManager.Instance.cameraMode;
+            }
+
+            transform.position = pos;
         }
     }
 }

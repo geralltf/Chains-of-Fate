@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace ChainsOfFate.Gerallt
@@ -39,6 +40,11 @@ namespace ChainsOfFate.Gerallt
         public float spawnOrthoZ = -14.86f;
         public float spawnPerspectiveZ = 0;
         public float spawnZ = -14.86f;
+        
+        
+        // HACK: To get player and enemies to line up in correct position when camera mode is in top down
+        public Vector3 isometricPlayerOffset = Vector3.zero;
+        public Vector3 isometricCameraOffset = Vector3.zero;
         
         public enum CameraMode
         {
