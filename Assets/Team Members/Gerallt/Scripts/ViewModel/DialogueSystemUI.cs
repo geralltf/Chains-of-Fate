@@ -58,7 +58,7 @@ namespace ChainsOfFate.Gerallt
         public void Hide()
         {
             yarnInteractable.EndConversation();
-            
+
             SetVisibility(false);
         }
         
@@ -86,6 +86,9 @@ namespace ChainsOfFate.Gerallt
         {
             Debug.Log("Add Party Member");
             
+            yarnInteractable.DisableConversation();
+            Hide();
+
             if (talkingToCharacter is Champion)
             {
                 buttonAddPartyMember.gameObject.SetActive(false);

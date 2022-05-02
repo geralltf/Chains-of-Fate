@@ -14,7 +14,8 @@ public class YarnInteractable : MonoBehaviour
 
     public bool resetDialogWhenComplete = true;
     
-    private bool interactable = true;
+    public bool interactable = true;
+    
     private bool isCurrentConversation = false;
 
     public bool IsDialogueRunning => dialogueRunner.IsDialogueRunning;

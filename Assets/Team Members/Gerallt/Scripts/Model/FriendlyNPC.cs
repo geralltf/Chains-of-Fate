@@ -46,7 +46,7 @@ namespace ChainsOfFate.Gerallt
         private bool inDialogue = false;
         private bool canExitDialogue = false;
         private bool canEnterDialogue = true;
-
+        private YarnInteractable yarnInteractable;
         private bool flipState;
         
         //private float spawnZ; //HACK: 
@@ -156,7 +156,7 @@ namespace ChainsOfFate.Gerallt
             playerSensor = GetComponentInChildren<PlayerSensor>();
             rb = GetComponent<Rigidbody2D>();
             champion = GetComponent<Champion>();
-            
+            yarnInteractable = GetComponent<YarnInteractable>();
             //spawnZ = transform.position.z; // HACK: 
 
             SetGreetingVisibility(false);
@@ -186,10 +186,9 @@ namespace ChainsOfFate.Gerallt
                     {
                         case NpcState.Idle:
                             state = NpcState.GreetPlayer;
-
-                            GreetPlayer();
                             break;
                         case NpcState.GreetPlayer:
+                            GreetPlayer();
                             break;
                         case NpcState.FollowingPlayer:
                             break;
@@ -199,7 +198,7 @@ namespace ChainsOfFate.Gerallt
                 }
             }
 
-            if (state is NpcState.GreetPlayer or NpcState.TalkingToPlayer)
+            if ((state is NpcState.GreetPlayer or NpcState.TalkingToPlayer) && yarnInteractable.interactable)
             {
                 if (InputSystem.GetDevice<Keyboard>().eKey.isPressed) // TODO: Use proper input system action event
                 {
@@ -253,15 +252,6 @@ namespace ChainsOfFate.Gerallt
                 state = NpcState.FollowingPlayer;
             }
         }
-        
-        // private void FixedUpdate() // Now done in CharacterBase.FixedUpdate()
-        // {
-        //     Vector3 oldPos = transform.position;
-        //     oldPos.z = GameManager.Instance.spawnZ; // HACK: 
-        //     transform.position = oldPos;
-        //     
-        //     rb.velocity = Vector2.zero; // Cancel any unwanted velocities!
-        // }
 
         public void AddAsPartyMember(Champion player)
         {
