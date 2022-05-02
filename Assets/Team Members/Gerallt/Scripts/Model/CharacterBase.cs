@@ -473,7 +473,6 @@ namespace ChainsOfFate.Gerallt
             RaiseStatChanged("Arcana", Arcana);
             RaiseStatChanged("Wisdom", Wisdom);
             RaiseStatChanged("XP", XP);
-            gameObject.SetActive(false);
         }
 
         // public List<AppliedMove> GetMoves()
@@ -701,6 +700,7 @@ namespace ChainsOfFate.Gerallt
         
         public void FixedUpdate()
         {
+            gameObject.SetActive(false);
             Vector3 oldPos = transform.position;
             oldPos.z = GameManager.Instance.spawnZ; // HACK: Changed by DebugUI when camera mode changes
 
