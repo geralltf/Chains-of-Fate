@@ -71,7 +71,8 @@ namespace ChainsOfFate.Gerallt
         
         public void Attack(CharacterBase target, WeaponBase weapon)
         {
-            Debug.Log("Test attack action - weapon " + weapon.GetName());
+	        Debug.Log(target);
+	        Debug.Log("Test attack action - weapon " + weapon.GetName());
             
             if (target == null) // TODO: Implement target selection
             {

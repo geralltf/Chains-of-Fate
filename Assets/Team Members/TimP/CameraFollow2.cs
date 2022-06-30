@@ -27,6 +27,7 @@ public class CameraFollow2 : MonoBehaviour
         camOrthsize = mainCam.orthographicSize;
         cameraRatio = (xMax + camOrthsize) / 7.0f;
     }
+    
     // Update is called once per frame
     void FixedUpdate()
     {
