@@ -95,7 +95,7 @@ namespace ChainsOfFate.Gerallt
                 
                 FriendlyNPC friendlyNpc = talkingToCharacter.GetComponent<FriendlyNPC>();
 
-                friendlyNpc.AddAsPartyMember(player);
+                //friendlyNpc.AddAsPartyMember(player);
             }
         }
         
