@@ -47,15 +47,6 @@ TagManager:
   - name: Base+1
     uniqueID: 3727940319
     locked: 0
-  - name: ZekeLayer
-    uniqueID: 558441643
-    locked: 0
-  - name: Building
-    uniqueID: 3074151755
-    locked: 0
-  - name: Building+1
-    uniqueID: 912454489
-    locked: 0
   - name: Foliage
     uniqueID: 3786476311
     locked: 0
@@ -64,4 +55,13 @@ TagManager:
     locked: 0
   - name: Foliage+2
     uniqueID: 2189166773
+    locked: 0
+  - name: Building
+    uniqueID: 3074151755
+    locked: 0
+  - name: ZekeLayer
+    uniqueID: 558441643
+    locked: 0
+  - name: Building+1
+    uniqueID: 912454489
     locked: 0
