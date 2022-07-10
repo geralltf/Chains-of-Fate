@@ -17,10 +17,18 @@ namespace ChainsOfFate.Gerallt
         public PlayerButtonsResolveSet ResolveButtonsSet;
         public PlayerButtonsInventorySet InventoryButtonsSet;
         public PlayerButtonsDefensiveSet DefensiveButtonsSet;
+
+        public PlayerButtonsSelectEnemy SelectEnemyButtonsSet;
         
         public void AttackButton_OnClick()
         {
             view.SetActive(false);
+            SelectEnemyButtonsSet.gameObject.SetActive(true);
+        }
+
+        public void EnemySelected()
+        {
+	        SelectEnemyButtonsSet.gameObject.SetActive(false);
             AttackButtonSet.gameObject.SetActive(true);
             
             AttackButtonSet.PopulateAttacks();

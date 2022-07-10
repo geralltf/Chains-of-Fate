@@ -96,7 +96,9 @@ namespace ChainsOfFate.Gerallt
         // /// Schedule of moves the character has applied for their turn.
         // /// </summary>
         // [SerializeField] private List<AppliedMove> appliedMovesList = new List<AppliedMove>();
-
+        private Vector3 spawn;
+        private Transform cameraTransform;
+        
         #endregion
 
         #region Properties
@@ -691,9 +693,6 @@ namespace ChainsOfFate.Gerallt
             trans = GetComponent<Transform>();
         }
 
-        private Vector3 spawn;
-        private Transform cameraTransform;
-        
         void Start()
         {
             spawn = trans.position;
