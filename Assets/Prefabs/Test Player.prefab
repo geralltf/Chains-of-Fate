@@ -302,7 +302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  topDownCameraOffset: {x: -12, y: -12, z: -14}
   encouragePercent: 35
   tauntPercent: 35
   representation: {r: 0, g: 0, b: 1, a: 1}
@@ -661,7 +660,7 @@ Transform:
   m_GameObject: {fileID: 9177387154576367383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4028925856220782079}
@@ -705,10 +704,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 558441643
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f76a6a71ac660864c83ff2aba13723a7, type: 3}
+  m_Sprite: {fileID: 1865761435, guid: 5c835b874c16357468ca34d7b56b92ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
