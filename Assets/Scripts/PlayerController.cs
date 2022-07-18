@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private Champion player;
 
     public Animator animator;
-    
+
     private void UpdateSprite(Vector2 pos)
     {
         /*if (pos.x < 0)

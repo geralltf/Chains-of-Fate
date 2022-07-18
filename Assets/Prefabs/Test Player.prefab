@@ -46,8 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Arc potion
   itemDescription: Increases your arcana
-  rend: {fileID: 0}
-  itemSprite: {fileID: 0}
   representation: {r: 0, g: 0, b: 0, a: 0}
   randomTintColour: 1
   healthModifier: 0
@@ -58,6 +56,105 @@ MonoBehaviour:
   wisdomModifier: 0
   speedModifier: 0
   movementSpeedModifier: 0
+--- !u!1 &1611003589709976575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2202030262297842102}
+  - component: {fileID: 2126761354004593482}
+  - component: {fileID: 1506148448279558339}
+  - component: {fileID: 2667371836552148428}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2202030262297842102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611003589709976575}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.52, y: -1.1, z: -9.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4028925856220782079}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2126761354004593482
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611003589709976575}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 6
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &1506148448279558339
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611003589709976575}
+  m_Enabled: 1
+--- !u!114 &2667371836552148428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611003589709976575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de70e816fc5d4c34686298fe1bfd5c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4028925856220782079}
+  theMap: {fileID: 0}
 --- !u!1 &1641870680625215410
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,8 +243,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Health potion
   itemDescription: Increases your health
-  rend: {fileID: 2833429032808134376}
-  itemSprite: {fileID: 21300000, guid: 2feaad7486a99074c91e13661405f8b7, type: 3}
   representation: {r: 0, g: 0, b: 0, a: 0}
   randomTintColour: 1
   healthModifier: 15
@@ -264,8 +359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Move fast potion
   itemDescription: Increases your movement speed
-  rend: {fileID: 0}
-  itemSprite: {fileID: 0}
   representation: {r: 0, g: 0, b: 0, a: 0}
   randomTintColour: 1
   healthModifier: 0
@@ -292,7 +385,7 @@ GameObject:
   - component: {fileID: 138005696282075888}
   m_Layer: 0
   m_Name: Test Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,6 +407,7 @@ Transform:
   - {fileID: 1641870680625215409}
   - {fileID: 1877224361929858071}
   - {fileID: 6289789119772457159}
+  - {fileID: 2202030262297842102}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -526,8 +620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Minor increase potion
   itemDescription: Increases your base stats a little
-  rend: {fileID: 0}
-  itemSprite: {fileID: 0}
   representation: {r: 0, g: 0, b: 0, a: 0}
   randomTintColour: 1
   healthModifier: 3
