@@ -11,7 +11,7 @@ public class GameInventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointer
     public InventoryUI parentView;
 
     private IDescriptive data;
-    
+
     public void UpdateView(IDescriptive item, int i)
     {
         data = item;

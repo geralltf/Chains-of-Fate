@@ -53,9 +53,6 @@ TagManager:
   - name: Foliage+1
     uniqueID: 520960133
     locked: 0
-  - name: Foliage+2
-    uniqueID: 2189166773
-    locked: 0
   - name: Building
     uniqueID: 3074151755
     locked: 0
@@ -64,4 +61,7 @@ TagManager:
     locked: 0
   - name: Building+1
     uniqueID: 912454489
+    locked: 0
+  - name: Foliage+2
+    uniqueID: 2189166773
     locked: 0
