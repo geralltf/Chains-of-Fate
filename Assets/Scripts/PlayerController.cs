@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isMoving", false); ; //if there is no movement isMoving is set to false which sets the animator state to idle.
+            //animator.SetFloat("LastMoveX", move.x);
+            //animator.SetFloat("LastMoveY", move.y);
         }
     }
 }

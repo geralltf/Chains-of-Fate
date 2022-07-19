@@ -19932,11 +19932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7884285771250397577, guid: 14d6853ebbc3c1c4787a19befe2a6bfe, type: 3}
       propertyPath: mainScene
-      value: OldMansExterior
+      value: Main
       objectReference: {fileID: 0}
     - target: {fileID: 7884285771250397577, guid: 14d6853ebbc3c1c4787a19befe2a6bfe, type: 3}
       propertyPath: loadMainScene
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7884285771250397582, guid: 14d6853ebbc3c1c4787a19befe2a6bfe, type: 3}
       propertyPath: m_Name

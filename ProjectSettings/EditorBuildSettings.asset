@@ -39,10 +39,10 @@ EditorBuildSettings:
     path: Assets/Dialogue/Test/DialougeTest.unity
     guid: 3384433ee6f31ee44985da5e0a950a93
   - enabled: 1
-    path: Assets/Team Members/Charlie/Forrest_ExteriorTest.unity
+    path: Assets/Scenes/MariaBoss_Approach.unity
     guid: 7d57a5ca11f92f4448b6021f71147ec4
   - enabled: 1
-    path: Assets/Team Members/Charlie/Battle_BG_Forrest.unity
+    path: Assets/Scenes/00_Battle_BG_Forrest.unity
     guid: 4ea7ff2e01bb29740a533021e08b4c69
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a77d378b4fec5ad47bb5b8e531458538, type: 2}
