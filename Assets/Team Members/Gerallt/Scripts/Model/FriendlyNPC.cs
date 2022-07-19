@@ -48,8 +48,15 @@ namespace ChainsOfFate.Gerallt
         private bool canEnterDialogue = true;
         private YarnInteractable yarnInteractable;
         private bool flipState;
-        
+
+        private Champion player;
+
+
+
         //private float spawnZ; //HACK: 
+
+
+
 
         public enum NpcState
         {
@@ -161,6 +168,9 @@ namespace ChainsOfFate.Gerallt
 
             SetGreetingVisibility(false);
             SetGreetInteractionVisibility(false);
+
+            player = FindObjectOfType<PlayerController>().GetComponent<Champion>();
+
         }
 
         private void Update()
@@ -253,8 +263,10 @@ namespace ChainsOfFate.Gerallt
             }
         }
 
-        public void AddAsPartyMember(Champion player)
+        public void AddAsPartyMember()
         {
+            
+            
             if (!isPartyMember)
             {
                 isPartyMember = true;

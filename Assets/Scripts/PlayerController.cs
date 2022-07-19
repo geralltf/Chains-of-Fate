@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Rigidbody2D rb;
     private Champion player;
-    
+
+    public Animator animator;
+
     private void UpdateSprite(Vector2 pos)
     {
-        if (pos.x < 0)
+        /*if (pos.x < 0)
         {
             flipState = true;
         }
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
             characterSpriteRenderer.flipX = flipState;
         }
 
-        characterSpriteRenderer.transform.rotation = Quaternion.identity;
+        characterSpriteRenderer.transform.rotation = Quaternion.identity;*/
     }
     
     private void Awake()
@@ -90,6 +92,17 @@ public class PlayerController : MonoBehaviour
             //rb.velocity += movement;
 
             UpdateSprite(movement);
+
+            animator.SetFloat("Horizontal", move.x); //code that checks the movement direction for the animator to use for displaying the walking animations
+            animator.SetFloat("Vertical", move.y);
+
+            animator.SetBool("isMoving", true); //sets the state of the character in the animator to true
+        }
+        else
+        {
+            animator.SetBool("isMoving", false); ; //if there is no movement isMoving is set to false which sets the animator state to idle.
+            //animator.SetFloat("LastMoveX", move.x);
+            //animator.SetFloat("LastMoveY", move.y);
         }
     }
 }

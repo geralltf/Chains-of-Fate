@@ -39,11 +39,11 @@ namespace ChainsOfFate.Gerallt
 
         public delegate void FleeDelegate(CharacterBase current, bool canFlee, bool unloadCombatUI);
 
-        public delegate void ManagerInitilisedQueueDelegate(int enemiesAllocated, int partyMembersAllocated);
+        public delegate void ManagerInitialisedQueueDelegate(int enemiesAllocated, int partyMembersAllocated);
 
         public delegate void CounterAttackDelegate(CharacterBase attacker, CharacterBase target);
 
-        public event ManagerInitilisedQueueDelegate OnManagerInitilisedQueueEvent;
+        public event ManagerInitialisedQueueDelegate OnManagerInitialisedQueueEvent;
         public event Action<CharacterBase> OnChampionHavingNextTurn;
         public event Action<EnemyNPC> OnEnemyHavingTurn;
         public event Action<EnemyNPC> OnEnemyCompletedTurn;
@@ -191,7 +191,7 @@ namespace ChainsOfFate.Gerallt
             turnsQueueEnemies.UpdateView();
             turnsQueueYours.UpdateView();
             
-            OnManagerInitilisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
+            OnManagerInitialisedQueueEvent?.Invoke(enemiesAllocated, partyMembersAllocated);
             OnHavingTurn?.Invoke(playerCharacter);
             OnRoundAdvance?.Invoke(round);
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ChainsOfFate.Gerallt;
 using UnityEngine;
 using Yarn.Unity;
+using UnityEngine.Events;
 
 public class YarnInteractable : MonoBehaviour
 {
@@ -19,13 +20,14 @@ public class YarnInteractable : MonoBehaviour
     private bool isCurrentConversation = false;
 
     public bool IsDialogueRunning => dialogueRunner.IsDialogueRunning;
+    public UnityEvent DialogueOutcomes;
 
     public void StartConversation()
     {
         Debug.Log($"Started conversation with {name}.");
         isCurrentConversation = true;
 
-        dialogueRunner.StartDialogue(conversationStartNode);
+        dialogueRunner.StartDialogue(dialogueRunner.startNode);
     }
 
     public void EndConversation()
@@ -52,7 +54,8 @@ public class YarnInteractable : MonoBehaviour
     
     private void NodeStart(string nodeName)
     {
-        DialogueSystemUI.Instance.NodeStart(nodeName);
+        //DialogueSystemUI.Instance.NodeStart(nodeName);
+        DialogueOutcomes.Invoke();
     }
     
     private void Start()

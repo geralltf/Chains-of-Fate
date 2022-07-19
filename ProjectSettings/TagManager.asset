@@ -41,27 +41,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
+  - name: Base
     uniqueID: 188391361
     locked: 0
-  - name: New Layer 2
+  - name: Base+1
     uniqueID: 3727940319
+    locked: 0
+  - name: Foliage
+    uniqueID: 3786476311
+    locked: 0
+  - name: Foliage+1
+    uniqueID: 520960133
+    locked: 0
+  - name: Building
+    uniqueID: 3074151755
     locked: 0
   - name: ZekeLayer
     uniqueID: 558441643
     locked: 0
-  - name: New Layer 4
-    uniqueID: 3074151755
-    locked: 0
-  - name: New Layer 5
+  - name: Building+1
     uniqueID: 912454489
     locked: 0
-  - name: New Layer 6
-    uniqueID: 3786476311
-    locked: 0
-  - name: New Layer 7
-    uniqueID: 520960133
-    locked: 0
-  - name: New Layer 8
+  - name: Foliage+2
     uniqueID: 2189166773
     locked: 0
