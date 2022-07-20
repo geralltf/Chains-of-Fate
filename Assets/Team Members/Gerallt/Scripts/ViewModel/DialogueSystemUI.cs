@@ -230,7 +230,7 @@ namespace ChainsOfFate.Gerallt
         
         public void InterruptLine()
         {
-            dialogueUI.InterruptConversation();
+           // dialogueUI.InterruptConversation();
         }
         public void NextLine()
 

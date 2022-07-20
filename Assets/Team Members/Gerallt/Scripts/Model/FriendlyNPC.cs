@@ -186,6 +186,7 @@ namespace ChainsOfFate.Gerallt
                 {
                     StartCoroutine(EndDialogueCoroutine());
                 }
+                player = FindObjectOfType<PlayerController>().GetComponent<Champion>();
             }
 
             if (!isPartyMember)
@@ -214,11 +215,12 @@ namespace ChainsOfFate.Gerallt
                 {
                     if (!inDialogue && canEnterDialogue)
                     {
-                        StartCoroutine(StartDialogueCoroutine());
+                        //StartCoroutine(StartDialogueCoroutine());
+                        yarnInteractable.StartConversation();
                     }
                     else if (inDialogue && canExitDialogue)
                     {
-                        StartCoroutine(EndDialogueCoroutine());
+                       // StartCoroutine(EndDialogueCoroutine());
                     }
                 }
             }
@@ -238,7 +240,7 @@ namespace ChainsOfFate.Gerallt
             canExitDialogue = false;
             state = NpcState.TalkingToPlayer;
             
-            DialogueSystemUI.Instance.Show(champion);
+            DialogueSystemUI.Instance.Show(player);
 
             yield return new WaitForSeconds(DialogueSystemUI.Instance.closeAllowTime);
 
