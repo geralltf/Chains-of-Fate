@@ -28,6 +28,13 @@ public class WorldInfo : MonoBehaviour
     private Scene? theNewScene;
     internal Collider2D thisCollider;
 
+    [SerializeField]
+    private List<BuildingBounds> buildingBounds = new ();
+
+    [SerializeField]
+    private bool buildingSceneLoaded;
+    private string buildingSceneToLoad;
+
     public enum SceneDirection
     {
         Undefined,
@@ -39,6 +46,7 @@ public class WorldInfo : MonoBehaviour
     
     private void Awake()
     {
+	    buildingBounds.AddRange(GetComponentsInChildren<BuildingBounds>());
         player = FindObjectOfType<PlayerController>().transform;
         centrePoint = transform.position;
 
@@ -173,6 +181,10 @@ public class WorldInfo : MonoBehaviour
                 sceneLoaded = downSceneLoaded;
                 sceneName = downScene;
                 break;
+            case SceneDirection.Undefined:
+	            sceneLoaded = buildingSceneLoaded;
+	            sceneName = buildingSceneToLoad;
+	            break;
         }
         
         if (!sceneLoaded)
@@ -195,6 +207,9 @@ public class WorldInfo : MonoBehaviour
                     case SceneDirection.Bottom:
                         downSceneLoaded = true;
                         break;
+                    case SceneDirection.Undefined:
+	                    buildingSceneLoaded = true;
+	                    break;
                 }
                 
                 newSceneDirection = sceneDirection;
@@ -304,6 +319,9 @@ public class WorldInfo : MonoBehaviour
                 loadOffset.y += -sceneBounds.extents.y;
                 approaching = SceneDirection.Top;
                 break;
+            case SceneDirection.Undefined:
+	            approaching = SceneDirection.Undefined;
+	            break;
         }
         loadOffset *= 2.0f; // Double the extents is the full map size.
         
@@ -456,6 +474,32 @@ public class WorldInfo : MonoBehaviour
             FinishLoading();
         }
     }
+
+    void CheckAdHocSceneChange(Vector3 pos, BuildingBounds building, ChainsOfFate.Gerallt.GameManager gameManager)
+    {
+	    Bounds buildingBounds = building.buildingBounds;
+	    bool checkXPosLoad = pos.x > buildingBounds.center.x - buildingBounds.extents.x / 2f 
+	                                                         - 1 && pos.x < buildingBounds.center.x + buildingBounds.extents.x / 2f
+						 + 1;
+	    bool checkYPosLoad = pos.y > buildingBounds.center.y - buildingBounds.extents.y / 2f 
+	                     - 1 && pos.y < buildingBounds.center.y + buildingBounds.extents.y / 2f 
+						 + 1;
+	    
+	    if (checkXPosLoad && checkYPosLoad)
+	    {
+		    buildingSceneToLoad = building.buildingScene;
+		    TryLoadScene(SceneDirection.Undefined);
+	    }
+	    
+	    bool checkXPosFinished = pos.x > buildingBounds.center.x - buildingBounds.extents.x / 2f &&
+	                     pos.x < buildingBounds.center.x + buildingBounds.extents.x / 2f;
+	    bool checkYPosFinished = pos.y > buildingBounds.center.y - buildingBounds.extents.y / 2f &&
+	                     pos.y < buildingBounds.center.y + buildingBounds.extents.y / 2f;
+	    if (checkXPosFinished && checkYPosFinished)
+	    {
+		    FinishLoading();
+	    }
+    }
     
     void CheckPosition()
     {
@@ -468,6 +512,10 @@ public class WorldInfo : MonoBehaviour
             CheckRight(pos, gameManager);
             CheckTop(pos, gameManager);
             CheckBottom(pos, gameManager);
+            foreach (BuildingBounds building in buildingBounds)
+            {
+	            CheckAdHocSceneChange(pos, building, gameManager);
+            }
         }
     }
 }
