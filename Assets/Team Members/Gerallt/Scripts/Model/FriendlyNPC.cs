@@ -220,7 +220,7 @@ namespace ChainsOfFate.Gerallt
                     }
                     else if (inDialogue && canExitDialogue)
                     {
-                       // StartCoroutine(EndDialogueCoroutine());
+                       StartCoroutine(EndDialogueCoroutine());
                     }
                 }
             }

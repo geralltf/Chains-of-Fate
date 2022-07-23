@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 1824928430
     Data4: 702235319
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
     Data3: -267954298
     Data4: 336296834
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
     Data3: -709822820
     Data4: 1047449619
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
     Data3: -1205172089
     Data4: 690615675
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
     Data3: 1835079568
     Data4: -69455175
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
     Data3: 265148078
     Data4: 1757142434
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
     Data3: -228898664
     Data4: -144225872
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
     Data3: -2086443335
     Data4: -946806637
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -263,7 +263,7 @@ MonoBehaviour:
     Data3: 617339286
     Data4: 17450088
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1240
---- !u!114 &-2310058727510612512
+--- !u!114 &-2403938267920180860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,13 +281,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/FMOD Builds/Master.strings.bank
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: F:/Program Files (x86)/Unity/Projects/Chains-of-Fate/Assets/Team Members/Luke
-    M/FMOD Builds/Master.strings.bank
-  Name: FMOD Builds/Master.strings
+  Path: Assets/Team Members/Luke M/FMOD Builds/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637941749214143668
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-1292985466851024924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Team Members/Luke M/FMOD Builds/Master.strings.bank
+  Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637940005940000000
+  lastModified: 637941749214263687
   FileSizes:
   - Name: 
     Value: 1952
@@ -311,7 +328,7 @@ MonoBehaviour:
     Data3: -1699460189
     Data4: 1838785149
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -332,8 +349,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -2310058727510612512}
-  - {fileID: 7688995611463806491}
+  - {fileID: -1292985466851024924}
+  - {fileID: -2403938267920180860}
   EditorEvents:
   - {fileID: 5208516004304109351}
   - {fileID: 1761926919251384885}
@@ -361,10 +378,10 @@ MonoBehaviour:
   - {fileID: 2026693138983911220}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   StringsBanks:
-  - {fileID: -2310058727510612512}
-  cacheTime: 637940005940000000
+  - {fileID: -1292985466851024924}
+  cacheTime: 637941749214263687
   cacheVersion: 10
 --- !u!114 &99290335921217031
 MonoBehaviour:
@@ -385,7 +402,7 @@ MonoBehaviour:
     Data3: 403804592
     Data4: -1569078859
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -412,7 +429,7 @@ MonoBehaviour:
     Data3: -1700119879
     Data4: -1467424665
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -439,7 +456,7 @@ MonoBehaviour:
     Data3: -428814454
     Data4: 354442944
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -466,7 +483,7 @@ MonoBehaviour:
     Data3: -1546686316
     Data4: -1456259961
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -493,7 +510,7 @@ MonoBehaviour:
     Data3: 1892234156
     Data4: 696601769
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -520,7 +537,7 @@ MonoBehaviour:
     Data3: -2046381153
     Data4: -1609898079
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -547,7 +564,7 @@ MonoBehaviour:
     Data3: -818360912
     Data4: 983104664
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -574,7 +591,7 @@ MonoBehaviour:
     Data3: 1432942732
     Data4: 1135972951
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -601,7 +618,7 @@ MonoBehaviour:
     Data3: -496899155
     Data4: 2004253213
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -628,7 +645,7 @@ MonoBehaviour:
     Data3: -435780718
     Data4: 151631648
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -655,7 +672,7 @@ MonoBehaviour:
     Data3: -860024680
     Data4: -1909909277
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -663,27 +680,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 292351
---- !u!114 &7688995611463806491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/FMOD Builds/Master.bank
-  m_EditorClassIdentifier: 
-  Path: F:/Program Files (x86)/Unity/Projects/Chains-of-Fate/Assets/Team Members/Luke
-    M/FMOD Builds/Master.bank
-  Name: FMOD Builds/Master
-  StudioPath: bank:/Master
-  lastModified: 637940005940000000
-  FileSizes:
-  - Name: 
-    Value: 11903072
-  Exists: 1
 --- !u!114 &7699612004538682751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +699,7 @@ MonoBehaviour:
     Data3: -1340115303
     Data4: -1009070304
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -730,7 +726,7 @@ MonoBehaviour:
     Data3: 1507670192
     Data4: 1576209605
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -758,7 +754,7 @@ MonoBehaviour:
     Data3: -1886468708
     Data4: 1812511638
   Banks:
-  - {fileID: 7688995611463806491}
+  - {fileID: -2403938267920180860}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

@@ -35,14 +35,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Samples/Scenes/Enemy and Player Test Scene.unity
     guid: 2256cb2e0fd874a4a9363dd7b1ae5559
-  - enabled: 1
-    path: Assets/Dialogue/Test/DialougeTest.unity
-    guid: 3384433ee6f31ee44985da5e0a950a93
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MariaBoss_Approach.unity
     guid: 7d57a5ca11f92f4448b6021f71147ec4
   - enabled: 1
     path: Assets/Scenes/00_Battle_BG_Forrest.unity
     guid: 4ea7ff2e01bb29740a533021e08b4c69
+  - enabled: 1
+    path: Assets/Dialogue/Test/DialougeTest.unity
+    guid: acb40ed5b66b12843b2df82414d1d31c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a77d378b4fec5ad47bb5b8e531458538, type: 2}
