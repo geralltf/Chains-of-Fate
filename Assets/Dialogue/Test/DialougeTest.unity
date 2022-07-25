@@ -22189,6 +22189,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: resetDialogWhenComplete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: DialogueOutcomes.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
