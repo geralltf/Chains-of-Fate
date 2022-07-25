@@ -23,7 +23,7 @@ public class YarnInteractable : MonoBehaviour
         Debug.Log($"Started conversation with {name}.");
         isCurrentConversation = true;
 
-        dialogueRunner.StartDialogue(dialogueRunner.startNode);
+        dialogueRunner.StartDialogue(conversationStartNode);
     }
 
     public void EndConversation()
