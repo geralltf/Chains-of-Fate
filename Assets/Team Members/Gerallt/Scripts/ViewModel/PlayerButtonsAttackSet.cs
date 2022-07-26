@@ -9,7 +9,7 @@ namespace ChainsOfFate.Gerallt
     public class PlayerButtonsAttackSet : MonoBehaviour
     {
         public GameObject view;
-        public Scrollbar Scrollbar;
+        public GameObject Scrollbar;
         public GameObject weaponViewPrefab;
         public float itemSpacing = 60.0f;
         public float itemOffset = 0.0f;
@@ -107,7 +107,7 @@ namespace ChainsOfFate.Gerallt
                     i++;
                 }
 
-                Scrollbar.size = (2f/(1+Mathf.Max((i - 1) / 3, 1)));
+                //Scrollbar.GetComponent<Scrollbar>().size = 2f/(1+Mathf.Max((i - 1) / 3, 1)); not working?
             }
         }
 
