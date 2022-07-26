@@ -9,6 +9,7 @@ namespace ChainsOfFate.Gerallt
     public class PlayerButtonsAttackSet : MonoBehaviour
     {
         public GameObject view;
+        public Scrollbar Scrollbar;
         public GameObject weaponViewPrefab;
         public float itemSpacing = 60.0f;
         public float itemOffset = 0.0f;
@@ -73,8 +74,8 @@ namespace ChainsOfFate.Gerallt
                     GameObject weaponUIInstance = Instantiate(weaponViewPrefab, view.transform);
                     Vector3 pos = weaponUIInstance.transform.localPosition;
 
-                    pos.x = (i * itemSpacing) + itemOffset;
-                    pos.y = 0;
+                    pos.x = (i%3 * itemSpacing) + itemOffset;
+                    pos.y = i/3* itemSpacing * 0.5f - itemOffset*0.5f;
                     pos.z = 0;
                 
                     weaponUIInstance.transform.localPosition = pos;
@@ -92,8 +93,8 @@ namespace ChainsOfFate.Gerallt
                     GameObject spellUIInstance = Instantiate(weaponViewPrefab, view.transform);
                     Vector3 pos = spellUIInstance.transform.localPosition;
 
-                    pos.x = (i * itemSpacing) + itemOffset;
-                    pos.y = 0;
+                    pos.x = (i%3 * itemSpacing) + itemOffset;
+                    pos.y = -i/3* itemSpacing * 0.5f - itemOffset*0.5f;
                     pos.z = 0;
                 
                     spellUIInstance.transform.localPosition = pos;
@@ -105,6 +106,8 @@ namespace ChainsOfFate.Gerallt
                     });
                     i++;
                 }
+
+                Scrollbar.size = (2f/(1+Mathf.Max((i - 1) / 3, 1)));
             }
         }
 
