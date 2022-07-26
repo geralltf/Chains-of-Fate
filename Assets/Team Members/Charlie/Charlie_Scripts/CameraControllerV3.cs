@@ -20,11 +20,13 @@ public class CameraControllerV3 : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        target = FindObjectOfType<PlayerController>().transform;
+
         halfHeight = Camera.main.orthographicSize;
         halfWidth = halfHeight * Camera.main.aspect;
 
         botLeftLimit = theMap.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
-        topRighLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f); ;
+        topRighLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
     }
 
     // LateUpdate is called once per frame after Update

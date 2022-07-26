@@ -19,11 +19,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer characterSpriteRenderer;
     
     private CombatUI CUI;
-    private Vector2 move;
+    public Vector2 move;
     private Rigidbody2D rb;
     private Champion player;
 
     public Animator animator;
+    public Animator mariaAnim;
+    public bool playerMoving = false;
 
     private void UpdateSprite(Vector2 pos)
     {
@@ -52,6 +54,8 @@ public class PlayerController : MonoBehaviour
         //DontDestroyOnLoad(this);
 
         rb = GetComponent<Rigidbody2D>();
+
+
     }
  
     private void OnEnable()
@@ -75,18 +79,19 @@ public class PlayerController : MonoBehaviour
 
     private bool flipState = false;
     
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         Vector2 movement = new Vector2(move.x, move.y) * speed * player.MovementSpeed * Time.fixedDeltaTime; //gets a value based on actual seconds not pc specs that is used to calculate movement
 
         if (movement != Vector2.zero)
         {
+            playerMoving = true;
             //transform.Translate(movement,Space.World);
         
             // Switched to a rigidbody version instead of directly affecting transform
             // because there's a 2D collision system using 2D Colliders
             rb.MovePosition(rb.position + movement);
-
+            
             //rb.AddRelativeForce(movement, ForceMode2D.Force);
             //rb.AddRelativeForce(movement, ForceMode2D.Impulse);
             //rb.velocity += movement;
@@ -96,13 +101,17 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Horizontal", move.x); //code that checks the movement direction for the animator to use for displaying the walking animations
             animator.SetFloat("Vertical", move.y);
 
-            animator.SetBool("isMoving", true); //sets the state of the character in the animator to true
+            //mariaAnim.SetFloat("Horizontal", move.x); 
+            //mariaAnim.SetFloat("Vertical", move.y);
+
+            animator.SetBool("isMoving", true);
+            //mariaAnim.SetBool("isMoving", true);
         }
         else
         {
-            animator.SetBool("isMoving", false); ; //if there is no movement isMoving is set to false which sets the animator state to idle.
-            //animator.SetFloat("LastMoveX", move.x);
-            //animator.SetFloat("LastMoveY", move.y);
+            playerMoving = false;
+            animator.SetBool("isMoving", false);
+            //mariaAnim.SetBool("isMoving", false);//if there is no movement isMoving is set to false which sets the animator state to idle.
         }
     }
 }
