@@ -19879,6 +19879,25 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &856844358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1611003589709976575, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
+  m_PrefabInstance: {fileID: 2074657320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &856844363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856844358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!1001 &863042722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20736,6 +20755,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2041270991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041270986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1847444040
+      Data2: 1267290970
+      Data3: 587688590
+      Data4: -1202250622
+    Path: event:/Music/MusicPlaceHold
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &2074657320
 PrefabInstance:
   m_ObjectHideFlags: 0
