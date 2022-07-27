@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Rigidbody2D rb;
     private Champion player;
+    private InteractTriggerBox _interactBox;
 
     public Animator animator;
 
@@ -43,17 +44,18 @@ public class PlayerController : MonoBehaviour
 
         characterSpriteRenderer.transform.rotation = Quaternion.identity;*/
     }
-    
+
     private void Awake()
     {
         controls = new CoFPlayerControls();
         controls.Player.Movement.performed += ctx => move = ctx.ReadValue<Vector2>(); //on button press gets the movement value and starts the movement
         controls.Player.Movement.canceled += ctx => move = Vector2.zero; //on button release stops movement
         //DontDestroyOnLoad(this);
+        controls.Player.Interact.performed += Interact;
 
         rb = GetComponent<Rigidbody2D>();
     }
- 
+
     private void OnEnable()
     {
         controls.Player.Enable();
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
         OnReady?.Invoke();
 
         player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
+        _interactBox = player.GetComponentInChildren<InteractTriggerBox>();
     }
 
     private bool flipState = false;
@@ -104,5 +107,10 @@ public class PlayerController : MonoBehaviour
             //animator.SetFloat("LastMoveX", move.x);
             //animator.SetFloat("LastMoveY", move.y);
         }
+    }
+
+    private void Interact(InputAction.CallbackContext context)
+    {
+	    _interactBox.InteractEvent?.Invoke();
     }
 }
