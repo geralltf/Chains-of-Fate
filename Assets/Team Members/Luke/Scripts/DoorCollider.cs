@@ -9,15 +9,14 @@ using UnityEngine;
 
 public enum DoorType
 {
-	Wooden,
 	Metal,
-	Rattly,
-	Squeaky
+	Wooden,
+	TrapDoor
 }
 
 public class DoorCollider : MonoBehaviour
 {
-	public DoorType type = DoorType.Metal;
+	public DoorType type = DoorType.Wooden;
 
 	[SerializeField] private StudioEventEmitter _emitter;
 	private InteractTriggerBox _interactBox;

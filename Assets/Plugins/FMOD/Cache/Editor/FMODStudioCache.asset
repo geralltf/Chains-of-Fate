@@ -69,14 +69,17 @@ MonoBehaviour:
   Name: DoorType
   StudioPath: 
   Min: 0
-  Max: 3
+  Max: 2
   Default: 0
   ID:
     data1: 2434258174
     data2: 2193325264
-  Type: 1
+  Type: 2
   IsGlobal: 0
-  Labels: []
+  Labels:
+  - Metal
+  - Wooden
+  - TrapDoor
   Exists: 1
 --- !u!114 &-7297383673123983034
 MonoBehaviour:
@@ -120,7 +123,7 @@ MonoBehaviour:
   Path: Assets/Team Members/Luke M/FMOD Builds/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637945418721213239
+  lastModified: 637945481046078900
   FileSizes: []
   Exists: 1
 --- !u!114 &-5674475363034894565
@@ -138,7 +141,7 @@ MonoBehaviour:
   Path: Assets/Team Members/Luke M/FMOD Builds/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637945418721253242
+  lastModified: 637945481046118911
   FileSizes:
   - Name: 
     Value: 2054
@@ -306,7 +309,7 @@ MonoBehaviour:
   - {fileID: -8890350049348854614}
   MinDistance: 1
   MaxDistance: 20
-  Length: 1659
+  Length: 0
 --- !u!114 &-3707296932124036576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +437,7 @@ MonoBehaviour:
   - {fileID: -6616181061705725108}
   StringsBanks:
   - {fileID: -5674475363034894565}
-  cacheTime: 637945418721253242
+  cacheTime: 637945481046118911
   cacheVersion: 10
 --- !u!114 &99290335921217031
 MonoBehaviour:
