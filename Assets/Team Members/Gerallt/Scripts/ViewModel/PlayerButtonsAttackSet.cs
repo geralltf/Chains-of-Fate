@@ -14,7 +14,7 @@ namespace ChainsOfFate.Gerallt
         public float itemSpacing = 60.0f;
         public float itemOffset = 0.0f;
         
-        public PlayerButtons PlayerButtonsParentView;
+        public GameObject PlayerButtonsParentView;
 
         public void WeaponButton_OnClick(WeaponBase weapon)
         {
@@ -55,7 +55,7 @@ namespace ChainsOfFate.Gerallt
         public void BackButton_OnClick()
         {
             this.gameObject.SetActive(false);
-            PlayerButtonsParentView.view.SetActive(true);
+            PlayerButtonsParentView.SetActive(true);
         }
 
         public void PopulateAttacks()
@@ -75,7 +75,7 @@ namespace ChainsOfFate.Gerallt
                     Vector3 pos = weaponUIInstance.transform.localPosition;
 
                     pos.x = (i%3 * itemSpacing) + itemOffset;
-                    pos.y = i/3* itemSpacing * 0.5f - itemOffset*0.5f;
+                    pos.y = -i/3* itemSpacing * 0.5f - itemOffset*0.5f;
                     pos.z = 0;
                 
                     weaponUIInstance.transform.localPosition = pos;

@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873f2bae8584a4748a6603b3fe223a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerButtons: {fileID: 0}
+  PlayerButtons: {fileID: 7720193409779544330}
   EnemyParty: {fileID: 0}
   Buttons:
   - {fileID: 8490097209553993072}
@@ -9017,7 +9017,7 @@ MonoBehaviour:
   weaponViewPrefab: {fileID: 2423371957160709178, guid: 817a9823153016841816f3824bb266a8, type: 3}
   itemSpacing: 105
   itemOffset: 60
-  PlayerButtonsParentView: {fileID: 7720193409779544330}
+  PlayerButtonsParentView: {fileID: 1766021461}
 --- !u!1 &7720193409769482685
 GameObject:
   m_ObjectHideFlags: 0
