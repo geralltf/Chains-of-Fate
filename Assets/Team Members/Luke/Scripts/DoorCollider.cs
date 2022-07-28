@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using ChainsOfFate.Gerallt;
 using FMODUnity;
+using FMOD.Studio;
 using Unity.Collections;
 using UnityEngine;
-
 
 public enum DoorType
 {
@@ -16,16 +16,19 @@ public enum DoorType
 
 public class DoorCollider : MonoBehaviour
 {
-	public DoorType type = DoorType.Wooden;
-
-	[SerializeField] private StudioEventEmitter _emitter;
 	private InteractTriggerBox _interactBox;
+	
+	private EventInstance instance;
 
-	private void OnEnable()
+	[SerializeField] private EventReference fmodEvent;
+	
+	[SerializeField] private DoorType type;
+
+	void Start()
 	{
-		_emitter = GetComponent<StudioEventEmitter>();
+		instance = RuntimeManager.CreateInstance(fmodEvent);
 	}
-
+	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		InteractTriggerBox interactBox = other.GetComponent<InteractTriggerBox>();
@@ -57,7 +60,7 @@ public class DoorCollider : MonoBehaviour
 
 	private void UseDoor()
 	{
-		_emitter.SetParameter("DoorType" , (int) type);
-		_emitter.Play();
+		instance.setParameterByName("DoorType", (int) type);
+		instance.start();
 	}
 }
