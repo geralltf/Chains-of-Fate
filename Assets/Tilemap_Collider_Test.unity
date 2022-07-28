@@ -28844,7 +28844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 184564682412277765, guid: de926f70aec73b241a955d6efde9e105, type: 3}
       propertyPath: TriggerOnce
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 184564682412277765, guid: de926f70aec73b241a955d6efde9e105, type: 3}
       propertyPath: Params.Array.size
