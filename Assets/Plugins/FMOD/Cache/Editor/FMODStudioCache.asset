@@ -74,7 +74,7 @@ MonoBehaviour:
   ID:
     data1: 2434258174
     data2: 2193325264
-  Type: 2
+  Type: 1
   IsGlobal: 0
   Labels:
   - Metal
@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/Team Members/Luke M/FMOD Builds/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637946025393155860
+  lastModified: 637946028439584344
   FileSizes: []
   Exists: 1
 --- !u!114 &-5674475363034894565
@@ -141,7 +141,7 @@ MonoBehaviour:
   Path: Assets/Team Members/Luke M/FMOD Builds/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637946025393195869
+  lastModified: 637946028439624324
   FileSizes:
   - Name: 
     Value: 2054
@@ -437,7 +437,7 @@ MonoBehaviour:
   - {fileID: -6616181061705725108}
   StringsBanks:
   - {fileID: -5674475363034894565}
-  cacheTime: 637946025393195869
+  cacheTime: 637946028439624324
   cacheVersion: 10
 --- !u!114 &99290335921217031
 MonoBehaviour:
