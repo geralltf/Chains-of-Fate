@@ -704,7 +704,7 @@ namespace ChainsOfFate.Gerallt
             Vector3 oldPos = trans.position;
             oldPos.z = GameManager.Instance.spawnZ; // HACK: Changed by DebugUI when camera mode changes
 
-            cameraTransform = Camera.main.transform;
+            //cameraTransform = Camera.main.transform;
 
             if (GameManager.Instance.cameraMode == GameManager.CameraMode.Isometric)
             {

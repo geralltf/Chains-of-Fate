@@ -9199,19 +9199,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    spriteID: cfaeff521c2e3fd4da727baaa9e754e2
-=======
-    spriteID: f4460c5e170d638489cbef003135dfe8
->>>>>>> Stashed changes
-=======
-    spriteID: f4460c5e170d638489cbef003135dfe8
->>>>>>> Stashed changes
-=======
     spriteID: 
->>>>>>> Stashed changes
     internalID: 0
     vertices: []
     indices: 
@@ -9219,11 +9207,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
       Blacksmith Weapons Decorations32_43: 89071995
       Blacksmith Weapons Decorations32_36: 2109670150
       Blacksmith Weapons Decorations32_56: -253281398
@@ -9369,161 +9352,6 @@ TextureImporter:
       Blacksmith Weapons Decorations32_6: -831786640
       Blacksmith Weapons Decorations32_7: 994082481
       Blacksmith Weapons Decorations32_138: -356291282
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-      Blacksmith Weapons Decorations32_43: -477826096
-      Blacksmith Weapons Decorations32_36: 1310375546
-      Blacksmith Weapons Decorations32_56: -1640211791
-      Blacksmith Weapons Decorations32_97: -1109496055
-      Blacksmith Weapons Decorations32_68: 1553944813
-      Blacksmith Weapons Decorations32_61: 700233794
-      Blacksmith Weapons Decorations32_140: -935366222
-      Blacksmith Weapons Decorations32_72: 1276620568
-      Blacksmith Weapons Decorations32_114: -1745177373
-      Blacksmith Weapons Decorations32_120: -1227119595
-      Blacksmith Weapons Decorations32_122: -98496678
-      Blacksmith Weapons Decorations32_84: -951262687
-      Blacksmith Weapons Decorations32_38: -867752964
-      Blacksmith Weapons Decorations32_144: 779781721
-      Blacksmith Weapons Decorations32_63: 929924100
-      Blacksmith Weapons Decorations32_103: -2105264440
-      Blacksmith Weapons Decorations32_47: 461930807
-      Blacksmith Weapons Decorations32_74: 589325782
-      Blacksmith Weapons Decorations32_134: 773426111
-      Blacksmith Weapons Decorations32_91: -960429882
-      Blacksmith Weapons Decorations32_1: 288645126
-      Blacksmith Weapons Decorations32_66: -1997343901
-      Blacksmith Weapons Decorations32_16: -2054105399
-      Blacksmith Weapons Decorations32_13: 891655881
-      Blacksmith Weapons Decorations32_50: -2145243931
-      Blacksmith Weapons Decorations32_33: -827356478
-      Blacksmith Weapons Decorations32_109: 791497486
-      Blacksmith Weapons Decorations32_65: 1520809047
-      Blacksmith Weapons Decorations32_113: -929147770
-      Blacksmith Weapons Decorations32_14: 1874911511
-      Blacksmith Weapons Decorations32_60: 698999562
-      Blacksmith Weapons Decorations32_11: 1599747985
-      Blacksmith Weapons Decorations32_121: 793849984
-      Blacksmith Weapons Decorations32_127: -711748792
-      Blacksmith Weapons Decorations32_125: 1143547260
-      Blacksmith Weapons Decorations32_137: 311565077
-      Blacksmith Weapons Decorations32_93: 232896527
-      Blacksmith Weapons Decorations32_18: -1350647882
-      Blacksmith Weapons Decorations32_51: -63283679
-      Blacksmith Weapons Decorations32_94: 2029534120
-      Blacksmith Weapons Decorations32_131: -1570698234
-      Blacksmith Weapons Decorations32_58: 930101709
-      Blacksmith Weapons Decorations32_57: -900492899
-      Blacksmith Weapons Decorations32_45: 1266594988
-      Blacksmith Weapons Decorations32_99: 1138238032
-      Blacksmith Weapons Decorations32_37: 983435548
-      Blacksmith Weapons Decorations32_26: -1316956517
-      Blacksmith Weapons Decorations32_141: -1012263627
-      Blacksmith Weapons Decorations32_69: 721524349
-      Blacksmith Weapons Decorations32_112: -1841719889
-      Blacksmith Weapons Decorations32_10: -1135411177
-      Blacksmith Weapons Decorations32_4: -1172306123
-      Blacksmith Weapons Decorations32_83: -901627411
-      Blacksmith Weapons Decorations32_111: -1008715649
-      Blacksmith Weapons Decorations32_29: -1958747949
-      Blacksmith Weapons Decorations32_40: -1266128980
-      Blacksmith Weapons Decorations32_41: 1410144213
-      Blacksmith Weapons Decorations32_106: 1024536239
-      Blacksmith Weapons Decorations32_104: -1477052698
-      Blacksmith Weapons Decorations32_128: 1358339052
-      Blacksmith Weapons Decorations32_62: -932598067
-      Blacksmith Weapons Decorations32_78: 1474606886
-      Blacksmith Weapons Decorations32_86: 2142346044
-      Blacksmith Weapons Decorations32_24: 1410511470
-      Blacksmith Weapons Decorations32_142: -600489292
-      Blacksmith Weapons Decorations32_95: -1448693937
-      Blacksmith Weapons Decorations32_27: -1948417777
-      Blacksmith Weapons Decorations32_25: 627040416
-      Blacksmith Weapons Decorations32_116: 1915240526
-      Blacksmith Weapons Decorations32_105: -1154093850
-      Blacksmith Weapons Decorations32_88: -2116298901
-      Blacksmith Weapons Decorations32_32: 1915467007
-      Blacksmith Weapons Decorations32_76: 573454051
-      Blacksmith Weapons Decorations32_108: 1673559879
-      Blacksmith Weapons Decorations32_133: -1990570677
-      Blacksmith Weapons Decorations32_9: 1808955302
-      Blacksmith Weapons Decorations32_5: 1842927400
-      Blacksmith Weapons Decorations32_71: -927784912
-      Blacksmith Weapons Decorations32_85: -31521362
-      Blacksmith Weapons Decorations32_80: -554509517
-      Blacksmith Weapons Decorations32_87: 2027251140
-      Blacksmith Weapons Decorations32_42: -1906543138
-      Blacksmith Weapons Decorations32_129: 696773123
-      Blacksmith Weapons Decorations32_136: 580927974
-      Blacksmith Weapons Decorations32_79: 340652123
-      Blacksmith Weapons Decorations32_53: -378696022
-      Blacksmith Weapons Decorations32_100: 1425070009
-      Blacksmith Weapons Decorations32_124: 113282912
-      Blacksmith Weapons Decorations32_31: 1658578354
-      Blacksmith Weapons Decorations32_101: 18620584
-      Blacksmith Weapons Decorations32_30: 235729042
-      Blacksmith Weapons Decorations32_75: 669871509
-      Blacksmith Weapons Decorations32_64: 662422531
-      Blacksmith Weapons Decorations32_3: -801649966
-      Blacksmith Weapons Decorations32_77: 148238083
-      Blacksmith Weapons Decorations32_39: 1374930803
-      Blacksmith Weapons Decorations32_110: -763511359
-      Blacksmith Weapons Decorations32_117: 1141375910
-      Blacksmith Weapons Decorations32_34: 1667086961
-      Blacksmith Weapons Decorations32_143: -1776283743
-      Blacksmith Weapons Decorations32_118: -428167221
-      Blacksmith Weapons Decorations32_107: -224407077
-      Blacksmith Weapons Decorations32_81: 1819939812
-      Blacksmith Weapons Decorations32_0: 1091314037014481330
-      Blacksmith Weapons Decorations32_2: 1641385539
-      Blacksmith Weapons Decorations32_12: -1880157312
-      Blacksmith Weapons Decorations32_35: 380995464
-      Blacksmith Weapons Decorations32_55: 1022601577
-      Blacksmith Weapons Decorations32_59: 1749203026
-      Blacksmith Weapons Decorations32_89: -1646360130
-      Blacksmith Weapons Decorations32_8: -1746217699
-      Blacksmith Weapons Decorations32_28: 944432108
-      Blacksmith Weapons Decorations32_49: -548850746
-      Blacksmith Weapons Decorations32_19: 1094361801
-      Blacksmith Weapons Decorations32_73: -1564733009
-      Blacksmith Weapons Decorations32_90: 558008235
-      Blacksmith Weapons Decorations32_139: -42223489
-      Blacksmith Weapons Decorations32_126: 1395864638
-      Blacksmith Weapons Decorations32_21: -147631952
-      Blacksmith Weapons Decorations32_98: -917181859
-      Blacksmith Weapons Decorations32_17: 55502032
-      Blacksmith Weapons Decorations32_102: 202755772
-      Blacksmith Weapons Decorations32_54: -1191028373
-      Blacksmith Weapons Decorations32_52: 1491197970
-      Blacksmith Weapons Decorations32_46: 1835622461
-      Blacksmith Weapons Decorations32_119: 1765201276
-      Blacksmith Weapons Decorations32_123: -174276298
-      Blacksmith Weapons Decorations32_82: -2132302851
-      Blacksmith Weapons Decorations32_115: 1192732645
-      Blacksmith Weapons Decorations32_67: 603563499
-      Blacksmith Weapons Decorations32_132: 566070821
-      Blacksmith Weapons Decorations32_70: 1409727822
-      Blacksmith Weapons Decorations32_48: 595746725
-      Blacksmith Weapons Decorations32_96: -1409082026
-      Blacksmith Weapons Decorations32_44: 1917224530
-      Blacksmith Weapons Decorations32_23: -1820018252
-      Blacksmith Weapons Decorations32_15: -357215429
-      Blacksmith Weapons Decorations32_22: -1044809670
-      Blacksmith Weapons Decorations32_92: -1558602799
-      Blacksmith Weapons Decorations32_130: 581845834
-      Blacksmith Weapons Decorations32_20: 114566529
-      Blacksmith Weapons Decorations32_135: 615799518
-      Blacksmith Weapons Decorations32_6: 2018315059
-      Blacksmith Weapons Decorations32_7: 423906666
-      Blacksmith Weapons Decorations32_138: 94548470
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

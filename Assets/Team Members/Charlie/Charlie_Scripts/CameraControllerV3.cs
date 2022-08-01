@@ -17,6 +17,8 @@ public class CameraControllerV3 : MonoBehaviour {
     private float halfHeight;
     private float halfWidth;
 
+    private static CameraControllerV3 instance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,13 @@ public class CameraControllerV3 : MonoBehaviour {
 
         botLeftLimit = theMap.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
         topRighLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
+
+        if(theMap == null)
+        {
+            Destroy(gameObject);
+        }
+
+        //DontDestroyOnLoad(gameObject);
     }
 
     // LateUpdate is called once per frame after Update
@@ -36,5 +45,10 @@ public class CameraControllerV3 : MonoBehaviour {
 
         //keep camera inside bounds
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, botLeftLimit.x, topRighLimit.x), Mathf.Clamp(transform.position.y, botLeftLimit.y, topRighLimit.y), transform.position.z);
+
+        if (theMap == null)
+        {
+            Destroy(gameObject);
+        }
     }
 }

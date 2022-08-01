@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
     private InteractTriggerBox _interactBox;
 
     public Animator animator;
-    public Animator mariaAnim;
     public bool playerMoving = false;
+
+    public static PlayerController instance;
+    public string areaTransitionName;
 
     private void UpdateSprite(Vector2 pos)
     {
@@ -57,7 +59,13 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-
+        if(instance == null)
+        {
+            instance = this;
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnEnable()

@@ -46,14 +46,15 @@ public class PartyFollow : MonoBehaviour
         }
         if(moveCheck.playerMoving == true)
         {
+            transform.position = storedPositions[0];
+
+            thisAnimator.SetFloat("Horizontal", horAnimVectors[0]);
+            thisAnimator.SetFloat("Vertical", vertAnimVectors[0]);
+            thisAnimator.SetBool("isMoving", true);
+            
             if (storedPositions.Count > followDistance)
             {
-                transform.position = storedPositions[0];
                 storedPositions.RemoveAt(0);
-
-                thisAnimator.SetFloat("Horizontal", horAnimVectors[0]);
-                thisAnimator.SetFloat("Vertical", vertAnimVectors[0]);
-                thisAnimator.SetBool("isMoving", true);
                 horAnimVectors.RemoveAt(0);
                 vertAnimVectors.RemoveAt(0);
             }
