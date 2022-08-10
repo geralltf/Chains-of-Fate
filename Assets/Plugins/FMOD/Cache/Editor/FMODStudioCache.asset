@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: -1340115303
     Data4: -1009070304
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
     Data3: -1205172089
     Data4: 690615675
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -73,14 +73,14 @@ MonoBehaviour:
     Data3: 265148078
     Data4: 1757142434
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6728
+  Length: 2515
 --- !u!114 &-7043167961812344236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
     Data3: -860024680
     Data4: -1909909277
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -127,14 +127,14 @@ MonoBehaviour:
     Data3: 1432942732
     Data4: 1135972951
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1034
+  Length: 350
 --- !u!114 &-6268927288796866457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,14 +154,14 @@ MonoBehaviour:
     Data3: -2046381153
     Data4: -1609898079
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1145
+  Length: 540
 --- !u!114 &-5431038874607285564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
     Data3: 1507670192
     Data4: 1576209605
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
     Data3: 1835079568
     Data4: -69455175
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -236,14 +236,41 @@ MonoBehaviour:
     Data3: -267954298
     Data4: 336296834
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2437
+  Length: 1020
+--- !u!114 &-5151576757723457208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Battle/Debuff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Battle/Debuff
+  Guid:
+    Data1: 268756405
+    Data2: 1078826962
+    Data3: 617339286
+    Data4: 17450088
+  Banks:
+  - {fileID: 2194400492094401401}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1240
 --- !u!114 &-4587211872775457608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +290,7 @@ MonoBehaviour:
     Data3: -1886468708
     Data4: 1812511638
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -290,7 +317,7 @@ MonoBehaviour:
     Data3: -2086443335
     Data4: -946806637
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -318,14 +345,14 @@ MonoBehaviour:
     Data3: -496899155
     Data4: 2004253213
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 917
+  Length: 596
 --- !u!114 &-1906279163302099576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +372,7 @@ MonoBehaviour:
     Data3: -818360912
     Data4: 983104664
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -372,14 +399,14 @@ MonoBehaviour:
     Data3: -1546686316
     Data4: -1456259961
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1189
+  Length: 390
 --- !u!114 &-1068247193523367536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +426,7 @@ MonoBehaviour:
     Data3: 1824928430
     Data4: 702235319
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -426,7 +453,7 @@ MonoBehaviour:
     Data3: 403804592
     Data4: -1569078859
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -453,7 +480,7 @@ MonoBehaviour:
     Data3: -228898664
     Data4: -144225872
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -474,8 +501,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 6549463064607343111}
-  - {fileID: 2475161435686028325}
+  - {fileID: 5409739113831604769}
+  - {fileID: 2194400492094401401}
   EditorEvents:
   - {fileID: -7012788343768822084}
   - {fileID: -1378143586487119931}
@@ -486,11 +513,9 @@ MonoBehaviour:
   - {fileID: -8263987008646799409}
   - {fileID: 8135127248953108817}
   - {fileID: 8081497266560317305}
-  - {fileID: 2554547814993326572}
   - {fileID: -1009639763769041192}
   - {fileID: 5839829725014365632}
   - {fileID: -1922048017441336549}
-  - {fileID: 9125030974979289447}
   - {fileID: 1690009735502463595}
   - {fileID: -1068247193523367536}
   - {fileID: -1906279163302099576}
@@ -499,17 +524,23 @@ MonoBehaviour:
   - {fileID: -4587211872775457608}
   - {fileID: 6059444788541192400}
   - {fileID: -277677003217760358}
-  - {fileID: 501386785666903311}
   - {fileID: -9059352505267376579}
   - {fileID: -6268927288796866457}
+  - {fileID: 7678343429046613134}
+  - {fileID: 1448331325311722706}
+  - {fileID: -5151576757723457208}
+  - {fileID: 1944591880441414373}
+  - {fileID: 5800983169110532842}
+  - {fileID: 8771550002581725041}
+  - {fileID: 4257531204985212678}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   StringsBanks:
-  - {fileID: 6549463064607343111}
-  cacheTime: 637945558135256879
+  - {fileID: 5409739113831604769}
+  cacheTime: 637957703470724985
   cacheVersion: 10
---- !u!114 &501386785666903311
+--- !u!114 &1448331325311722706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -519,23 +550,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/damage Taken
+  m_Name: event:/SFX/Battle/ResolveRaise
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/damage Taken
+  Path: event:/SFX/Battle/ResolveRaise
   Guid:
-    Data1: -1701656092
-    Data2: 1286497682
-    Data3: -1700119879
-    Data4: -1467424665
+    Data1: 94075283
+    Data2: 1119727265
+    Data3: -828479345
+    Data4: -351340325
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1163
+  Length: 1204
 --- !u!114 &1690009735502463595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +586,7 @@ MonoBehaviour:
     Data3: 587688590
     Data4: -1202250622
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -563,7 +594,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
---- !u!114 &2475161435686028325
+--- !u!114 &1944591880441414373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Battle/Damage Taken
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Battle/Damage Taken
+  Guid:
+    Data1: -1701656092
+    Data2: 1286497682
+    Data3: -1700119879
+    Data4: -1467424665
+  Banks:
+  - {fileID: 2194400492094401401}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 340
+--- !u!114 &2194400492094401401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -575,13 +633,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Team Members/Luke M/FMOD Builds/Desktop/Master.bank
+  Path: Assets/Team Members/Luke M/FMOD Bank Builds/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637945558135226870
+  lastModified: 637957703470682788
   FileSizes: []
   Exists: 1
---- !u!114 &2554547814993326572
+--- !u!114 &4257531204985212678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,23 +649,70 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/Resolve
+  m_Name: event:/SFX/UI/UISelect
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/Resolve
+  Path: event:/SFX/UI/UISelect
   Guid:
-    Data1: 2031301464
-    Data2: 1190017140
-    Data3: -428814454
-    Data4: 354442944
+    Data1: -795759131
+    Data2: 1206300062
+    Data3: 1378554510
+    Data4: 214391633
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1608
+  Length: 303
+--- !u!114 &5409739113831604769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Team Members/Luke M/FMOD Bank Builds/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637957703470724985
+  FileSizes:
+  - Name: 
+    Value: 2228
+  Exists: 1
+--- !u!114 &5800983169110532842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/GameStart
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/GameStart
+  Guid:
+    Data1: -1978457849
+    Data2: 1298193360
+    Data3: 544618164
+    Data4: -611658967
+  Banks:
+  - {fileID: 2194400492094401401}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2372
 --- !u!114 &5839829725014365632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,14 +732,14 @@ MonoBehaviour:
     Data3: -435780718
     Data4: 151631648
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5562
+  Length: 1150
 --- !u!114 &6059444788541192400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,7 +759,7 @@ MonoBehaviour:
     Data3: -709822820
     Data4: 1047449619
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -662,26 +767,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 210
---- !u!114 &6549463064607343111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Team Members/Luke M/FMOD Builds/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637945558135256879
-  FileSizes:
-  - Name: 
-    Value: 2054
-  Exists: 1
 --- !u!114 &7670692389845925740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,6 +795,33 @@ MonoBehaviour:
   - Grass
   - Indoor
   Exists: 1
+--- !u!114 &7678343429046613134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Battle/ResolveLower
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Battle/ResolveLower
+  Guid:
+    Data1: 2031301464
+    Data2: 1190017140
+    Data3: -428814454
+    Data4: 354442944
+  Banks:
+  - {fileID: 2194400492094401401}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1608
 --- !u!114 &8081497266560317305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +841,7 @@ MonoBehaviour:
     Data3: 1892234156
     Data4: 696601769
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -756,14 +868,14 @@ MonoBehaviour:
     Data3: -1699460189
     Data4: 1838785149
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1116
+  Length: 310
 --- !u!114 &8618683847760344472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,7 +892,7 @@ MonoBehaviour:
   StudioPath: 
   Min: 0
   Max: 2
-  Default: 0
+  Default: 1
   ID:
     data1: 2434258174
     data2: 2193325264
@@ -791,7 +903,7 @@ MonoBehaviour:
   - Wooden
   - TrapDoor
   Exists: 1
---- !u!114 &9125030974979289447
+--- !u!114 &8771550002581725041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -801,20 +913,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/debuff.cm.cm
+  m_Name: event:/SFX/UI/UIHover
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/debuff.cm.cm
+  Path: event:/SFX/UI/UIHover
   Guid:
-    Data1: 268756405
-    Data2: 1078826962
-    Data3: 617339286
-    Data4: 17450088
+    Data1: -47520743
+    Data2: 1332936802
+    Data3: 4688047
+    Data4: -1326876313
   Banks:
-  - {fileID: 2475161435686028325}
+  - {fileID: 2194400492094401401}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1240
+  Length: 54
