@@ -93,8 +93,8 @@ namespace ChainsOfFate.Gerallt
                     GameObject spellUIInstance = Instantiate(weaponViewPrefab, view.transform);
                     Vector3 pos = spellUIInstance.transform.localPosition;
 
-                    pos.x = (i%3 * itemSpacing) + itemOffset;
-                    pos.y = -i/3* itemSpacing * 0.5f - itemOffset*0.5f;
+                    pos.x = (i * itemSpacing) + itemOffset;
+                    pos.y = 0;
                     pos.z = 0;
                 
                     spellUIInstance.transform.localPosition = pos;
