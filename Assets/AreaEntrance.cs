@@ -12,6 +12,13 @@ public class AreaEntrance : MonoBehaviour
         if(transitionName == PlayerController.instance.areaTransitionName)
         {
             PlayerController.instance.transform.position = transform.position;
+            foreach (PartyFollow t in PlayerController.instance.GetComponentsInChildren<PartyFollow>())
+            {
+                t.transform.localPosition = Vector3.zero;
+                t.storedPositions.Clear();
+                t.horAnimVectors.Clear();
+                t.vertAnimVectors.Clear();
+            }
         }
     }
 

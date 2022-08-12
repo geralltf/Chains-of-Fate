@@ -7,7 +7,7 @@ public class PartyFollow : MonoBehaviour
     public GameObject player;
 
     public int followDistance;
-    private List<Vector3> storedPositions;
+    public List<Vector3> storedPositions;
 
     public Animator thisAnimator;
     public Animator mcAnimator;

@@ -30,7 +30,7 @@ namespace ChainsOfFate.Gerallt
 
         private bool shownIndicator = false;
         private bool animatingIndicator = false;
-        [CanBeNull] private Material materialLoadingBackground;
+        [CanBeNull] public Material materialLoadingBackground;
 
         private Champion mainCharacter;
         private PlayerController playerController;
@@ -107,7 +107,7 @@ namespace ChainsOfFate.Gerallt
             return new Vector4(c.r, c.g, c.b, c.a);
         }
         
-        IEnumerator ShowIndicator()
+        public IEnumerator ShowIndicator()
         {
             animatingIndicator = true;
             Image image = levelLoadingIndicatorUI.GetComponentInChildren<Image>();
