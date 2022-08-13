@@ -170,6 +170,7 @@ namespace ChainsOfFate.Gerallt
             SetGreetInteractionVisibility(false);
 
             player = FindObjectOfType<PlayerController>().GetComponent<Champion>();
+            
 
         }
 

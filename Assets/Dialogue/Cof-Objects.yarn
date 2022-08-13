@@ -11,7 +11,7 @@ Chest: Could contain some goodies! Shame the lock is busted
 title: Rope
 tags:
 ---
-Rope: It brings back horrible memoried of your Military Training
+Rope: It brings back horrible memories of your Military Training
 ===
 title: Carrot
 tags:
@@ -26,5 +26,30 @@ Tree: You press against the Bark - Nothing Happens
 title: Water
 tags:
 ---
-
+Water: Rich and clear, it looks drinkable
+===
+title: MessyBench
+tags:
+---
+MessyBench: A bottle and some leftover cookware. Its fairly well used.
+===
+title: CounterApple
+tags:
+---
+Counter:  A delicious looking Red Apple has rolled off its plate. 
+===
+title: CounterEmpty
+tags:
+---
+Counter: Its not Mahogany... Mahogany, what a fun word! Mahogany...
+===
+title: Sink
+tags:
+---
+Sink: Clear water, ready to do the dishes!
+===
+title: Tree
+tags:
+---
+Tree: You press against the Bark - Nothing Happens
 ===

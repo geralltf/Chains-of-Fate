@@ -160,7 +160,19 @@ MonoBehaviour:
   interactable: 1
   DialogueOutcomes:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 79029760}
+        m_TargetAssemblyTypeName: YarnInteractable, Assembly-CSharp
+        m_MethodName: StartConversation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &79029761
 Transform:
   m_ObjectHideFlags: 0
@@ -169,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79029759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.495, y: 1.186, z: -0.168}
+  m_LocalPosition: {x: 6.48, y: -1.86, z: -0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,7 +196,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79029759}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -210,8 +222,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03986883, y: 0.28119612}
-  m_Size: {x: 0.83235645, y: 0.9029398}
+  m_Offset: {x: -0.0017564297, y: 0.28119612}
+  m_Size: {x: 1.5608563, y: 1.5608563}
   m_Direction: 0
 --- !u!1001 &79935290
 PrefabInstance:
@@ -22345,11 +22357,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: conversationStartNode
-      value: OldManExterior
+      value: Rope
       objectReference: {fileID: 0}
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: DialogueOutcomes.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: DialogueOutcomes.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -22399,6 +22411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MariaNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 7803630601155136269, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7803630601155136272, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -22446,11 +22462,11 @@ PrefabInstance:
     - target: {fileID: 7803630601155136275, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: playerTarget
       value: 
-      objectReference: {fileID: 2078793415}
+      objectReference: {fileID: 0}
     - target: {fileID: 7803630601155136275, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: championTarget
       value: 
-      objectReference: {fileID: 2078793414}
+      objectReference: {fileID: 0}
     - target: {fileID: 7803630601157363460, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -23990,15 +24006,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782079, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782079, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782079, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4028925856220782079, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -24035,17 +24051,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8546cf86e8e289046add188a400fcf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2078793414 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7130054626699120270, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
-  m_PrefabInstance: {fileID: 2074657320}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881c6dc54bbca1741bbcfa1dc256c7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &2078793415 stripped
