@@ -718,7 +718,9 @@ namespace ChainsOfFate.Gerallt
 
             ApplyOffsets();
             
-            rb.velocity = Vector2.zero; // HACK: Cancel any unwanted velocities!
+            //rb.velocity = Vector2.zero; // HACK: Cancel any unwanted velocities!
+
+            // ^ this thing above causes console to be flooded with warnings for the dialogue interactables, so I disabled it & it works fine. - Charlie
         }
 
         public void ApplyOffsets()
