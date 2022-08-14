@@ -907,6 +907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banjo_World
       objectReference: {fileID: 0}
+    - target: {fileID: 1479540628972821802, guid: 65c64ae9925a2324a97acc0e5fb12f60, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1479540628972821803, guid: 65c64ae9925a2324a97acc0e5fb12f60, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1023,6 +1027,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5993892559980701422, guid: e339a2dc34b609944bba287af4a90a4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5993892559980701423, guid: e339a2dc34b609944bba287af4a90a4e, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
