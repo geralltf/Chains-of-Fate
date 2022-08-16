@@ -120,8 +120,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4028925856220782075, guid: 46689137a1340374ab86dd4004c5e1d7, type: 3}
   followDistance: 50
+  storedPositions: []
   thisAnimator: {fileID: 1479540628972821781}
   mcAnimator: {fileID: 0}
   horAnimVectors: []
   vertAnimVectors: []
   PlayerScript: {fileID: 0}
+  combatPrefab: {fileID: 269140049312502581, guid: 502d814ff6281444aa9e3458f5bd5d93, type: 3}

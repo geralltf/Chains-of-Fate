@@ -48,16 +48,16 @@ public class TestTeleporter : MonoBehaviour
 
 	        CombatUI combatUI = ChainsOfFate.Gerallt.GameManager.Instance.combatUI;
             
-            List<GameObject> enemies = new List<GameObject>();
-            enemies.Add(this.gameObject);
+            // List<GameObject> enemies = new List<GameObject>();
+            // enemies.Add(this.gameObject);
 
 	        // Add current party members from current player to this list
-            List<GameObject> partyMembers = new List<GameObject>();
-            Champion player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
-            foreach (Champion partyMember in player.partyMembers)
-            {
-                partyMembers.Add(partyMember.gameObject);
-            }
+            // List<GameObject> partyMembers = new List<GameObject>();
+            // Champion player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
+            // foreach (Champion partyMember in player.partyMembers)
+            // {
+            //     partyMembers.Add(partyMember.gameObject);
+            // }
             
 	        
 	        playerController.controls.Player.Disable();
@@ -66,7 +66,7 @@ public class TestTeleporter : MonoBehaviour
 	        CombatGameManager.Instance.GetBlockBarUI().isTestMode = false;
 	        combatUI.onCloseCombatUI += CombatUI_OnCloseCombatUI; 
 	        //combatUI.onSceneDestroyed += CombatUI_OnSceneDestroyed;
-            combatUI.SetCurrentParty(enemies, partyMembers, playerController.gameObject);
+            //combatUI.SetCurrentParty(enemies, partyMembers, playerController.gameObject);
             
         }
     }

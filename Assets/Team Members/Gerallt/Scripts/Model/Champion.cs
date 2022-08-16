@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ChainsOfFate.Gerallt;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,7 +22,20 @@ namespace ChainsOfFate.Gerallt
         /// </summary>
         public int counterAttackDamage;
 
+        public Transform Party;
         public List<Champion> partyMembers;
+        public List<GameObject> combatPartyMembers;
+
+        public List<GameObject> GetPartyMembers()
+        {
+	        foreach (PartyFollow partyMember in Party.GetComponentsInChildren<PartyFollow>())
+	        {
+		        combatPartyMembers.Add(partyMember.combatPrefab);
+	        }
+
+	        return combatPartyMembers;
+        }
+
 
         /// <summary>
         /// Select the defensive stance.

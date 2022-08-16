@@ -22,6 +22,9 @@ namespace ChainsOfFate.Gerallt
         
         [Header("For Game Testing, add your own party members and enemies here")]
         public bool isTestMode; // If test mode, will use the test party members
+
+        public Transform EnemyTeam;
+        
         public List<GameObject> enemies;
         public List<GameObject> partyMembers;
         public GameObject player;
@@ -90,13 +93,13 @@ namespace ChainsOfFate.Gerallt
             }
         }
         
-        public void SetCurrentParty(List<GameObject> enemies, List<GameObject> partyMembers, GameObject currentPlayer)
+        public void SetCurrentParty(List<GameObject> _enemies, List<GameObject> _partyMembers, GameObject currentPlayer)
         {
             Debug.Log("Got list of current enemies, party members, and current player");
 
-            ResetViewState();
+            // ResetViewState();
             
-            if (!isTestMode)
+            /*if (!isTestMode)
             {
                 CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
                 //Camera _camera = cameraFollow.GetComponent<Camera>();
@@ -108,9 +111,23 @@ namespace ChainsOfFate.Gerallt
                 sceneBg.transform.rotation = cameraFollow.transform.rotation;
                 
                 SetRootGridVisibilities(false); // HACK: Because Grids draw on top of block bar and scene background, so lets disable them.
-            }
+            }*/
 
-            combatGameManager.SetUpQueue(enemies, partyMembers, currentPlayer);
+            PopulateEnemyTeam(_enemies);
+            combatGameManager.SetUpQueue(_enemies, _partyMembers, currentPlayer);
+        }
+
+        public void PopulateEnemyTeam(List<GameObject> _enemies)
+        {
+	        for (int i = 0; i < EnemyTeam.childCount; i++)
+	        {
+		        Destroy(EnemyTeam.GetChild(i).gameObject);
+	        }
+	        
+	        foreach (GameObject t in _enemies)
+	        {
+		        Instantiate(t, EnemyTeam);
+	        }
         }
     }
 

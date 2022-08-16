@@ -17,6 +17,8 @@ public class PartyFollow : MonoBehaviour
     public GameObject PlayerScript;
     private PlayerController moveCheck;
 
+    public GameObject combatPrefab;
+
     void Awake()
     {
         storedPositions = new List<Vector3>();

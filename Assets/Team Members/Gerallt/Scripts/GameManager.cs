@@ -71,12 +71,7 @@ namespace ChainsOfFate.Gerallt
         public void ShowCombatUI(List<GameObject> enemiesPrefabs)
         {
             combatUI.gameObject.SetActive(true);
-            PopulateEnemyTeam(enemiesPrefabs);
-        }
-
-        public void PopulateEnemyTeam(List<GameObject> enemiesPrefabs)
-        {
-	        
+            combatUI.SetCurrentParty(enemiesPrefabs,mainCharacter.GetPartyMembers(),mainCharacter.gameObject);
         }
         
         public void HideCombatUI()

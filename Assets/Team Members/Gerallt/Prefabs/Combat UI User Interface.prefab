@@ -3417,7 +3417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2064701345818541779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5109,7 +5109,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 126618947543643352}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0
+  m_Size: 0.39666668
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7564,7 +7564,9 @@ MonoBehaviour:
   xp: 0
   isMainCharacter: 1
   counterAttackDamage: 32
+  Party: {fileID: 0}
   partyMembers: []
+  combatPartyMembers: []
 --- !u!50 &1766553952
 Rigidbody2D:
   serializedVersion: 4
@@ -7766,9 +7768,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1828075004679983552
 CanvasRenderer:
@@ -8413,8 +8415,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fd899a4269bb84697ac44eb9dbfb59d3, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8866,7 +8868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7720193409614603902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9783,8 +9785,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 783e144391f1c824b8b2f47d13e002a8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10382,12 +10384,10 @@ MonoBehaviour:
   SceneBackgroundSpriteRenderer: {fileID: 3832399910709369902}
   isLoaded: 0
   isTestMode: 1
-  testEnemies:
-  - {fileID: 3961865873209156455}
-  - {fileID: 4948662849342422133}
-  testPartyMembers:
-  - {fileID: 8901707828922709885}
-  testPlayer: {fileID: 7185347120866322300}
+  EnemyTeam: {fileID: 3721713797779047524}
+  enemies: []
+  partyMembers: []
+  player: {fileID: 0}
 --- !u!1 &7720193410693242325
 GameObject:
   m_ObjectHideFlags: 0
@@ -10447,7 +10447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 8b689e3e8568df04e8691510afaf987a, type: 2}
-  m_Color: {r: 0, g: 1, b: 0.4586494, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11410,7 +11410,9 @@ MonoBehaviour:
   xp: 0
   isMainCharacter: 0
   counterAttackDamage: 35
+  Party: {fileID: 0}
   partyMembers: []
+  combatPartyMembers: []
 --- !u!50 &598818012
 Rigidbody2D:
   serializedVersion: 4
