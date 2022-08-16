@@ -5817,7 +5817,7 @@ Tilemap:
       - {fileID: 2086705674, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -1989602991, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 442458457, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.894238
+      m_AnimationSpeed: 4.477622
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -7, y: 3, z: 0}
@@ -5827,7 +5827,7 @@ Tilemap:
       - {fileID: -287211214, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 1592084536, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -2089611019, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.2730417
+      m_AnimationSpeed: 5.2774134
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -11, y: 7, z: 0}
@@ -5837,7 +5837,7 @@ Tilemap:
       - {fileID: -818724228, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -363494662, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 58566158, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 4.7942314
+      m_AnimationSpeed: 4.710268
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 0, y: 7, z: 0}
@@ -5847,7 +5847,7 @@ Tilemap:
       - {fileID: -818724228, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -363494662, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 58566158, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.2701073
+      m_AnimationSpeed: 4.435288
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 7, y: 7, z: 0}
@@ -5857,7 +5857,7 @@ Tilemap:
       - {fileID: -818724228, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -363494662, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 58566158, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.0828342
+      m_AnimationSpeed: 5.102929
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 7, y: 11, z: 0}
@@ -5867,7 +5867,7 @@ Tilemap:
       - {fileID: -287211214, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 1592084536, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -2089611019, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 4.7051153
+      m_AnimationSpeed: 4.5955853
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -5, y: 14, z: 0}
@@ -5877,7 +5877,7 @@ Tilemap:
       - {fileID: -287211214, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 1592084536, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -2089611019, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.188258
+      m_AnimationSpeed: 4.9316826
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -7, y: 16, z: 0}
@@ -5887,7 +5887,7 @@ Tilemap:
       - {fileID: -818724228, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -363494662, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 58566158, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.5350413
+      m_AnimationSpeed: 5.580274
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 5, y: 16, z: 0}
@@ -5897,7 +5897,7 @@ Tilemap:
       - {fileID: -818724228, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: -363494662, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
       - {fileID: 58566158, guid: 49157b4aa68ca0146a72e284cca17149, type: 3}
-      m_AnimationSpeed: 5.7280607
+      m_AnimationSpeed: 4.6326942
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -7451,6 +7451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 992723739}
   - component: {fileID: 992723738}
+  - component: {fileID: 992723740}
   m_Layer: 0
   m_Name: Hermit Chara Turn_0
   m_TagString: Untagged
@@ -7525,6 +7526,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &992723740
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992723737}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.4522894, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9642172, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1003148103
 GameObject:
   m_ObjectHideFlags: 0
