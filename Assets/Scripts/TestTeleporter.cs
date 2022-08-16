@@ -8,9 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class TestTeleporter : MonoBehaviour
 {
-    public UnityEngine.Object scene;
+    
     private bool loadCombatScene = false; // Old way to load combat UI was to actually load the scene.
-    public bool quickShowCombatScene = true;
+
+    public List<GameObject> enemyCombatPrefabs;
     
     private PlayerController playerController;
     private bool collisionsDisabled = false;
@@ -25,64 +26,48 @@ public class TestTeleporter : MonoBehaviour
         {
             playerController = _playerController;
 
-            if (quickShowCombatScene || loadCombatScene)
-            {
-                collisionsDisabled = true;
+            collisionsDisabled = true;
             
-                // Disable movement of enemy and player.
-                GetComponent<EnemyMove>().enabled = false;
-                GetComponent<TestTeleporter>().enabled = false;
+            // Disable movement of enemy and player.
+            GetComponent<EnemyMove>().enabled = false;
+            GetComponent<TestTeleporter>().enabled = false;
 
-                Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
-                enemyRigidbody.velocity = Vector2.zero;
-                enemyRigidbody.angularVelocity = 0;
-                enemyRigidbody.isKinematic = true;
+            Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
+            enemyRigidbody.velocity = Vector2.zero;
+            enemyRigidbody.angularVelocity = 0;
+            enemyRigidbody.isKinematic = true;
                 
-                Rigidbody2D playerRigidbody = playerController.GetComponent<Rigidbody2D>();
-                playerRigidbody.velocity = Vector2.zero;
-                playerRigidbody.angularVelocity = 0;
-                playerRigidbody.isKinematic = true;
+            Rigidbody2D playerRigidbody = playerController.GetComponent<Rigidbody2D>();
+            playerRigidbody.velocity = Vector2.zero;
+            playerRigidbody.angularVelocity = 0;
+            playerRigidbody.isKinematic = true;
+            
+            
+            // New approach to loading combat scene without using Scene Manager.
+            ChainsOfFate.Gerallt.GameManager.Instance.ShowCombatUI(enemyCombatPrefabs);
+
+	        CombatUI combatUI = ChainsOfFate.Gerallt.GameManager.Instance.combatUI;
+            
+            List<GameObject> enemies = new List<GameObject>();
+            enemies.Add(this.gameObject);
+
+	        // Add current party members from current player to this list
+            List<GameObject> partyMembers = new List<GameObject>();
+            Champion player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
+            foreach (Champion partyMember in player.partyMembers)
+            {
+                partyMembers.Add(partyMember.gameObject);
             }
             
-            if (loadCombatScene) // Old approach to loading combat scene.
-            {
-                SceneManager.sceneLoaded+= SceneManagerOnsceneLoaded;
-                SceneManager.LoadScene(WorldInfo.GetSceneName(scene), LoadSceneMode.Additive);
-            }
-            else if (quickShowCombatScene) // New approach to loading combat scene without using Scene Manager.
-            {
-                ChainsOfFate.Gerallt.GameManager.Instance.ShowCombatUI();
-
-                CombatUI combatUI = ChainsOfFate.Gerallt.GameManager.Instance.combatUI;
-                
-                List<GameObject> enemies = new List<GameObject>();
-                enemies.Add(this.gameObject);
-
-                // Add current party members from current player to this list
-                List<GameObject> partyMembers = new List<GameObject>();
-                Champion player = ChainsOfFate.Gerallt.GameManager.Instance.GetPlayer();
-                foreach (Champion partyMember in player.partyMembers)
-                {
-                    partyMembers.Add(partyMember.gameObject);
-                }
-                
-                
-                playerController.controls.Player.Disable();
-                
-                combatUI.isTestMode = false;
-                CombatGameManager.Instance.GetBlockBarUI().isTestMode = false;
-                combatUI.onCloseCombatUI += CombatUI_OnCloseCombatUI;
-                //combatUI.onSceneDestroyed += CombatUI_OnSceneDestroyed;
-                combatUI.SetCurrentParty(enemies, partyMembers, playerController.gameObject);
-            }
-        }
-
-        if (!quickShowCombatScene && !loadCombatScene)
-        {
-            // General teleporter function.
-            // TODO: Need to test general teleporting
-            SceneManager.sceneLoaded += SceneManager_GeneralTeleport_OnSceneLoaded;
-            SceneManager.LoadScene(WorldInfo.GetSceneName(scene), LoadSceneMode.Additive);
+	        
+	        playerController.controls.Player.Disable();
+	        
+	        combatUI.isTestMode = false; 
+	        CombatGameManager.Instance.GetBlockBarUI().isTestMode = false;
+	        combatUI.onCloseCombatUI += CombatUI_OnCloseCombatUI; 
+	        //combatUI.onSceneDestroyed += CombatUI_OnSceneDestroyed;
+            combatUI.SetCurrentParty(enemies, partyMembers, playerController.gameObject);
+            
         }
     }
 

@@ -22,9 +22,9 @@ namespace ChainsOfFate.Gerallt
         
         [Header("For Game Testing, add your own party members and enemies here")]
         public bool isTestMode; // If test mode, will use the test party members
-        public List<GameObject> testEnemies;
-        public List<GameObject> testPartyMembers;
-        public GameObject testPlayer;
+        public List<GameObject> enemies;
+        public List<GameObject> partyMembers;
+        public GameObject player;
 
         public void ResetViewState()
         {
@@ -86,7 +86,7 @@ namespace ChainsOfFate.Gerallt
         {
             if (isTestMode)
             {
-                SetCurrentParty(testEnemies, testPartyMembers, testPlayer);
+                SetCurrentParty(enemies, partyMembers, player);
             }
         }
         

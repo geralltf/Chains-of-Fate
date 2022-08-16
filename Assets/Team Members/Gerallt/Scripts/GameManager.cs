@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
@@ -67,9 +68,15 @@ namespace ChainsOfFate.Gerallt
             return playerController;
         }
         
-        public void ShowCombatUI()
+        public void ShowCombatUI(List<GameObject> enemiesPrefabs)
         {
             combatUI.gameObject.SetActive(true);
+            PopulateEnemyTeam(enemiesPrefabs);
+        }
+
+        public void PopulateEnemyTeam(List<GameObject> enemiesPrefabs)
+        {
+	        
         }
         
         public void HideCombatUI()
