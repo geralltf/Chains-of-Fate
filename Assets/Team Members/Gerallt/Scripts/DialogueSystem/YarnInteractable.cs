@@ -4,6 +4,8 @@ using ChainsOfFate.Gerallt;
 using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.Events;
+using FMODUnity;
+using FMOD.Studio;
 
 public class YarnInteractable : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class YarnInteractable : MonoBehaviour
     [SerializeField] private string conversationStartNode;
 
     // internal properties not exposed to editor
+    [SerializeField] private EventReference fmodEvent;
+    private EventInstance instance;
+
     [SerializeField] private DialogueRunner dialogueRunner;
     public bool resetDialogWhenComplete = true;
     public bool interactable = true;
@@ -23,6 +28,8 @@ public class YarnInteractable : MonoBehaviour
         Debug.Log($"Started conversation with {name}.");
         isCurrentConversation = true;
 
+        instance.start();                                           //FMOD start sound - currently at the beginning of the box, not the text
+
         dialogueRunner.StartDialogue(conversationStartNode);
     }
 
@@ -34,6 +41,8 @@ public class YarnInteractable : MonoBehaviour
             Debug.Log($"Ended conversation with {name}.");
 
             dialogueRunner.Stop();
+
+            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);         //FMOD stop sound - currently at the end of the box, not the text
         }
     }
 
@@ -56,6 +65,9 @@ public class YarnInteractable : MonoBehaviour
     
     private void Start()
     {
+ 
+        instance = RuntimeManager.CreateInstance(fmodEvent);
+
         if (dialogueRunner == null)
         {
             dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
