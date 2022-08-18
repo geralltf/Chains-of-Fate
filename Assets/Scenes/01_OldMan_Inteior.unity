@@ -1820,6 +1820,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Path
+      value: event:/Dialogue/Generic People
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data1
+      value: -105442250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data2
+      value: 1322771480
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data3
+      value: 1835079568
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data4
+      value: -69455175
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: conversationStartNode
       value: MessyBench
       objectReference: {fileID: 0}
@@ -1925,6 +1945,26 @@ PrefabInstance:
     - target: {fileID: 2386391077194313173, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Path
+      value: event:/Dialogue/Generic People
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data1
+      value: -105442250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data2
+      value: 1322771480
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data3
+      value: 1835079568
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data4
+      value: -69455175
       objectReference: {fileID: 0}
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: conversationStartNode
@@ -7835,6 +7875,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Path
+      value: event:/Dialogue/Generic People
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data1
+      value: -105442250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data2
+      value: 1322771480
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data3
+      value: 1835079568
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data4
+      value: -69455175
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: conversationStartNode
       value: Stove
       objectReference: {fileID: 0}
@@ -7969,6 +8029,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Path
+      value: event:/Dialogue/Generic People
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data1
+      value: -105442250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data2
+      value: 1322771480
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data3
+      value: 1835079568
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
+      propertyPath: fmodEvent.Guid.Data4
+      value: -69455175
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419211906145096108, guid: d97b6c6c60c5a4642aa05c2712b1d299, type: 3}
       propertyPath: conversationStartNode
       value: CounterApple
       objectReference: {fileID: 0}
@@ -8067,7 +8147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002836167562076, guid: 79948850090cb7d419d79d34122a4a65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.32233238
+      value: 3.0859919
       objectReference: {fileID: 0}
     - target: {fileID: 100002836167562076, guid: 79948850090cb7d419d79d34122a4a65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14031,6 +14111,26 @@ PrefabInstance:
     - target: {fileID: 2195986277128605815, guid: e43354389c5628146a0932be370623cc, type: 3}
       propertyPath: m_Name
       value: Sink
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107548039425215190, guid: e43354389c5628146a0932be370623cc, type: 3}
+      propertyPath: fmodEvent.Path
+      value: event:/Dialogue/Generic People
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107548039425215190, guid: e43354389c5628146a0932be370623cc, type: 3}
+      propertyPath: fmodEvent.Guid.Data1
+      value: -105442250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107548039425215190, guid: e43354389c5628146a0932be370623cc, type: 3}
+      propertyPath: fmodEvent.Guid.Data2
+      value: 1322771480
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107548039425215190, guid: e43354389c5628146a0932be370623cc, type: 3}
+      propertyPath: fmodEvent.Guid.Data3
+      value: 1835079568
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107548039425215190, guid: e43354389c5628146a0932be370623cc, type: 3}
+      propertyPath: fmodEvent.Guid.Data4
+      value: -69455175
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43354389c5628146a0932be370623cc, type: 3}
