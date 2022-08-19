@@ -422,7 +422,9 @@ MonoBehaviour:
   xp: 0
   isMainCharacter: 0
   counterAttackDamage: 0
+  Party: {fileID: 0}
   partyMembers: []
+  combatPartyMembers: []
 --- !u!70 &8499110532655295130
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -473,6 +475,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conversationStartNode: Sink
+  fmodEvent:
+    Guid:
+      Data1: -105442250
+      Data2: 1322771480
+      Data3: 1835079568
+      Data4: -69455175
+    Path: event:/Dialogue/Generic People
   dialogueRunner: {fileID: 0}
   resetDialogWhenComplete: 1
   interactable: 1
