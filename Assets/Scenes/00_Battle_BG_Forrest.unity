@@ -20834,7 +20834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002836167562076, guid: 79948850090cb7d419d79d34122a4a65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: 2.1273575
       objectReference: {fileID: 0}
     - target: {fileID: 100002836167562076, guid: 79948850090cb7d419d79d34122a4a65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21425,10 +21425,10 @@ MonoBehaviour:
       Data2: 1267290970
       Data3: 587688590
       Data4: -1202250622
-    Path: event:/Music/MusicPlaceHold
+    Path: event:/Music/OverWorldMusic
   Event: 
-  PlayEvent: 0
-  StopEvent: 0
+  PlayEvent: 1
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

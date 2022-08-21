@@ -42,7 +42,7 @@ public class YarnInteractable : MonoBehaviour
 
             dialogueRunner.Stop();
 
-            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);         //FMOD stop sound - currently at the end of the box, not the text
+            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);         //FMOD stop sound - currently at the end of the box, not the text
         }
     }
 
