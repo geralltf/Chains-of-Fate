@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9172434023578737250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/OldManBasement
+  m_EditorClassIdentifier: 
+  Path: event:/Music/OldManBasement
+  Guid:
+    Data1: -853887624
+    Data2: 1173767130
+    Data3: 309741229
+    Data4: -1785148300
+  Banks:
+  - {fileID: -6279654260510052518}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 150480
 --- !u!114 &-8938625652700108408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +163,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 310
+--- !u!114 &-7283844926143425407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/EeryForestOrCaveMaybe
+  m_EditorClassIdentifier: 
+  Path: event:/Music/EeryForestOrCaveMaybe
+  Guid:
+    Data1: -1849118364
+    Data2: 1236733929
+    Data3: 1710081956
+    Data4: 72581571
+  Banks:
+  - {fileID: -6279654260510052518}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 88330
 --- !u!114 &-7263097094801473483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,33 +262,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 292351
---- !u!114 &-6624396134822434572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/Recover - heal
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/Recover - heal
-  Guid:
-    Data1: -59116585
-    Data2: 1114784850
-    Data3: -1886468708
-    Data4: 1812511638
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3320
 --- !u!114 &-6279654260510052518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,9 +277,36 @@ MonoBehaviour:
   Path: Assets/Team Members/Luke M/FMOD Bank Builds/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637964177157976325
+  lastModified: 637966940040023073
   FileSizes: []
   Exists: 1
+--- !u!114 &-5573078801327395252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainTheme
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainTheme
+  Guid:
+    Data1: -1569777972
+    Data2: 1093491404
+    Data3: -1169709891
+    Data4: 632802273
+  Banks:
+  - {fileID: -6279654260510052518}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 104888
 --- !u!114 &-5275768827936687990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,33 +334,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 80793
---- !u!114 &-5272100063678427425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/UI/EnemyDeath
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/UI/EnemyDeath
-  Guid:
-    Data1: 2013025287
-    Data2: 1237233314
-    Data3: -1546686316
-    Data4: -1456259961
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 390
 --- !u!114 &-5242618109126085282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,33 +415,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 210
---- !u!114 &-3995430749515067434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/Debuff
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/Debuff
-  Guid:
-    Data1: 268756405
-    Data2: 1078826962
-    Data3: 617339286
-    Data4: 17450088
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1240
 --- !u!114 &-3441380806945438592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2712
---- !u!114 &-3388973545195582518
+--- !u!114 &-3399247801172739576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,23 +452,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/MagicAttack
+  m_Name: event:/Music/OutsideOldManHouseMusic
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/MagicAttack
+  Path: event:/Music/OutsideOldManHouseMusic
   Guid:
-    Data1: 412993749
-    Data2: 1237305801
-    Data3: -267954298
-    Data4: 336296834
+    Data1: -1649849627
+    Data2: 1248402813
+    Data3: -29212542
+    Data4: 569304785
   Banks:
   - {fileID: -6279654260510052518}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1020
+  Length: 83707
 --- !u!114 &-2937621683670480798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,41 +566,32 @@ MonoBehaviour:
   - {fileID: 6892576125051099354}
   - {fileID: -6279654260510052518}
   EditorEvents:
-  - {fileID: 6912490577918726306}
   - {fileID: 5389398400193585734}
-  - {fileID: -5272100063678427425}
   - {fileID: -8474053199210123659}
-  - {fileID: 1796085022356590190}
   - {fileID: 5222973408010925507}
   - {fileID: -4565198316849106796}
   - {fileID: 170414763568793564}
-  - {fileID: 6860183962672643567}
-  - {fileID: 8192441612318957783}
-  - {fileID: 2988045363697374524}
-  - {fileID: 589691916192586309}
   - {fileID: 1903944412622341137}
   - {fileID: -8685946718034515042}
   - {fileID: 3418010675973152688}
-  - {fileID: 1473199261485945030}
-  - {fileID: -3995430749515067434}
-  - {fileID: 3591834217906103592}
   - {fileID: -8156345882490602979}
-  - {fileID: 286018218858452081}
-  - {fileID: -3388973545195582518}
   - {fileID: -6915399291297780322}
-  - {fileID: -6624396134822434572}
   - {fileID: -386014104346206506}
   - {fileID: 5517099193095117850}
-  - {fileID: 2518692406775424118}
   - {fileID: -2937621683670480798}
   - {fileID: 152936177117240588}
-  - {fileID: 6476696218803675622}
+  - {fileID: 2953251656432688665}
+  - {fileID: -7283844926143425407}
+  - {fileID: -9172434023578737250}
+  - {fileID: 1914761169050108370}
+  - {fileID: -5573078801327395252}
+  - {fileID: -3399247801172739576}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6279654260510052518}
   StringsBanks:
   - {fileID: 6892576125051099354}
-  cacheTime: 637964177157976325
+  cacheTime: 637966940040053047
   cacheVersion: 10
 --- !u!114 &22789439026488959
 MonoBehaviour:
@@ -682,34 +673,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 330
---- !u!114 &286018218858452081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/SlimeBossAttack
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/SlimeBossAttack
-  Guid:
-    Data1: 661738190
-    Data2: 1189748379
-    Data3: -818360912
-    Data4: 983104664
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 295
+  Length: 680
 --- !u!114 &330821883738066696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,33 +755,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 292351
---- !u!114 &589691916192586309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/ResolveLower
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/ResolveLower
-  Guid:
-    Data1: 2031301464
-    Data2: 1190017140
-    Data3: -428814454
-    Data4: 354442944
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1608
 --- !u!114 &1467174209980351323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,33 +783,6 @@ MonoBehaviour:
   - Grass
   - Indoor
   Exists: 1
---- !u!114 &1473199261485945030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/ResolveRaise
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/ResolveRaise
-  Guid:
-    Data1: 94075283
-    Data2: 1119727265
-    Data3: -828479345
-    Data4: -351340325
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1204
 --- !u!114 &1573987411387149047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,33 +810,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 330
---- !u!114 &1796085022356590190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/GuardSuccess
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/GuardSuccess
-  Guid:
-    Data1: 2017024017
-    Data2: 1208925576
-    Data3: -1205172089
-    Data4: 690615675
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 995
 --- !u!114 &1903944412622341137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +837,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 80793
+--- !u!114 &1914761169050108370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/OverWorldMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/OverWorldMusic
+  Guid:
+    Data1: -1847444040
+    Data2: 1267290970
+    Data3: 587688590
+    Data4: -1202250622
+  Banks:
+  - {fileID: -6279654260510052518}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 99000
 --- !u!114 &2135642160641468954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,7 +891,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1204
---- !u!114 &2518692406775424118
+--- !u!114 &2953251656432688665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -991,14 +901,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/Damage Taken
+  m_Name: event:/On_Hold/Battle/EnemyDeath
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/Damage Taken
+  Path: event:/On_Hold/Battle/EnemyDeath
   Guid:
-    Data1: -1701656092
-    Data2: 1286497682
-    Data3: -1700119879
-    Data4: -1467424665
+    Data1: 2013025287
+    Data2: 1237233314
+    Data3: -1546686316
+    Data4: -1456259961
   Banks:
   - {fileID: -6279654260510052518}
   IsStream: 0
@@ -1007,34 +917,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 340
---- !u!114 &2988045363697374524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/PlantBoss_Attack
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/PlantBoss_Attack
-  Guid:
-    Data1: -1619182010
-    Data2: 1102722038
-    Data3: 1892234156
-    Data4: 696601769
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1706
+  Length: 390
 --- !u!114 &3418010675973152688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,33 +945,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 596
---- !u!114 &3591834217906103592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/MusicPlaceHold
-  m_EditorClassIdentifier: 
-  Path: event:/Music/MusicPlaceHold
-  Guid:
-    Data1: -1847444040
-    Data2: 1267290970
-    Data3: 587688590
-    Data4: -1202250622
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 8000
 --- !u!114 &3718179928610764096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,33 +1292,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 295
---- !u!114 &6476696218803675622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/BluntAttack
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/BluntAttack
-  Guid:
-    Data1: -1291124997
-    Data2: 1216942082
-    Data3: -2046381153
-    Data4: -1609898079
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 540
 --- !u!114 &6842338649820957438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,33 +1319,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 995
---- !u!114 &6860183962672643567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/FrogBoss
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/FrogBoss
-  Guid:
-    Data1: -1656055235
-    Data2: 1271824334
-    Data3: 265148078
-    Data4: 1757142434
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2515
 --- !u!114 &6892576125051099354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,38 +1334,11 @@ MonoBehaviour:
   Path: Assets/Team Members/Luke M/FMOD Bank Builds/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637959207579849315
+  lastModified: 637966940040053047
   FileSizes:
   - Name: 
-    Value: 2228
+    Value: 1824
   Exists: 1
---- !u!114 &6912490577918726306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/PotionDamage
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/PotionDamage
-  Guid:
-    Data1: -1483271675
-    Data2: 1087941221
-    Data3: 1432942732
-    Data4: 1135972951
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 350
 --- !u!114 &7006691685806736497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1700,33 +1475,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 162761
---- !u!114 &8192441612318957783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Battle/SlashAttack
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Battle/SlashAttack
-  Guid:
-    Data1: 829563967
-    Data2: 1250787274
-    Data3: -1699460189
-    Data4: 1838785149
-  Banks:
-  - {fileID: -6279654260510052518}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 310
 --- !u!114 &8205760328138781867
 MonoBehaviour:
   m_ObjectHideFlags: 0
